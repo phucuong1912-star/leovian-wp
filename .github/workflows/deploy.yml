@@ -1,0 +1,47 @@
+# Pushes the Leovian theme to InfinityFree over FTP whenever it changes.
+# InfinityFree has no SSH or git, so FTP is the only way in. Only the theme is
+# uploaded: content (database) and media are edited directly on the live site.
+#
+# Repository → Settings → Secrets and variables → Actions:
+#   secrets   FTP_SERVER     ftpupload.net (see "FTP Details" in the InfinityFree client area)
+#             FTP_USERNAME   if0_xxxxxxxx
+#             FTP_PASSWORD   the hosting account (vPanel) password
+#   variable  FTP_THEME_DIR  optional, default /htdocs/wp-content/themes/leovian/
+
+name: Deploy theme to InfinityFree
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'wp-content/themes/leovian/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+# Never run two uploads at once; the second waits for the first.
+concurrency:
+  group: deploy-infinityfree
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: none
+
+      - name: Check PHP syntax
+        run: find wp-content/themes/leovian -name '*.php' -print0 | xargs -0 -n1 php -l
+
+      - name: Upload theme over FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./wp-content/themes/leovian/
+          server-dir: ${{ vars.FTP_THEME_DIR || '/htdocs/wp-content/themes/leovian/' }}
