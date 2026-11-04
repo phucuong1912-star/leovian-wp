@@ -2,7 +2,7 @@
 Theme Name: Leovian
 Theme URI: https://www.leovian.com.au
 Description: Giao diện Leovian — hệ sinh thái đầu tư & phát triển doanh nghiệp. Nội dung, ảnh và video sửa trong trang quản trị.
-Version: 1.0.0
+Version: 1.1.0
 Requires at least: 6.5
 Requires PHP: 8.1
 Text Domain: leovian
@@ -13,7 +13,7 @@ Text Domain: leovian
             --bg: #0D0D0D; --bg2: #171717; --g: #C8A66A; --g2: #E2C58E;
             --t: #F5F0E8; --t1: #DDD6CB; --t2: #BDB5AA; --t3: #8E867A; --ln: #3a3226; --ln2: #26211a;
             --gold: linear-gradient(100deg, #a8834e 0%, #E2C58E 28%, #C8A66A 50%, #f3dfb3 70%, #b8925a 100%);
-            --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+            --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
             --sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             --wrap: 1320px; --gut: clamp(20px, 5vw, 72px); --hh: 88px;
             --edge: max(var(--gut), calc((100vw - var(--wrap)) / 2));
@@ -24,7 +24,7 @@ Text Domain: leovian
         /* ================= Base ================= */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
         html { scroll-behavior: smooth; -webkit-text-size-adjust: 100% }
-        body { background: var(--bg); color: var(--t); font: 400 16px/1.7 var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden }
+        body { background: var(--bg); color: var(--t); font: 400 16px/1.7 var(--sans); font-variant-numeric: lining-nums; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden }
         body.lock { overflow: hidden }
         /* Film grain keeps large dark areas from looking flat. */
         body::before { content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .055; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") }
@@ -42,19 +42,19 @@ Text Domain: leovian
         .ic.xs { width: 13px; height: 13px }
 
         /* ================= Type ================= */
-        h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; line-height: 1.08; letter-spacing: -.01em; color: var(--t) }
-        h2 { font-size: clamp(2.3rem, 4.8vw, 4.4rem); font-weight: 300; line-height: 1.04 }
-        h3 { font-size: clamp(1.45rem, 2vw, 1.8rem) }
-        .h-md { font-size: clamp(2rem, 3.4vw, 3.1rem) }
+        h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; line-height: 1.08; letter-spacing: -.01em; color: var(--t); text-wrap: balance }
+        h2 { font-size: clamp(2rem, 4.2vw, 3.85rem); font-weight: 400; line-height: 1.1 }
+        h3 { font-size: clamp(1.3rem, 1.75vw, 1.6rem) }
+        .h-md { font-size: clamp(1.75rem, 3vw, 2.75rem) }
         p { color: var(--t2); max-width: 64ch }
         .lead { font-size: clamp(1.02rem, 1.2vw, 1.12rem); font-weight: 300; color: var(--t1) }
         .eyebrow { display: inline-flex; align-items: center; gap: 14px; font: 500 11.5px/1.4 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--g) }
         .eyebrow::before { content: ''; width: 36px; height: 1px; background: currentColor; flex: none }
-        .sub { font: italic 400 clamp(1.35rem, 2.1vw, 1.9rem)/1.3 var(--serif); color: var(--g2); max-width: none }
+        .sub { font: italic 400 clamp(1.2rem, 1.85vw, 1.65rem)/1.3 var(--serif); color: var(--g2); max-width: none }
         .gold { background: var(--gold); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent }
         .num { font: 500 12px/1 var(--sans); letter-spacing: .22em; color: var(--g) }
         /* Outlined numerals that fill with gold from the bottom when their block becomes active. */
-        .onum { display: inline-block; font: 300 clamp(3.4rem, 5vw, 5rem)/1 var(--serif); color: transparent; -webkit-text-stroke: 1px rgba(200, 166, 106, .6); background: var(--gold); background-size: 100% 0%; background-repeat: no-repeat; background-position: 0 100%; -webkit-background-clip: text; background-clip: text; transition: background-size 1s var(--ease) }
+        .onum { display: inline-block; font: 400 clamp(3rem, 4.4vw, 4.4rem)/1 var(--serif); color: transparent; -webkit-text-stroke: 1px rgba(200, 166, 106, .6); background: var(--gold); background-size: 100% 0%; background-repeat: no-repeat; background-position: 0 100%; -webkit-background-clip: text; background-clip: text; transition: background-size 1s var(--ease) }
         .hint { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--t3) }
         .hint .ic { color: var(--g) }
 
@@ -115,7 +115,7 @@ Text Domain: leovian
         .pre-in { display: flex; flex-direction: column; align-items: center; gap: 24px }
         .pre-in .mark { width: 60px; height: 60px; fill: none; stroke: var(--g2); stroke-width: 1.2; stroke-dasharray: 160; stroke-dashoffset: 160; animation: draw 1.5s var(--ease) forwards }
         @keyframes draw { to { stroke-dashoffset: 0 } }
-        .pre-word { display: flex; gap: .5em; font: 500 22px/1 var(--serif); color: var(--g2); overflow: hidden; padding: 4px 0 }
+        .pre-word { display: flex; gap: .5em; font: 500 19px/1 var(--serif); color: var(--g2); overflow: hidden; padding: 4px 0 }
         .pre-word span { display: inline-block; transform: translateY(120%); animation: up .9s var(--ease) forwards; animation-delay: calc(var(--i) * 70ms + .25s) }
         @keyframes up { to { transform: none } }
         .pre-bar { width: 200px; height: 1px; background: var(--ln) }
@@ -125,7 +125,7 @@ Text Domain: leovian
         #wipe::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--g) }
         #wipe.cover { transform: translateY(0); transition: transform .7s var(--io); pointer-events: auto }
         #wipe.leave { transform: translateY(-100%); transition: transform .85s var(--io) }
-        #wipe span { font: 300 clamp(2.6rem, 7vw, 6rem)/1 var(--serif); color: var(--g2); opacity: 0; transform: translateY(24px); transition: opacity .5s .2s, transform .7s .2s var(--ease) }
+        #wipe span { font: 400 clamp(2.3rem, 6.15vw, 5.3rem)/1 var(--serif); color: var(--g2); opacity: 0; transform: translateY(24px); transition: opacity .5s .2s, transform .7s .2s var(--ease) }
         #wipe.cover span { opacity: 1; transform: none }
         #wipe.leave span { opacity: 0; transform: translateY(-24px); transition-delay: 0s }
         #prog { position: fixed; left: 0; right: 0; top: 0; z-index: 70; height: 2px; background: var(--gold); transform: scaleX(var(--sp, 0)); transform-origin: left; pointer-events: none }
@@ -159,7 +159,7 @@ Text Domain: leovian
         .bar { height: var(--hh); display: flex; align-items: center; justify-content: space-between; gap: 32px }
         .brand { display: inline-flex; align-items: center; gap: 14px; color: var(--g2) }
         .brand .mark { width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.3 }
-        .brand span { font: 600 23px/1 var(--serif); letter-spacing: .36em; margin-right: -.36em }
+        .brand span { font: 600 20px/1 var(--serif); letter-spacing: .36em; margin-right: -.36em }
         .nav { display: flex; align-items: center; gap: clamp(22px, 2.4vw, 40px) }
         .nav>a, .dd>a { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 14px 0; font: 500 13.5px/1 var(--sans); letter-spacing: .02em; color: var(--t1); transition: color .3s }
         .nav>a::after, .dd>a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 6px; height: 1px; background: var(--g); transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease) }
@@ -174,7 +174,7 @@ Text Domain: leovian
         .mega-intro { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 14px; min-height: 280px; padding: 28px }
         .mega-intro img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover }
         .mega-intro::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(13, 13, 13, .96) 22%, rgba(13, 13, 13, .4)) }
-        .mega-intro p { font: 400 1.5rem/1.2 var(--serif); color: var(--t) }
+        .mega-intro p { font: 400 1.3rem/1.2 var(--serif); color: var(--t) }
         .mega-col { padding: 30px 26px 24px }
         .mega-col b { display: block; margin-bottom: 12px; font: 500 11px/1.4 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--g) }
         .mega-col a { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 13.5px; line-height: 1.35; color: var(--t2); transition: color .25s, transform .4s var(--ease) }
@@ -198,7 +198,7 @@ Text Domain: leovian
         body.menu .ov { clip-path: circle(150% at calc(100% - var(--gut) - 30px) calc(var(--hh) / 2)); visibility: visible; transition: clip-path .95s var(--io), visibility 0s 0s }
         .ov-in { position: relative; isolation: isolate; height: 100%; display: grid; grid-template-rows: 1fr auto; padding: calc(var(--hh) + 20px) var(--gut) calc(28px + env(safe-area-inset-bottom, 0px)); overflow-y: auto }
         .ov-bg { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; opacity: .12 }
-        .ov-nav a { display: flex; align-items: baseline; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--ln2); font: 300 clamp(2rem, 7.4vw, 3.8rem)/1.1 var(--serif); color: var(--t); opacity: 0; transform: translateY(36px); transition: opacity .6s, transform .9s var(--ease), color .3s }
+        .ov-nav a { display: flex; align-items: baseline; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--ln2); font: 400 clamp(1.75rem, 6.5vw, 3.35rem)/1.1 var(--serif); color: var(--t); opacity: 0; transform: translateY(36px); transition: opacity .6s, transform .9s var(--ease), color .3s }
         body.menu .ov-nav a { opacity: 1; transform: none; transition-delay: calc(.3s + var(--i) * 60ms) }
         .ov-nav a span { font: 500 11px/1 var(--sans); letter-spacing: .22em; color: var(--g) }
         .ov-nav a[aria-current] { color: var(--g2); font-style: italic }
@@ -230,7 +230,7 @@ Text Domain: leovian
         .hero .shade { background: radial-gradient(120% 90% at 72% 28%, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, .32) 55%, rgba(13, 13, 13, .82) 100%), linear-gradient(0deg, rgba(13, 13, 13, .97) 0%, rgba(13, 13, 13, .45) 36%, rgba(13, 13, 13, .12) 62%, rgba(13, 13, 13, .55) 100%) }
         .hero-in { position: relative; width: 100%; padding-top: calc(var(--hh) + 40px); padding-bottom: 44px }
         .hero .eyebrow { margin-bottom: 30px }
-        .hero h1 { font-size: clamp(2.9rem, 7.3vw, 7.6rem); font-weight: 300; line-height: 1.02; letter-spacing: -.025em }
+        .hero h1 { font-size: clamp(2.55rem, 6.4vw, 6.7rem); font-weight: 400; line-height: 1.08; letter-spacing: -.02em }
         .ln { display: block; overflow: hidden; padding: .2em .05em .07em; margin: -.2em -.05em -.07em }
         .ln>span { display: block; transform: translateY(118%); transition: transform 1.4s var(--ease); transition-delay: calc(var(--d) * 120ms + .1s) }
         .hero.go .ln>span { transform: none }
@@ -258,20 +258,20 @@ Text Domain: leovian
         .mq { overflow: hidden; padding: clamp(24px, 3vw, 38px) 0; border-bottom: 1px solid var(--ln2); background: var(--bg) }
         .mq-track { display: flex; width: max-content; animation: mq 50s linear infinite }
         .mq:hover .mq-track { animation-play-state: paused }
-        .mq-item { display: flex; align-items: center; gap: clamp(26px, 3vw, 52px); padding-right: clamp(26px, 3vw, 52px); font: 300 clamp(2.3rem, 5.2vw, 4.8rem)/1.1 var(--serif); white-space: nowrap }
+        .mq-item { display: flex; align-items: center; gap: clamp(26px, 3vw, 52px); padding-right: clamp(26px, 3vw, 52px); font: 400 clamp(2rem, 4.6vw, 4.2rem)/1.1 var(--serif); white-space: nowrap }
         .mq-item:nth-child(odd) { color: transparent; -webkit-text-stroke: 1px rgba(226, 197, 142, .55) }
         .mq-item svg { width: .42em; height: .42em; fill: var(--g) }
         @keyframes mq { to { transform: translateX(-50%) } }
 
         /* ================= Intro / scroll-lit statement ================= */
         .intro-grid { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(40px, 6vw, 120px); align-items: start }
-        .intro-side h2 { margin-top: 22px; font-size: clamp(1.7rem, 2.4vw, 2.3rem); font-weight: 400; line-height: 1.15 }
+        .intro-side h2 { margin-top: 22px; font-size: clamp(1.5rem, 2.1vw, 2rem); font-weight: 400; line-height: 1.15 }
         .badge { position: relative; width: clamp(230px, 23vw, 330px); aspect-ratio: 1; margin-top: 48px }
         .badge .ring { width: 100%; height: 100%; animation: spin 30s linear infinite }
         .badge text { font: 600 13px/1 var(--sans); fill: var(--g2) }
         .badge .mark { position: absolute; inset: 0; margin: auto; width: 28%; height: 28%; fill: none; stroke: var(--g); stroke-width: 1.1 }
         @keyframes spin { to { transform: rotate(360deg) } }
-        .lit { max-width: none; font: 300 clamp(1.45rem, 2.4vw, 2.3rem)/1.4 var(--serif); letter-spacing: -.005em; color: var(--t) }
+        .lit { max-width: none; font: 400 clamp(1.3rem, 2.1vw, 2rem)/1.4 var(--serif); letter-spacing: -.005em; color: var(--t) }
         .lw { opacity: .15; transition: opacity .5s ease }
         .lw.on { opacity: 1 }
         .lw.ac { font-style: italic; color: var(--g2) }
@@ -290,7 +290,7 @@ Text Domain: leovian
         .xp-i.on::before { opacity: 0 }
         .xp-i.on::after { opacity: 1 }
         .xp-c { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(24px, 3vw, 44px) }
-        .xp-c h3 { margin-top: 18px; font-size: clamp(1.6rem, 2.3vw, 2.4rem); font-weight: 300; line-height: 1.1 }
+        .xp-c h3 { margin-top: 18px; font-size: clamp(1.4rem, 2vw, 2.1rem); font-weight: 400; line-height: 1.1 }
         .xp-c p { max-height: 0; overflow: hidden; opacity: 0; color: var(--t1); transition: max-height .8s var(--ease), opacity .6s, margin .6s }
         .xp-i.on .xp-c p { max-height: 140px; opacity: 1; margin-top: 14px; transition-delay: .3s }
         .xp-i.on .onum { background-size: 100% 100% }
@@ -298,14 +298,14 @@ Text Domain: leovian
         /* ================= Ecosystem hover list ================= */
         .eco-group { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(32px, 5vw, 100px); padding: clamp(52px, 6vw, 88px) 0; border-top: 1px solid var(--ln) }
         .eco-gh { position: sticky; top: calc(var(--hh) + 36px); align-self: start; display: flex; flex-direction: column; align-items: flex-start; gap: 14px }
-        .eco-gh h3 { font-size: clamp(1.8rem, 2.8vw, 2.6rem); font-weight: 300; line-height: 1.1 }
+        .eco-gh h3 { font-size: clamp(1.6rem, 2.45vw, 2.3rem); font-weight: 400; line-height: 1.1 }
         .eco-group:hover .onum { background-size: 100% 100% }
         .eco-row { position: relative; display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 20px; padding: 28px 0; border-bottom: 1px solid var(--ln2); color: var(--t) }
         .eco-row::before { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--g); transform: scaleX(0); transform-origin: right; transition: transform .8s var(--ease) }
         .eco-row:hover::before { transform: scaleX(1); transform-origin: left }
         .eco-n { font: 500 12px/1 var(--sans); letter-spacing: .22em; color: var(--g) }
         .eco-main { display: flex; flex-direction: column; gap: 8px }
-        .eco-t { font: 300 clamp(1.9rem, 3.4vw, 3.1rem)/1.05 var(--serif); transition: transform .7s var(--ease), color .4s }
+        .eco-t { font: 400 clamp(1.65rem, 3vw, 2.75rem)/1.05 var(--serif); transition: transform .7s var(--ease), color .4s }
         .eco-d { font-size: 14px; line-height: 1.6; color: var(--t3); max-width: 56ch; transition: color .4s }
         .eco-row:hover .eco-t { transform: translateX(18px); color: var(--g2) }
         .eco-row:hover .eco-d { color: var(--t2) }
@@ -322,7 +322,7 @@ Text Domain: leovian
         .step { position: relative }
         .step.on .step-dot { background: var(--g); box-shadow: 0 0 0 7px rgba(200, 166, 106, .16) }
         .step.on .onum { background-size: 100% 100% }
-        .step .onum { font-size: clamp(4rem, 7vw, 6.6rem) }
+        .step .onum { font-size: clamp(3.5rem, 6.15vw, 5.8rem) }
         .step h3 { margin: 26px 0 10px }
 
         /* ================= Teasers / overlay cards ================= */
@@ -332,18 +332,18 @@ Text Domain: leovian
         .tz .mi, .pcard .mi { aspect-ratio: 4/5 }
         .tz-c, .pcard-c { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 120px clamp(26px, 3vw, 44px) clamp(26px, 3vw, 44px); background: linear-gradient(0deg, rgba(13, 13, 13, .97) 0%, rgba(13, 13, 13, .9) 45%, rgba(13, 13, 13, 0) 100%) }
         .tz .mi img, .pcard .mi img { filter: saturate(.78) brightness(.78) contrast(1.05) }
-        .tz h3 { font-size: clamp(2rem, 3.6vw, 3.4rem); font-weight: 300 }
+        .tz h3 { font-size: clamp(1.75rem, 3.15vw, 3rem); font-weight: 400 }
         .tz p, .pcard p { color: var(--t1) }
         .tz:hover .mi.in img, .pcard:hover .mi.in img, .ncard:hover .mi.in img, .frow:hover .mi.in img, .hcard:hover .mi.in img, .nf:hover .mi.in img { transform: scale(1.07) }
         .pcard .meta { color: var(--t2) }
-        .pcard h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 400 }
+        .pcard h3 { font-size: clamp(1.3rem, 1.95vw, 1.75rem); font-weight: 400 }
 
         /* ================= CTA band ================= */
         .band { position: relative; isolation: isolate; overflow: hidden; min-height: clamp(600px, 96vh, 900px); display: flex; align-items: center; padding: 130px 0 }
         .band .shade { background: radial-gradient(ellipse 80% 85% at 50% 50%, rgba(13, 13, 13, .78), rgba(13, 13, 13, .5) 70%, rgba(13, 13, 13, .82)) }
         .band-in { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center }
         .band .eyebrow::after { content: ''; width: 36px; height: 1px; background: currentColor }
-        .band h2 { max-width: 13em; font-size: clamp(2.9rem, 7.4vw, 7rem); line-height: 1 }
+        .band h2 { max-width: 13em; font-size: clamp(2.55rem, 6.5vw, 6.15rem); line-height: 1.06 }
         .band p { max-width: 58ch; color: var(--t1) }
         .band-act { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 28px 48px; margin-top: 18px }
 
@@ -354,9 +354,9 @@ Text Domain: leovian
         .crumb { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; font: 500 11px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--t2) }
         .crumb a:hover { color: var(--g2) }
         .crumb [aria-current] { color: var(--g) }
-        .phd h1 { max-width: 12em; font-size: clamp(3rem, 8vw, 8rem); font-weight: 300; line-height: .98; letter-spacing: -.028em }
+        .phd h1 { max-width: 12em; font-size: clamp(2.65rem, 7.05vw, 7.05rem); font-weight: 400; line-height: 1.05; letter-spacing: -.02em }
         .phd-foot { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 20px 64px; margin-top: 44px; padding-top: 30px; border-top: 1px solid rgba(200, 166, 106, .3) }
-        .phd-idx { position: absolute; right: var(--gut); top: calc(var(--hh) + 56px); font: 300 clamp(3.4rem, 6vw, 6rem)/1 var(--serif); color: transparent; -webkit-text-stroke: 1px rgba(200, 166, 106, .45) }
+        .phd-idx { position: absolute; right: var(--gut); top: calc(var(--hh) + 56px); font: 400 clamp(3rem, 5.3vw, 5.3rem)/1 var(--serif); color: transparent; -webkit-text-stroke: 1px rgba(200, 166, 106, .45) }
         .phd-jump { display: flex; flex-wrap: wrap; gap: 8px 32px; margin-top: 22px }
 
         /* ================= Feature rows (about / partnership) ================= */
@@ -366,9 +366,9 @@ Text Domain: leovian
         .frow-media { aspect-ratio: 5/6 }
         .frow-tx { display: flex; flex-direction: column; align-items: flex-start; gap: 18px }
         .frow:hover .onum { background-size: 100% 100% }
-        .frow-h { display: flex; align-items: center; gap: 14px; font-size: clamp(2rem, 3.4vw, 3.2rem); font-weight: 300 }
+        .frow-h { display: flex; align-items: center; gap: 14px; font-size: clamp(1.75rem, 3vw, 2.8rem); font-weight: 400 }
         .frow-h .ic { width: 28px; height: 28px; color: var(--g) }
-        .box-lead { font: 300 clamp(1.6rem, 2.6vw, 2.4rem)/1.32 var(--serif); color: var(--t); max-width: 26em }
+        .box-lead { font: 400 clamp(1.4rem, 2.3vw, 2.1rem)/1.32 var(--serif); color: var(--t); max-width: 26em }
 
         /* ================= Principles / boxes ================= */
         .pr4, .boxes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ln) }
@@ -389,12 +389,12 @@ Text Domain: leovian
         .slide { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 110px); align-items: center; position: absolute; inset: 0 0 auto; opacity: 0; visibility: hidden; transition: opacity .9s var(--ease), visibility .9s }
         .slide.on { position: relative; opacity: 1; visibility: visible }
         .slide .mi { aspect-ratio: 4/5; border: 1px solid var(--ln2) }
-        .slide blockquote { position: relative; margin: 26px 0 38px; padding-top: 56px; font: 300 clamp(1.8rem, 3.1vw, 2.9rem)/1.25 var(--serif); color: var(--t) }
-        .slide blockquote::before { content: '\201C'; position: absolute; top: -14px; left: -4px; font: 400 6.5rem/1 var(--serif); color: var(--g); opacity: .6 }
+        .slide blockquote { position: relative; margin: 26px 0 38px; padding-top: 56px; font: 400 clamp(1.6rem, 2.75vw, 2.55rem)/1.25 var(--serif); color: var(--t) }
+        .slide blockquote::before { content: '\201C'; position: absolute; top: -14px; left: -4px; font: 400 5.7rem/1 var(--serif); color: var(--g); opacity: .6 }
         .slide.on blockquote { animation: rise .9s .15s var(--ease) both }
         @keyframes rise { from { opacity: 0; transform: translateY(26px) } }
         .who { display: flex; flex-direction: column; gap: 6px; max-width: 340px; padding-top: 24px; border-top: 1px solid var(--ln) }
-        .who b { font: 400 1.4rem/1.2 var(--serif); color: var(--g2) }
+        .who b { font: 400 1.25rem/1.2 var(--serif); color: var(--g2) }
         .who span { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--t3) }
         .team-foot { display: flex; align-items: center; gap: 32px; margin-top: 48px }
         .tthumbs { display: flex; gap: 10px }
@@ -413,20 +413,20 @@ Text Domain: leovian
         .hs-sticky { padding: clamp(96px, 11vw, 150px) 0 }
         .hs.pinned .hs-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: calc(var(--hh) * .55) 0 28px }
         .hs-head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(28px, 4vh, 52px) }
-        .hs-head h2 { margin-top: 18px; font-size: clamp(2rem, 3.8vw, 3.6rem) }
+        .hs-head h2 { margin-top: 18px; font-size: clamp(1.75rem, 3.35vw, 3.15rem) }
         .hs-track { display: flex; gap: 28px; width: max-content; padding: 0 var(--edge); will-change: transform }
         .hs:not(.pinned) .hs-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 8px }
         .hcard { flex: none; width: clamp(280px, 30vw, 440px); scroll-snap-align: start }
         .hcard .mi { height: min(48vh, 520px) }
         .hs:not(.pinned) .hcard .mi { height: auto; aspect-ratio: 4/5 }
         .hcard-tx { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 22px; padding-top: 22px }
-        .hcard-tx .onum { font-size: 3.2rem; grid-row: span 2 }
+        .hcard-tx .onum { font-size: 2.8rem; grid-row: span 2 }
         .hcard:hover .onum { background-size: 100% 100% }
-        .hcard h3 { display: flex; align-items: center; gap: 12px; font-size: clamp(1.6rem, 2.2vw, 2.1rem); font-weight: 400 }
+        .hcard h3 { display: flex; align-items: center; gap: 12px; font-size: clamp(1.4rem, 1.95vw, 1.85rem); font-weight: 400 }
         .hcard h3 .ic { color: var(--g) }
         .hcard p { font-size: 14.5px }
         .hcard-end { width: clamp(260px, 24vw, 340px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 24px; padding-left: 28px; border-left: 1px solid var(--ln) }
-        .hcard-end p { font: 300 clamp(1.5rem, 2vw, 1.9rem)/1.3 var(--serif); color: var(--t) }
+        .hcard-end p { font: 400 clamp(1.3rem, 1.75vw, 1.65rem)/1.3 var(--serif); color: var(--t) }
         .hs-bar { display: flex; align-items: center; gap: 22px; margin-top: clamp(24px, 4vh, 44px); font: 500 12px/1 var(--sans); letter-spacing: .2em; color: var(--t3) }
         .hs-line { flex: 1; height: 1px; background: var(--ln) }
         .hs-line i { display: block; height: 100%; background: var(--g); transform: scaleX(var(--p, 0)); transform-origin: left }
@@ -441,12 +441,12 @@ Text Domain: leovian
         .nf { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 90px); align-items: center; margin-bottom: clamp(64px, 8vw, 110px) }
         .nf .mi { aspect-ratio: 16/11 }
         .nf-tx { display: flex; flex-direction: column; align-items: flex-start; gap: 18px }
-        .nf h2 { font-size: clamp(2.2rem, 3.8vw, 3.6rem) }
+        .nf h2 { font-size: clamp(1.95rem, 3.35vw, 3.15rem) }
         .ngrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px }
         .ncard { position: relative; border-top: 1px solid var(--ln) }
         .ncard .mi { aspect-ratio: 16/10; margin-top: 28px }
         .ncard-tx { display: flex; flex-direction: column; gap: 12px; padding-top: 24px }
-        .ncard h3 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); font-weight: 300 }
+        .ncard h3 { font-size: clamp(1.4rem, 2.1vw, 1.95rem); font-weight: 400 }
         .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font-size: 12.5px; color: var(--t3) }
         .meta span { display: inline-flex; align-items: center; gap: 8px }
         .meta .ic { color: var(--g) }
@@ -462,8 +462,8 @@ Text Domain: leovian
         .ev-row { position: relative; display: grid; grid-template-columns: 210px minmax(0, 1fr) 240px auto; gap: 36px; align-items: center; padding: 36px 0; border-bottom: 1px solid var(--ln2); cursor: pointer }
         .ev-row::before { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--g); transform: scaleX(0); transform-origin: right; transition: transform .8s var(--ease) }
         .ev-row:hover::before { transform: scaleX(1); transform-origin: left }
-        .ev-date { font: 400 1.35rem/1.2 var(--serif); color: var(--g2) }
-        .ev-row h3 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); font-weight: 300; transition: transform .7s var(--ease), color .4s }
+        .ev-date { font: 400 1.2rem/1.2 var(--serif); color: var(--g2) }
+        .ev-row h3 { font-size: clamp(1.4rem, 2.3vw, 2.1rem); font-weight: 400; transition: transform .7s var(--ease), color .4s }
         .ev-row:hover h3 { transform: translateX(14px); color: var(--g2) }
         .ev-row p { margin-top: 6px; font-size: 14.5px }
         .ev-loc { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--t2) }
@@ -478,7 +478,7 @@ Text Domain: leovian
         .dlg-x { position: absolute; top: 14px; right: 14px; z-index: 6; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: rgba(13, 13, 13, .85); border: 1px solid var(--ln); color: var(--g2); transition: border-color .25s }
         .dlg-x:hover { border-color: var(--g) }
         .dlg-body { display: flex; flex-direction: column; gap: 16px; padding: 36px 36px 40px }
-        .dlg-body h3 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 300 }
+        .dlg-body h3 { font-size: clamp(1.6rem, 2.65vw, 2.1rem); font-weight: 400 }
         .dlg-meta { display: flex; flex-wrap: wrap; gap: 10px 28px; padding: 14px 0; border-top: 1px solid var(--ln2); border-bottom: 1px solid var(--ln2); font-size: 13.5px; color: var(--t2) }
         .dlg-meta li { display: flex; align-items: center; gap: 10px }
         .dlg-meta .ic { color: var(--g) }
@@ -487,7 +487,7 @@ Text Domain: leovian
         /* ================= Contact & forms ================= */
         .contact { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 110px); align-items: start }
         .contact .h-md { margin: 18px 0 26px }
-        .biglink { position: relative; display: block; width: fit-content; max-width: 100%; margin-top: 10px; font: 300 clamp(1.8rem, 3.6vw, 3.3rem)/1.15 var(--serif); color: var(--t); overflow-wrap: anywhere; transition: color .35s }
+        .biglink { position: relative; display: block; width: fit-content; max-width: 100%; margin-top: 10px; font: 400 clamp(1.6rem, 3.15vw, 2.9rem)/1.15 var(--serif); color: var(--t); overflow-wrap: anywhere; transition: color .35s }
         .biglink::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--g); transform: scaleX(0); transform-origin: right; transition: transform .7s var(--ease) }
         .biglink:hover { color: var(--g2) }
         .biglink:hover::after { transform: scaleX(1); transform-origin: left }
@@ -517,15 +517,15 @@ Text Domain: leovian
         /* ================= Footer ================= */
         .ft { position: relative; overflow: hidden; background: #090909; border-top: 1px solid var(--ln2); font-size: 14px }
         .ft-cta { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; padding-top: clamp(80px, 9vw, 130px); padding-bottom: clamp(52px, 6vw, 80px); border-bottom: 1px solid var(--ln2) }
-        .ft-big { display: inline-flex; align-items: center; gap: .3em; margin-top: 18px; font: 300 clamp(2.6rem, 6.4vw, 6rem)/1 var(--serif); color: var(--t); transition: color .4s }
+        .ft-big { display: inline-flex; align-items: center; gap: .3em; margin-top: 18px; font: 400 clamp(2.3rem, 5.65vw, 5.3rem)/1 var(--serif); color: var(--t); transition: color .4s }
         .ft-big .ic { width: .62em; height: .62em; color: var(--g); stroke-width: 1; transition: transform .6s var(--ease) }
         .ft-big:hover { color: var(--g2) }
         .ft-big:hover .ic { transform: rotate(45deg) }
         .ft-mail { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right }
-        .ft-mail a { font: 400 1.35rem/1.3 var(--serif); color: var(--t1); transition: color .3s }
+        .ft-mail a { font: 400 1.2rem/1.3 var(--serif); color: var(--t1); transition: color .3s }
         .ft-mail a:hover { color: var(--g2) }
         .ft-top { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 48px; padding-top: 64px; padding-bottom: 40px }
-        .ft-brand .sub { margin: 22px 0 12px; font-size: 1.35rem }
+        .ft-brand .sub { margin: 22px 0 12px; font-size: 1.2rem }
         .ft-brand p { max-width: 36ch; font-size: 14px }
         .ft h4 { margin-bottom: 22px; font: 500 11px/1.4 var(--sans); letter-spacing: .24em; text-transform: uppercase; color: var(--g) }
         .ft li { margin-bottom: 12px; color: var(--t2) }
@@ -533,7 +533,7 @@ Text Domain: leovian
         .ft li a:hover { color: var(--g2) }
         .ft-contact li { display: flex; gap: 12px; line-height: 1.55 }
         .ft-contact .ic { margin-top: 3px; color: var(--g) }
-        .ft-word { margin: 0 0 -.14em; font: 300 clamp(4rem, 18.5vw, 22rem)/.9 var(--serif); letter-spacing: .04em; text-align: center; white-space: nowrap; background: linear-gradient(180deg, rgba(200, 166, 106, .38), rgba(200, 166, 106, 0) 82%); -webkit-background-clip: text; background-clip: text; color: transparent; user-select: none; pointer-events: none }
+        .ft-word { margin: 0 0 -.14em; font: 400 clamp(3.5rem, 16.3vw, 19.35rem)/.9 var(--serif); letter-spacing: .04em; text-align: center; white-space: nowrap; background: linear-gradient(180deg, rgba(200, 166, 106, .38), rgba(200, 166, 106, 0) 82%); -webkit-background-clip: text; background-clip: text; color: transparent; user-select: none; pointer-events: none }
         .ft-bot { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding-top: 22px; padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--ln2); font-size: 12.5px; color: var(--t3) }
         .ft-note { flex: 1; min-width: 260px; max-width: 74ch }
 
@@ -628,7 +628,7 @@ Text Domain: leovian
         .post-body h2, .post-body h3 { margin-top: 1.8em; color: var(--t) }
         .post-body a { color: var(--g2); text-decoration: underline; text-underline-offset: 3px }
         .post-body img { max-width: 100%; height: auto }
-        .post-body blockquote { padding-left: 24px; border-left: 1px solid var(--g); font: italic 400 1.5rem/1.5 var(--serif); color: var(--g2) }
+        .post-body blockquote { padding-left: 24px; border-left: 1px solid var(--g); font: italic 400 1.3rem/1.5 var(--serif); color: var(--g2) }
         .post-body ul, .post-body ol { padding-left: 1.4em; list-style: revert }
         .post-hero { aspect-ratio: 16/8; margin-bottom: 56px }
         .ncard a.cover { position: absolute; inset: 0; z-index: 2 }
@@ -636,4 +636,7 @@ Text Domain: leovian
         .pager a, .pager span { min-width: 44px; height: 44px; display: grid; place-items: center; padding: 0 14px; border: 1px solid var(--ln); color: var(--t2) }
         .pager .current { border-color: var(--g); color: var(--g2) }
         .e404 { min-height: 70vh; display: grid; place-items: center; text-align: center; padding: calc(var(--hh) + 60px) var(--gut) 80px }
-        .e404 h1 { font-size: clamp(4rem, 12vw, 10rem); font-weight: 300 }
+        .e404 h1 { font-size: clamp(3.5rem, 10.55vw, 8.8rem); font-weight: 400 }
+        /* Playfair Display defaults to old-style figures (3, 5, 9 dip below the line). Display numbers use lining
+           figures instead; this sits last because each rule's `font` shorthand resets the setting. */
+        .onum, .phd-idx, .ev-date, .biglink, .ft-mail a { font-variant-numeric: lining-nums }

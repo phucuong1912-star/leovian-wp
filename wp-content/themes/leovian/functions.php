@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'LEO_VER', '1.0.0' );
+define( 'LEO_VER', '1.1.0' );
 define( 'LEO_DIR', get_template_directory() );
 define( 'LEO_URI', get_template_directory_uri() );
 
@@ -32,7 +32,7 @@ add_action( 'after_setup_theme', function () {
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'leo-fonts', 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap', [], null );
+	wp_enqueue_style( 'leo-fonts', 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap', [], null );
 	wp_enqueue_style( 'leo-style', get_stylesheet_uri(), [ 'leo-fonts' ], LEO_VER );
 	wp_enqueue_script( 'leo-main', LEO_URI . '/assets/js/main.js', [], LEO_VER, [ 'in_footer' => true, 'strategy' => 'defer' ] );
 	wp_localize_script( 'leo-main', 'LEO', [
