@@ -1,0 +1,3055 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Leovian — Hệ sinh thái đầu tư & phát triển doanh nghiệp tại Melbourne, Úc.">
+    <meta name="theme-color" content="#0D0D0D">
+    <title>Leovian — Investment & Business Development Ecosystem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://videos.pexels.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ========== Tokens ========== */
+        :root {
+            --bg: #0D0D0D;
+            --bg2: #171717;
+            --g: #C8A66A;
+            --g2: #E2C58E;
+            --t: #F5F0E8;
+            --t1: #DDD6CB;
+            --t2: #BDB5AA;
+            --t3: #8E867A;
+            --ln: #3a3226;
+            --ln2: #26211a;
+            --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+            --sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            --wrap: 1240px;
+            --gut: clamp(20px, 5vw, 64px);
+            --hh: 80px;
+            --uh: 38px;
+            --ease: cubic-bezier(.22, .68, .16, 1);
+            color-scheme: dark
+        }
+
+        /* ========== Base ========== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--hh) + 64px);
+            -webkit-text-size-adjust: 100%
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--t);
+            font: 400 16px/1.7 var(--sans);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden
+        }
+
+        body.lock {
+            overflow: hidden
+        }
+
+        svg,
+        img,
+        video,
+        iframe {
+            display: block
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button {
+            font: inherit;
+            color: inherit;
+            background: none;
+            border: 0;
+            cursor: pointer
+        }
+
+        ul {
+            list-style: none
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--g2);
+            outline-offset: 3px
+        }
+
+        #app:focus {
+            outline: none
+        }
+
+        ::selection {
+            background: var(--g);
+            color: var(--bg)
+        }
+
+        .skip {
+            position: fixed;
+            left: 12px;
+            top: -60px;
+            z-index: 100;
+            background: var(--g);
+            color: var(--bg);
+            padding: 12px 18px;
+            font-size: 13px;
+            transition: top .2s
+        }
+
+        .skip:focus {
+            top: 12px
+        }
+
+        .ic {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex: none
+        }
+
+        .ic.sm {
+            width: 16px;
+            height: 16px
+        }
+
+        .ic.xs {
+            width: 13px;
+            height: 13px
+        }
+
+        /* ========== Typography ========== */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--serif);
+            font-weight: 500;
+            line-height: 1.14;
+            letter-spacing: -.005em;
+            color: var(--t)
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5.4vw, 4.6rem)
+        }
+
+        h2 {
+            font-size: clamp(2rem, 3.5vw, 3.05rem)
+        }
+
+        h3 {
+            font-size: clamp(1.4rem, 1.9vw, 1.65rem)
+        }
+
+        .h-md {
+            font-size: clamp(1.7rem, 2.6vw, 2.25rem)
+        }
+
+        p {
+            color: var(--t2);
+            max-width: 64ch
+        }
+
+        .lead {
+            font-size: clamp(1.02rem, 1.25vw, 1.14rem);
+            font-weight: 300;
+            color: var(--t1)
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font: 500 11.5px/1.4 var(--sans);
+            letter-spacing: .24em;
+            text-transform: uppercase;
+            color: var(--g)
+        }
+
+        .eyebrow::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: currentColor;
+            flex: none
+        }
+
+        .sub {
+            font: italic 500 clamp(1.3rem, 2.2vw, 1.85rem)/1.3 var(--serif);
+            color: var(--g2);
+            max-width: none
+        }
+
+        .num {
+            font: 500 12px/1 var(--sans);
+            letter-spacing: .2em;
+            color: var(--g)
+        }
+
+        .num.big {
+            font: 500 clamp(2.6rem, 3.6vw, 3.2rem)/1 var(--serif);
+            letter-spacing: 0
+        }
+
+        .hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--t3)
+        }
+
+        .hint .ic {
+            color: var(--g)
+        }
+
+        /* ========== Layout ========== */
+        .wrap {
+            max-width: calc(var(--wrap) + 2 * var(--gut));
+            margin: 0 auto;
+            padding: 0 var(--gut)
+        }
+
+        .wrap.narrow {
+            max-width: calc(1000px + 2 * var(--gut))
+        }
+
+        .sec {
+            position: relative;
+            padding: clamp(88px, 10vw, 136px) 0
+        }
+
+        .alt {
+            background: var(--bg2)
+        }
+
+        .head {
+            display: grid;
+            grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+            gap: clamp(28px, 6vw, 96px);
+            align-items: end;
+            margin-bottom: clamp(44px, 5.5vw, 68px)
+        }
+
+        .head.solo {
+            grid-template-columns: 1fr
+        }
+
+        .head h2,
+        .split h2 {
+            margin-top: 20px;
+            max-width: 18em
+        }
+
+        .head>p {
+            padding-bottom: 6px
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+            gap: clamp(40px, 7vw, 120px);
+            align-items: start
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px
+        }
+
+        .g2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+
+        .g3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr))
+        }
+
+        .g4 {
+            grid-template-columns: repeat(4, minmax(0, 1fr))
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px 32px
+        }
+
+        .sec-foot {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--ln2)
+        }
+
+        /* ========== Buttons & links ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-height: 52px;
+            padding: 0 28px;
+            border: 1px solid var(--g);
+            color: var(--g2);
+            font: 500 12px/1 var(--sans);
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: background-color .3s, color .3s, border-color .3s
+        }
+
+        .btn .ic {
+            transition: transform .35s var(--ease)
+        }
+
+        .btn:hover {
+            background: var(--g);
+            color: var(--bg)
+        }
+
+        .btn:hover .ic,
+        .link:hover .ic {
+            transform: translateX(4px)
+        }
+
+        .btn.solid {
+            background: var(--g);
+            color: var(--bg)
+        }
+
+        .btn.solid:hover {
+            background: var(--g2);
+            border-color: var(--g2)
+        }
+
+        .btn.sm {
+            min-height: 44px;
+            padding: 0 20px;
+            font-size: 11.5px
+        }
+
+        .link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            font: 500 12px/1 var(--sans);
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--g2);
+            transition: color .25s
+        }
+
+        .link .ic {
+            transition: transform .35s var(--ease)
+        }
+
+        .link:hover {
+            color: var(--t)
+        }
+
+        .link.plain:hover .ic {
+            transform: none
+        }
+
+        .rbtn {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--ln);
+            color: var(--g2);
+            transition: background-color .3s, color .3s, border-color .3s
+        }
+
+        .rbtn:hover {
+            background: var(--g);
+            border-color: var(--g);
+            color: var(--bg)
+        }
+
+        .icb {
+            width: 56px;
+            height: 56px;
+            display: grid;
+            place-items: center;
+            flex: none;
+            border: 1px solid var(--ln);
+            background: rgba(200, 166, 106, .04);
+            color: var(--g)
+        }
+
+        .icb .ic {
+            width: 24px;
+            height: 24px
+        }
+
+        /* ========== Header ========== */
+        #hdr {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 50;
+            padding-top: env(safe-area-inset-top, 0px);
+            border-bottom: 1px solid transparent;
+            transition: background-color .4s, border-color .4s
+        }
+
+        #hdr.solid,
+        #hdr.open {
+            background: rgba(13, 13, 13, .94);
+            border-bottom-color: var(--ln2);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px)
+        }
+
+        .util {
+            height: var(--uh);
+            border-bottom: 1px solid rgba(58, 50, 38, .55);
+            font-size: 12px;
+            color: var(--t2);
+            transition: margin-top .4s var(--ease)
+        }
+
+        .util .wrap {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px
+        }
+
+        .util a,
+        .util span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: color .25s
+        }
+
+        .util .ic {
+            color: var(--g)
+        }
+
+        .util a:hover {
+            color: var(--g2)
+        }
+
+        .util-r {
+            display: flex;
+            gap: 28px
+        }
+
+        #hdr.solid .util,
+        #hdr.open .util {
+            margin-top: calc(-1 * var(--uh))
+        }
+
+        .bar {
+            height: var(--hh);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--g2)
+        }
+
+        .brand .mark {
+            width: 34px;
+            height: 34px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.3
+        }
+
+        .brand span {
+            font: 600 22px/1 var(--serif);
+            letter-spacing: .34em;
+            margin-right: -.34em
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: clamp(20px, 2.3vw, 36px)
+        }
+
+        .nav>a,
+        .dd>a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 0;
+            font: 500 13.5px/1 var(--sans);
+            letter-spacing: .02em;
+            color: var(--t1);
+            transition: color .25s
+        }
+
+        .nav>a::after,
+        .dd>a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 6px;
+            height: 1px;
+            background: var(--g);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .4s var(--ease)
+        }
+
+        .nav>a:hover,
+        .dd>a:hover,
+        .nav [aria-current="page"] {
+            color: var(--t)
+        }
+
+        .nav>a:hover::after,
+        .dd>a:hover::after,
+        .nav [aria-current="page"]::after {
+            transform: scaleX(1)
+        }
+
+        .dd {
+            position: relative
+        }
+
+        .dd>a .ic {
+            transition: transform .3s
+        }
+
+        .dd:hover>a .ic,
+        .dd:focus-within>a .ic {
+            transform: rotate(180deg)
+        }
+
+        .mega {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            width: min(780px, 90vw);
+            padding-top: 18px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translate(-50%, 8px);
+            transition: opacity .3s, transform .35s var(--ease), visibility .3s
+        }
+
+        .dd:hover .mega,
+        .dd:focus-within .mega {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, 0)
+        }
+
+        .mega-in {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr 1fr;
+            background: var(--bg2);
+            border: 1px solid var(--ln);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, .55)
+        }
+
+        .mega-intro {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            gap: 14px;
+            min-height: 260px;
+            padding: 28px;
+            border-right: 1px solid var(--ln2)
+        }
+
+        .mega-intro img {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .mega-intro::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(0deg, rgba(13, 13, 13, .95) 20%, rgba(13, 13, 13, .45))
+        }
+
+        .mega-intro p {
+            font: 500 1.4rem/1.25 var(--serif);
+            color: var(--t)
+        }
+
+        .mega-col {
+            padding: 28px 26px 22px
+        }
+
+        .mega-col b {
+            display: block;
+            margin-bottom: 10px;
+            font: 500 11px/1.4 var(--sans);
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--g)
+        }
+
+        .mega-col a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 13.5px;
+            line-height: 1.35;
+            color: var(--t2);
+            transition: color .2s
+        }
+
+        .mega-col a .ic {
+            width: 18px;
+            height: 18px;
+            color: var(--g)
+        }
+
+        .mega-col a:hover {
+            color: var(--t)
+        }
+
+        .nav-foot {
+            display: none
+        }
+
+        .bar-r {
+            display: flex;
+            align-items: center;
+            gap: 20px
+        }
+
+        .lang {
+            display: flex;
+            align-items: center;
+            font: 500 12px/1 var(--sans);
+            letter-spacing: .12em
+        }
+
+        .lang button {
+            min-width: 40px;
+            min-height: 40px;
+            color: var(--t3);
+            transition: color .25s
+        }
+
+        .lang button:hover,
+        .lang button[aria-pressed="true"] {
+            color: var(--g2)
+        }
+
+        .lang i {
+            width: 1px;
+            height: 12px;
+            background: var(--ln)
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            width: 46px;
+            height: 46px;
+            padding: 0 13px;
+            border: 1px solid var(--ln)
+        }
+
+        .burger span {
+            height: 1px;
+            background: var(--t);
+            transition: transform .3s var(--ease), opacity .2s
+        }
+
+        #hdr.open .burger span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg)
+        }
+
+        #hdr.open .burger span:nth-child(2) {
+            opacity: 0
+        }
+
+        #hdr.open .burger span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg)
+        }
+
+        /* ========== Photo & video media ========== */
+        .bgfx {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            overflow: hidden;
+            background: var(--bg)
+        }
+
+        .bgfx img,
+        .bgfx video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .bgfx video {
+            opacity: 0;
+            transition: opacity 1.4s ease
+        }
+
+        .bgfx video.on {
+            opacity: 1
+        }
+
+        .bgfx img,
+        .bgfx video,
+        .ph img {
+            filter: saturate(.82) contrast(1.04)
+        }
+
+        .shade {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                linear-gradient(180deg, rgba(13, 13, 13, .7) 0%, rgba(13, 13, 13, 0) 26%),
+                linear-gradient(0deg, var(--bg) 0%, rgba(13, 13, 13, 0) 38%),
+                linear-gradient(90deg, rgba(13, 13, 13, .92) 0%, rgba(13, 13, 13, .74) 40%, rgba(13, 13, 13, .32) 78%, rgba(13, 13, 13, .22) 100%)
+        }
+
+        .ph {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg2)
+        }
+
+        .ph img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .ph.portrait {
+            aspect-ratio: 4/5;
+            border: 1px solid var(--ln2)
+        }
+
+        .ph.portrait img {
+            filter: grayscale(1) contrast(1.06) brightness(.94)
+        }
+
+        .ph.wide {
+            height: clamp(260px, 40vw, 520px);
+            border: 1px solid var(--ln2)
+        }
+
+        [data-l]::after {
+            display: none;
+            content: attr(data-l);
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            z-index: 5;
+            padding: 4px 8px;
+            background: rgba(13, 13, 13, .88);
+            border: 1px dashed var(--g);
+            font: 500 10px/1.3 var(--sans);
+            letter-spacing: .08em;
+            color: var(--g2);
+            font-style: normal
+        }
+
+        .notes [data-l]::after {
+            display: block
+        }
+
+        .tag-top::after {
+            left: auto;
+            right: 12px;
+            bottom: auto;
+            top: calc(var(--uh) + var(--hh) + 14px)
+        }
+
+        .tag-tr::after {
+            left: auto;
+            right: 12px;
+            bottom: auto;
+            top: 12px
+        }
+
+        /* ========== Hero ========== */
+        .hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: max(100svh, 720px);
+            display: flex;
+            flex-direction: column
+        }
+
+        .hero-in {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            padding-top: calc(var(--uh) + var(--hh) + 48px);
+            padding-bottom: 56px
+        }
+
+        .hero h1 {
+            max-width: 14em;
+            margin: 26px 0 22px
+        }
+
+        .hero .sub {
+            margin-bottom: 20px
+        }
+
+        .hero .lead {
+            max-width: 54ch;
+            margin-bottom: 40px
+        }
+
+        .hero-loc {
+            position: absolute;
+            right: var(--gut);
+            bottom: 64px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font: 500 11px/1 var(--sans);
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--t1)
+        }
+
+        .hero-loc .ic {
+            color: var(--g)
+        }
+
+        .hero-loc i {
+            display: flex;
+            gap: 6px;
+            margin-left: 8px
+        }
+
+        .hero-loc b {
+            width: 18px;
+            height: 2px;
+            background: rgba(245, 240, 232, .25);
+            transition: background-color .5s
+        }
+
+        .hero-loc b.on {
+            background: var(--g)
+        }
+
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(26px)
+            }
+        }
+
+        .hero-copy>*,
+        .phd-in>* {
+            animation: rise 1.1s var(--ease) both
+        }
+
+        .hero-copy>:nth-child(2),
+        .phd-in>:nth-child(2) {
+            animation-delay: .12s
+        }
+
+        .hero-copy>:nth-child(3),
+        .phd-in>:nth-child(3) {
+            animation-delay: .24s
+        }
+
+        .hero-copy>:nth-child(4),
+        .phd-in>:nth-child(4) {
+            animation-delay: .36s
+        }
+
+        .hero-copy>:nth-child(5) {
+            animation-delay: .48s
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) 64px;
+            border-top: 1px solid rgba(200, 166, 106, .35);
+            animation: rise 1.1s .6s var(--ease) both
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 30px 32px 40px 0
+        }
+
+        .stat+.stat {
+            padding-left: 32px;
+            border-left: 1px solid rgba(58, 50, 38, .8)
+        }
+
+        .stat b {
+            font: 500 clamp(2.4rem, 3.4vw, 3rem)/1 var(--serif);
+            color: var(--g2)
+        }
+
+        .stat span {
+            display: block;
+            font-size: 14px;
+            color: var(--t)
+        }
+
+        .stat small {
+            display: block;
+            margin-top: 4px;
+            font-size: 12.5px;
+            color: var(--t2)
+        }
+
+        .cue {
+            align-self: center;
+            justify-self: end;
+            width: 44px;
+            height: 72px;
+            display: grid;
+            place-items: center
+        }
+
+        .cue i {
+            position: relative;
+            width: 1px;
+            height: 52px;
+            background: var(--ln);
+            overflow: hidden
+        }
+
+        .cue i::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -40%;
+            width: 1px;
+            height: 40%;
+            background: var(--g2);
+            animation: cue 2.4s var(--ease) infinite
+        }
+
+        @keyframes cue {
+            to {
+                top: 100%
+            }
+        }
+
+        /* ========== Page header ========== */
+        .phd {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: clamp(520px, 72svh, 720px);
+            display: flex;
+            align-items: flex-end;
+            padding: calc(var(--uh) + var(--hh) + 64px) 0 clamp(64px, 8vw, 104px);
+            border-bottom: 1px solid var(--ln2)
+        }
+
+        .phd.has-overlap {
+            padding-bottom: clamp(120px, 13vw, 168px)
+        }
+
+        .phd-in {
+            width: 100%
+        }
+
+        .crumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+            font-size: 11.5px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--t2)
+        }
+
+        .crumb a {
+            transition: color .25s
+        }
+
+        .crumb a:hover {
+            color: var(--g2)
+        }
+
+        .crumb [aria-current] {
+            color: var(--g)
+        }
+
+        .phd h1 {
+            max-width: 14em
+        }
+
+        .phd .sub {
+            margin: 18px 0
+        }
+
+        .phd .lead {
+            max-width: 62ch
+        }
+
+        /* ========== Home sections ========== */
+        .pull {
+            margin: 36px 0 28px;
+            padding: 4px 0 4px 28px;
+            border-left: 1px solid var(--g);
+            font: italic 400 clamp(1.35rem, 2vw, 1.7rem)/1.4 var(--serif);
+            color: var(--g2)
+        }
+
+        .markets {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+            margin-top: clamp(56px, 7vw, 88px)
+        }
+
+        .market {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            border: 1px solid var(--ln2)
+        }
+
+        .market .ph {
+            position: absolute;
+            inset: 0
+        }
+
+        .market .ph img,
+        .media .ph img,
+        .pane-media img,
+        .pillar .bgfx img {
+            transition: transform 1.4s var(--ease)
+        }
+
+        .market:hover .ph img,
+        .card:hover .media .ph img,
+        .pane:hover .pane-media img,
+        .pillar:hover .bgfx img {
+            transform: scale(1.04)
+        }
+
+        .market figcaption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px 14px;
+            padding: 64px 28px 24px;
+            background: linear-gradient(0deg, rgba(13, 13, 13, .92), rgba(13, 13, 13, 0))
+        }
+
+        .market figcaption span {
+            font: 500 clamp(1.5rem, 2.2vw, 1.9rem)/1.1 var(--serif);
+            color: var(--t)
+        }
+
+        .market figcaption small {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font: 500 11px/1 var(--sans);
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--g)
+        }
+
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px
+        }
+
+        .pillar {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            min-height: clamp(420px, 42vw, 520px);
+            display: flex;
+            align-items: flex-end;
+            background: var(--bg);
+            border: 1px solid var(--ln2)
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background: linear-gradient(0deg, rgba(13, 13, 13, .96) 18%, rgba(13, 13, 13, .5) 58%, rgba(13, 13, 13, .1))
+        }
+
+        .pillar-in {
+            padding: 36px 32px 40px
+        }
+
+        .pillar h3 {
+            margin: 22px 0 10px;
+            font-size: clamp(1.6rem, 2.2vw, 2rem)
+        }
+
+        .pillar p {
+            color: var(--t1)
+        }
+
+        .pane {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--bg2);
+            border: 1px solid var(--ln2)
+        }
+
+        .pane-media {
+            position: relative;
+            aspect-ratio: 16/8;
+            overflow: hidden;
+            border-bottom: 1px solid var(--ln2)
+        }
+
+        .pane-media .ph {
+            position: absolute;
+            inset: 0
+        }
+
+        .pane-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: clamp(28px, 3.6vw, 48px)
+        }
+
+        .pane-hd {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .pane-tag {
+            font: 500 11.5px/1 var(--sans);
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--t2)
+        }
+
+        .pane h3 {
+            font-size: clamp(1.6rem, 2.3vw, 2.05rem)
+        }
+
+        .ilist {
+            margin: 6px 0 18px;
+            border-top: 1px solid var(--ln2)
+        }
+
+        .ilist a {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--ln2);
+            color: var(--t);
+            transition: color .25s, padding .35s var(--ease)
+        }
+
+        .ilist a>.ic:first-child {
+            color: var(--g)
+        }
+
+        .ilist a span {
+            flex: 1
+        }
+
+        .ilist a .xs {
+            color: var(--t3);
+            transition: transform .3s var(--ease), color .3s
+        }
+
+        .ilist a:hover {
+            color: var(--g2);
+            padding-left: 8px
+        }
+
+        .ilist a:hover .xs {
+            color: var(--g2);
+            transform: translate(2px, -2px)
+        }
+
+        .pane .btn {
+            align-self: flex-start;
+            margin-top: auto
+        }
+
+        .band {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: clamp(120px, 15vw, 200px) 0;
+            border-top: 1px solid var(--ln2)
+        }
+
+        .band .shade {
+            background: radial-gradient(ellipse 75% 85% at 50% 50%, rgba(13, 13, 13, .82), rgba(13, 13, 13, .55) 72%, rgba(13, 13, 13, .7))
+        }
+
+        .band-in {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+            text-align: center
+        }
+
+        .band h2 {
+            max-width: 16em;
+            font-size: clamp(2.4rem, 5vw, 4.2rem)
+        }
+
+        .band p {
+            max-width: 58ch;
+            color: var(--t1)
+        }
+
+        .band .eyebrow::after {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: currentColor
+        }
+
+        .band .actions {
+            justify-content: center;
+            margin-top: 12px
+        }
+
+        /* ========== Cards & boxes ========== */
+        .card,
+        .box {
+            position: relative;
+            border: 1px solid var(--ln2);
+            transition: border-color .4s
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: var(--bg2)
+        }
+
+        .box {
+            padding: clamp(32px, 3.5vw, 48px);
+            background: var(--bg2)
+        }
+
+        .alt .card,
+        .alt .box,
+        .alt .pane {
+            background: var(--bg)
+        }
+
+        .card:hover,
+        .box:hover {
+            border-color: var(--ln)
+        }
+
+        .card::before,
+        .box::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 3;
+            height: 2px;
+            background: var(--g);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .6s var(--ease)
+        }
+
+        .card:hover::before,
+        .box:hover::before {
+            transform: scaleX(1)
+        }
+
+        .media {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            border-bottom: 1px solid var(--ln2)
+        }
+
+        .media .ph {
+            position: absolute;
+            inset: 0
+        }
+
+        .card .body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 28px 28px 30px
+        }
+
+        .card.lg .media {
+            aspect-ratio: 16/8
+        }
+
+        .card.lg h3 {
+            font-size: clamp(1.8rem, 2.6vw, 2.35rem)
+        }
+
+        .card .more {
+            margin-top: auto;
+            padding-top: 6px
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 20px;
+            font-size: 12.5px;
+            color: var(--t3)
+        }
+
+        .meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .meta .ic {
+            color: var(--g)
+        }
+
+        .chip {
+            padding: 6px 10px;
+            border: 1px solid var(--ln);
+            font: 500 10.5px/1 var(--sans);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--g)
+        }
+
+        .box .icb {
+            margin-bottom: 32px
+        }
+
+        .box h3 {
+            margin-bottom: 12px
+        }
+
+        .box h3.eyebrow {
+            margin-bottom: 0
+        }
+
+        .box-lead {
+            margin-top: 20px;
+            font: 400 clamp(1.3rem, 1.9vw, 1.6rem)/1.42 var(--serif);
+            color: var(--t)
+        }
+
+        @keyframes flash {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 transparent
+            }
+
+            20%,
+            65% {
+                box-shadow: 0 0 0 1px var(--g), 0 0 48px rgba(200, 166, 106, .2)
+            }
+        }
+
+        .card.flash {
+            animation: flash 2.4s ease
+        }
+
+        /* ========== About ========== */
+        .statement {
+            max-width: none;
+            margin-top: 28px;
+            font: 400 clamp(1.65rem, 3vw, 2.6rem)/1.32 var(--serif);
+            color: var(--t)
+        }
+
+        .statement em {
+            color: var(--g2)
+        }
+
+        .principle {
+            position: relative;
+            padding-top: 30px;
+            border-top: 1px solid var(--ln)
+        }
+
+        .principle::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 48px;
+            height: 1px;
+            background: var(--g)
+        }
+
+        .principle .num {
+            display: block;
+            margin-bottom: 26px
+        }
+
+        .principle h3 {
+            margin-bottom: 10px
+        }
+
+        .car-ctl {
+            justify-self: end;
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .car-count {
+            margin-right: 12px;
+            font: 500 13px/1 var(--sans);
+            letter-spacing: .14em;
+            color: var(--t3)
+        }
+
+        .car-count b {
+            font-weight: 500;
+            color: var(--g2)
+        }
+
+        .car {
+            overflow: hidden
+        }
+
+        .car-track {
+            display: flex;
+            transition: transform .9s var(--ease)
+        }
+
+        .slide {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+            gap: clamp(32px, 6vw, 96px);
+            align-items: center
+        }
+
+        .slide blockquote {
+            position: relative;
+            margin: 26px 0 36px;
+            padding-top: 52px;
+            font: 400 clamp(1.6rem, 2.8vw, 2.4rem)/1.3 var(--serif);
+            color: var(--t)
+        }
+
+        .slide blockquote::before {
+            content: '\201C';
+            position: absolute;
+            top: -12px;
+            left: -4px;
+            font: 500 6rem/1 var(--serif);
+            color: var(--g);
+            opacity: .6
+        }
+
+        .who {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-width: 340px;
+            padding-top: 24px;
+            border-top: 1px solid var(--ln)
+        }
+
+        .who b {
+            font: 500 1.3rem/1.2 var(--serif);
+            color: var(--g2)
+        }
+
+        .who span {
+            font-size: 12px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--t3)
+        }
+
+        .car-bar {
+            height: 1px;
+            margin-top: 48px;
+            background: var(--ln)
+        }
+
+        .car-bar i {
+            display: block;
+            width: 0;
+            height: 1px;
+            background: var(--g)
+        }
+
+        .car-bar i.run {
+            animation: fill 7s linear forwards
+        }
+
+        .team:hover .car-bar i,
+        .team:focus-within .car-bar i {
+            animation-play-state: paused
+        }
+
+        @keyframes fill {
+            to {
+                width: 100%
+            }
+        }
+
+        /* ========== Ecosystem ========== */
+        .subnav {
+            position: sticky;
+            top: var(--hh);
+            z-index: 30;
+            background: rgba(13, 13, 13, .94);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--ln2)
+        }
+
+        .subnav .wrap {
+            display: flex;
+            gap: 40px;
+            height: 60px;
+            overflow-x: auto;
+            scrollbar-width: none
+        }
+
+        .subnav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+            font: 500 12px/1 var(--sans);
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--t2);
+            transition: color .25s
+        }
+
+        .subnav a span {
+            color: var(--g)
+        }
+
+        .subnav a:hover {
+            color: var(--t)
+        }
+
+        /* ========== Events ========== */
+        .agenda {
+            border-top: 1px solid var(--ln)
+        }
+
+        .ev {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr) auto;
+            gap: 40px;
+            align-items: center;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--ln2)
+        }
+
+        .ev-media {
+            position: relative;
+            aspect-ratio: 3/2;
+            overflow: hidden;
+            border: 1px solid var(--ln2)
+        }
+
+        .ev-media .ph {
+            position: absolute;
+            inset: 0
+        }
+
+        .ev .meta {
+            margin-bottom: 12px
+        }
+
+        .ev h3 {
+            margin-bottom: 6px
+        }
+
+        dialog {
+            width: min(620px, calc(100% - 32px));
+            max-height: calc(100svh - 48px);
+            margin: auto;
+            padding: 0;
+            overflow: auto;
+            background: var(--bg2);
+            color: var(--t);
+            border: 1px solid var(--ln)
+        }
+
+        dialog[open] {
+            animation: rise .45s var(--ease)
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, .74);
+            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(4px)
+        }
+
+        .dlg-in {
+            position: relative
+        }
+
+        .dlg-media {
+            aspect-ratio: 16/8
+        }
+
+        .dlg-x {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            z-index: 6;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            background: rgba(13, 13, 13, .85);
+            border: 1px solid var(--ln);
+            color: var(--g2);
+            transition: border-color .25s
+        }
+
+        .dlg-x:hover {
+            border-color: var(--g)
+        }
+
+        .dlg-body {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 36px 36px 40px
+        }
+
+        .dlg-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 28px;
+            padding: 14px 0;
+            border-top: 1px solid var(--ln2);
+            border-bottom: 1px solid var(--ln2);
+            font-size: 13.5px;
+            color: var(--t2)
+        }
+
+        .dlg-meta li {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .dlg-meta .ic {
+            color: var(--g)
+        }
+
+        .dlg-body .actions {
+            margin-top: 8px;
+            gap: 12px
+        }
+
+        /* ========== News ========== */
+        .notice {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            padding: 14px 18px;
+            border: 1px dashed var(--ln);
+            font-size: 13.5px;
+            color: var(--t2)
+        }
+
+        .notice .ic {
+            color: var(--g)
+        }
+
+        .news {
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+            gap: 24px
+        }
+
+        .news .card:first-child {
+            grid-row: span 2
+        }
+
+        .news .card:first-child .media {
+            flex: 1;
+            aspect-ratio: auto;
+            min-height: 340px
+        }
+
+        .news .card:first-child h3 {
+            font-size: clamp(1.8rem, 2.6vw, 2.3rem)
+        }
+
+        /* ========== Startup ========== */
+        .overlap {
+            position: relative;
+            z-index: 2;
+            margin-top: -80px
+        }
+
+        /* ========== Contact & forms ========== */
+        .contact {
+            display: grid;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+            gap: clamp(40px, 6vw, 96px);
+            align-items: start
+        }
+
+        .contact .h-md {
+            margin-top: 18px
+        }
+
+        .clist {
+            margin: 28px 0 32px;
+            border-top: 1px solid var(--ln2)
+        }
+
+        .clist li {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--ln2)
+        }
+
+        .clist .icb {
+            width: 46px;
+            height: 46px
+        }
+
+        .clist .icb .ic {
+            width: 20px;
+            height: 20px
+        }
+
+        .clist small {
+            display: block;
+            margin-bottom: 2px;
+            font: 500 10.5px/1.4 var(--sans);
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--t3)
+        }
+
+        .clist div {
+            font-size: 15px;
+            line-height: 1.55;
+            color: var(--t1)
+        }
+
+        .clist a {
+            color: var(--g2);
+            transition: color .25s
+        }
+
+        .clist a:hover {
+            color: var(--t)
+        }
+
+        .map {
+            position: relative;
+            aspect-ratio: 16/11;
+            overflow: hidden;
+            background: var(--bg2);
+            border: 1px solid var(--ln2)
+        }
+
+        .map iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(1) invert(.92) contrast(.88) brightness(.92)
+        }
+
+        .map-link {
+            margin-top: 10px
+        }
+
+        .panel {
+            padding: clamp(28px, 4vw, 52px);
+            background: var(--bg2);
+            border: 1px solid var(--ln2)
+        }
+
+        .alt .panel {
+            background: var(--bg)
+        }
+
+        .fgrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .field.full {
+            grid-column: 1/-1
+        }
+
+        .field>span {
+            font: 500 11px/1.4 var(--sans);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--t2)
+        }
+
+        .field em {
+            font-style: normal;
+            color: var(--g)
+        }
+
+        .field small {
+            font-size: 11px;
+            letter-spacing: 0;
+            text-transform: none;
+            font-weight: 400;
+            color: var(--t3)
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--ln);
+            border-radius: 0;
+            color: var(--t);
+            font: 400 15px/1.5 var(--sans);
+            -webkit-appearance: none;
+            appearance: none;
+            transition: border-color .25s, box-shadow .25s
+        }
+
+        .alt .panel input,
+        .alt .panel select,
+        .alt .panel textarea {
+            background: var(--bg2)
+        }
+
+        input:hover,
+        select:hover,
+        textarea:hover {
+            border-color: #4d4231
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--g);
+            box-shadow: 0 0 0 3px rgba(200, 166, 106, .15)
+        }
+
+        select {
+            padding-right: 46px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C8A66A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px
+        }
+
+        option {
+            background: var(--bg2);
+            color: var(--t)
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical
+        }
+
+        .form-foot {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        .ok {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 30px;
+            padding: 28px;
+            border: 1px solid var(--g);
+            background: rgba(200, 166, 106, .06)
+        }
+
+        .ok .icb {
+            border-color: var(--g);
+            color: var(--g2)
+        }
+
+        .ok h3 {
+            margin-bottom: 6px
+        }
+
+        /* ========== Footer ========== */
+        .ft {
+            padding-top: clamp(64px, 8vw, 96px);
+            background: #0a0a0a;
+            border-top: 1px solid var(--ln2);
+            font-size: 14px
+        }
+
+        .ft-top {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+            gap: 48px;
+            padding-bottom: 64px
+        }
+
+        .ft-brand .sub {
+            margin: 24px 0 12px;
+            font-size: 1.4rem
+        }
+
+        .ft-brand p {
+            max-width: 36ch;
+            font-size: 14px
+        }
+
+        .ft h4 {
+            margin-bottom: 22px;
+            font: 500 11px/1.4 var(--sans);
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--g)
+        }
+
+        .ft li {
+            margin-bottom: 12px;
+            color: var(--t2)
+        }
+
+        .ft li a {
+            color: var(--t2);
+            transition: color .25s
+        }
+
+        .ft li a:hover {
+            color: var(--g2)
+        }
+
+        .ft-contact li {
+            display: flex;
+            gap: 12px;
+            line-height: 1.55
+        }
+
+        .ft-contact .ic {
+            margin-top: 3px;
+            color: var(--g)
+        }
+
+        .ft-bot {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px 32px;
+            padding: 24px 0 calc(96px + env(safe-area-inset-bottom, 0px));
+            border-top: 1px solid var(--ln2);
+            font-size: 12.5px;
+            color: var(--t3)
+        }
+
+        .ft-note {
+            flex: 1;
+            min-width: 260px;
+            max-width: 72ch
+        }
+
+        .totop {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            color: var(--t2);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            font-size: 11.5px;
+            transition: color .25s
+        }
+
+        .totop:hover {
+            color: var(--g2)
+        }
+
+        /* ========== Floating controls ========== */
+        .fab {
+            position: fixed;
+            right: clamp(16px, 2.4vw, 28px);
+            bottom: calc(clamp(16px, 2.4vw, 28px) + env(safe-area-inset-bottom, 0px));
+            z-index: 40;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            height: 52px;
+            padding: 0 22px;
+            background: var(--g);
+            color: var(--bg);
+            font: 500 13px/1 var(--sans);
+            letter-spacing: .04em;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, .45);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(16px);
+            transition: opacity .35s, transform .35s var(--ease), visibility .35s, background-color .25s
+        }
+
+        .fab.show {
+            opacity: 1;
+            visibility: visible;
+            transform: none
+        }
+
+        .fab:hover {
+            background: var(--g2)
+        }
+
+        .ntg {
+            position: fixed;
+            left: clamp(16px, 2.4vw, 28px);
+            bottom: calc(clamp(16px, 2.4vw, 28px) + env(safe-area-inset-bottom, 0px));
+            z-index: 40;
+            display: inline-flex;
+            align-items: center;
+            height: 44px;
+            padding: 0 13px;
+            background: rgba(23, 23, 23, .94);
+            border: 1px solid var(--ln);
+            color: var(--t2);
+            font-size: 12px;
+            letter-spacing: .06em;
+            transition: border-color .25s, color .25s
+        }
+
+        .ntg span {
+            max-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: max-width .4s var(--ease), margin .4s var(--ease)
+        }
+
+        .ntg:hover span,
+        .ntg:focus-visible span {
+            max-width: 200px;
+            margin-left: 10px
+        }
+
+        .ntg[aria-pressed="true"] {
+            border-color: var(--g);
+            color: var(--g2)
+        }
+
+        /* ========== Reveal ========== */
+        .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 1s var(--ease), transform 1s var(--ease), border-color .4s;
+            transition-delay: calc(var(--i, 0) * 100ms), calc(var(--i, 0) * 100ms), 0s
+        }
+
+        .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        /* ========== Responsive ========== */
+        @media (min-width: 1181px) {
+            .nav>a.m-only {
+                display: none
+            }
+        }
+
+        @media (max-width: 1180px) {
+            .burger {
+                display: flex
+            }
+
+            .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                height: calc(100svh - var(--hh));
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 8px var(--gut) 40px;
+                background: var(--bg);
+                border-top: 1px solid var(--ln2);
+                overflow-y: auto;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-10px);
+                transition: opacity .3s, transform .35s var(--ease), visibility .3s
+            }
+
+            #hdr.open .nav {
+                opacity: 1;
+                visibility: visible;
+                transform: none
+            }
+
+            .nav>a,
+            .dd>a {
+                width: 100%;
+                justify-content: space-between;
+                padding: 18px 0;
+                border-bottom: 1px solid var(--ln2);
+                font: 500 1.6rem/1.2 var(--serif);
+                color: var(--t)
+            }
+
+            .nav>a::after,
+            .dd>a::after,
+            .dd>a .ic {
+                display: none
+            }
+
+            .nav [aria-current="page"] {
+                color: var(--g2)
+            }
+
+            .mega {
+                position: static;
+                width: auto;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                transition: none
+            }
+
+            .mega-in {
+                display: block;
+                background: none;
+                border: 0;
+                box-shadow: none
+            }
+
+            .mega-intro {
+                display: none
+            }
+
+            .mega-col {
+                padding: 16px 0 8px 2px
+            }
+
+            .nav-foot {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                margin-top: auto;
+                padding-top: 32px;
+                font-size: 14px;
+                color: var(--t2)
+            }
+
+            .nav-foot a {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                min-height: 40px
+            }
+
+            .nav-foot .ic {
+                color: var(--g)
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .g4 {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .pillars,
+            .g3 {
+                grid-template-columns: 1fr
+            }
+
+            .pillar {
+                min-height: 380px
+            }
+
+            .ev {
+                grid-template-columns: 200px minmax(0, 1fr);
+                gap: 20px 32px
+            }
+
+            .ev .btn {
+                grid-column: 2;
+                justify-self: start
+            }
+
+            .ft-top {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .ft-brand {
+                grid-column: 1/-1
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .head,
+            .split,
+            .contact,
+            .slide,
+            .news {
+                grid-template-columns: 1fr
+            }
+
+            .head {
+                align-items: start
+            }
+
+            .car-ctl {
+                justify-self: start
+            }
+
+            .news .card:first-child {
+                grid-row: auto
+            }
+
+            .news .card:first-child .media {
+                min-height: 0;
+                aspect-ratio: 16/10
+            }
+
+            .slide .ph.portrait {
+                max-width: 360px
+            }
+
+            .hero-loc {
+                position: static;
+                margin-top: 40px
+            }
+        }
+
+        @media (max-width: 760px) {
+            :root {
+                --hh: 68px;
+                --uh: 0px
+            }
+
+            .util {
+                display: none
+            }
+
+            .bar-r .btn,
+            .hero h1 br {
+                display: none
+            }
+
+            .brand .mark {
+                width: 30px;
+                height: 30px
+            }
+
+            .brand span {
+                font-size: 20px
+            }
+
+            .g2,
+            .g4,
+            .fgrid,
+            .markets {
+                grid-template-columns: 1fr
+            }
+
+            .shade {
+                background: linear-gradient(0deg, var(--bg) 0%, rgba(13, 13, 13, .78) 45%, rgba(13, 13, 13, .58))
+            }
+
+            .stats {
+                grid-template-columns: 1fr
+            }
+
+            .stat,
+            .stat+.stat {
+                flex-direction: row;
+                align-items: center;
+                gap: 22px;
+                padding: 20px 0;
+                border-left: 0
+            }
+
+            .stat+.stat {
+                border-top: 1px solid var(--ln2)
+            }
+
+            .stat b {
+                min-width: 64px
+            }
+
+            .cue {
+                display: none
+            }
+
+            .ev {
+                grid-template-columns: 1fr
+            }
+
+            .ev .btn {
+                grid-column: 1;
+                justify-self: start
+            }
+
+            .fab span {
+                display: none
+            }
+
+            .fab {
+                width: 52px;
+                padding: 0;
+                justify-content: center
+            }
+
+            .dlg-body {
+                padding: 28px 22px 30px
+            }
+        }
+
+        @media (max-width: 560px) {
+            .ft-top {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important
+            }
+
+            .cue i::after {
+                animation: none !important
+            }
+
+            .rv {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip" href="#app" data-skip></a>
+    <header id="hdr"></header>
+    <main id="app" tabindex="-1"></main>
+    <footer class="ft" id="ft"></footer>
+    <a class="fab" id="fab" href="#contact" data-go="contact"></a>
+    <button class="ntg" id="ntg" aria-pressed="false"></button>
+    <dialog id="dlg"></dialog>
+    <script>
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+        const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Skip background video when the visitor asked for less motion or less data.
+        const LITE = RM || Boolean(navigator.connection && navigator.connection.saveData);
+        let lang = 'vi', page = 'home', target = null, teamIdx = 0, booted = false, io, vio, hio;
+        const t = (en, vi) => lang === 'vi' ? vi : en;
+        const tx = a => lang === 'vi' ? a[1] : a[0];
+        const pad = n => String(n).padStart(2, '0');
+
+        /* ---------- Stock media (Unsplash photos, Pexels videos — swap for Leovian's own) ---------- */
+        const U = (id, w = 1200, extra = '') => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=72${extra}`;
+        const PX = path => `https://videos.pexels.com/video-files/${path}.mp4`;
+        const HERO = {
+            poster: '1610183880843-52fc754207a8',
+            clips: [
+                { hd: '8949611/8949611-hd_1920_1080_25fps', sd: '8949611/8949611-sd_960_540_25fps', place: ['Melbourne, Victoria', 'Melbourne, Victoria'] },
+                { hd: '39014384/16601941_1920_1080_24fps', sd: '39014384/16601939_960_540_24fps', place: ['Flinders Street, Melbourne', 'Ga Flinders Street, Melbourne'] }
+            ]
+        };
+        const HEAD_MEDIA = {
+            about: { img: '1517048676732-d65bc937f952', vid: '7659850/7659850-hd_1280_720_25fps' },
+            ecosystem: { img: '1602559227639-3bba8ce496df', vid: '13072844/13072844-hd_1280_720_30fps' },
+            news: { img: '1504711434969-e33886168f5c' },
+            startuplab: { img: '1532622785990-d2c36a76f5a6', vid: '7693469/7693469-hd_1280_720_25fps' },
+            events: { img: '1540575467063-178a50c2df87', vid: '8716442/8716442-hd_1280_720_25fps' },
+            contact: { img: '1626585817768-86826f5a9179', vid: '30561697/13089300_1280_720_25fps' }
+        };
+        const BAND_MEDIA = {
+            home: { img: '1521791136064-7986c2920216', vid: '7692917/7692917-hd_1280_720_25fps' },
+            about: { img: '1609726105601-497455c14c97', vid: '8949613/8949613-hd_1280_720_25fps' },
+            ecosystem: { img: '1600880292203-757bb62b4baf', vid: '5311422/5311422-hd_1280_720_25fps' }
+        };
+        const PLACES = [
+            { img: '1595434971780-79d5c20c5090', place: ['Melbourne', 'Melbourne'], note: ['Victoria, Australia', 'Victoria, Úc'] },
+            { img: '1585217514204-d025f2f1b116', place: ['Melbourne CBD', 'Trung tâm Melbourne'], note: ['Office at 405 Collins Street', 'Văn phòng tại 405 Collins Street'] }
+        ];
+        const TEAM_IMG = ['1543132220-4bf3de6e10ae', '1581065178047-8ee15951ede6', '1544168190-79c17527004f', '1622626426572-c268eb006092', '1640531005390-38bd92755d6a'];
+        const NEWS_IMG = ['1545044846-351ba102b6d5', '1517245386807-bb43f82c33c4', '1579532536935-619928decd08'];
+
+        /* ---------- Icons ---------- */
+        const ICON = {
+            arrow: '<path d="M4 12h15M13 6l6 6-6 6"/>',
+            ur: '<path d="M7 17 17 7M9 7h8v8"/>',
+            chev: '<path d="m6 9 6 6 6-6"/>',
+            chevr: '<path d="m9 6 6 6-6 6"/>',
+            chevl: '<path d="m15 6-6 6 6 6"/>',
+            up: '<path d="M12 19V5M6 11l6-6 6 6"/>',
+            x: '<path d="M6 6l12 12M18 6 6 18"/>',
+            check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+            info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.4"/>',
+            edu: '<path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.3M22 9.5V15"/>',
+            estate: '<path d="M3 21h18M5 21V7l7-4v18M12 9h7v12M8 9h1M8 13h1M8 17h1M15 13h1M15 17h1"/>',
+            tech: '<rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+            health: '<path d="M12 20.5s-8-4.6-8-10.6A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.9c0 6-8 10.6-8 10.6z"/><path d="M7 12.5h2.5l1.5-2.5 2 5 1.5-2.5H17"/>',
+            consult: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/><path d="M16 7h4v4"/>',
+            market: '<path d="M3 10.5v3a1 1 0 0 0 1 1h2.5L12 19V5L6.5 9.5H4a1 1 0 0 0-1 1z"/><path d="M15.5 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/>',
+            ops: '<path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/>',
+            pin: '<path d="M12 21.5s-7-6-7-11.5a7 7 0 0 1 14 0c0 5.5-7 11.5-7 11.5z"/><circle cx="12" cy="10" r="2.5"/>',
+            phone: '<path d="M5 3.5h3.5l2 5-2.6 1.6a11 11 0 0 0 6 6l1.6-2.6 5 2v3.5a2 2 0 0 1-2 2C10.4 21 3 13.6 3 5.5a2 2 0 0 1 2-2z"/>',
+            mail: '<rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
+            globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>',
+            cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+            chat: '<path d="M20.5 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4.3A8 8 0 1 1 20.5 11.5z"/>',
+            target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+            eye: '<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+            idea: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.8 10.6c.7.6 1 1.4 1 2.4h5.6c0-1 .3-1.8 1-2.4A6 6 0 0 0 12 3z"/>',
+            book: '<path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/>',
+            users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20c0-3-2-5.5-4.6-6.3"/>',
+            tag: '<path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1.3"/>'
+        };
+        const ic = (n, c = '') => `<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]}</svg>`;
+        const LOGO = '<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 38 20 20 38 2 20Z"/><path d="M15.5 12v16h9.5"/></svg>';
+
+        /* ---------- Content ---------- */
+        const NAV = [
+            { k: 'home', t: ['Home', 'Trang chủ'], m: 1 },
+            { k: 'about', t: ['About Us', 'Về chúng tôi'] },
+            { k: 'ecosystem', t: ['Our Ecosystem', 'Hệ sinh thái'] },
+            { k: 'news', t: ['News & Insights', 'Tin tức & Góc nhìn'] },
+            { k: 'startuplab', t: ['Startup Hub', 'Startup Hub'] },
+            { k: 'events', t: ['Events', 'Sự kiện'] },
+            { k: 'contact', t: ['Contact', 'Liên hệ'], m: 1 }
+        ];
+        const INV = [
+            { ic: 'edu', img: '1514513452089-17f8a9771ee8', t: ['Education', 'Giáo dục'], d: ['Connecting investment and development opportunities in education, training, and human capability building.', 'Kết nối các cơ hội đầu tư và phát triển trong lĩnh vực giáo dục, đào tạo và nâng cao năng lực con người.'] },
+            { ic: 'estate', img: '1624204386084-dd8c05e32226', t: ['Real Estate', 'Bất động sản'], d: ['Exploring real estate investment and development opportunities with a focus on long-term asset value.', 'Khám phá các cơ hội đầu tư và phát triển bất động sản, hướng tới xây dựng giá trị tài sản dài hạn.'] },
+            { ic: 'tech', img: '1534665482403-a909d0d97c67', t: ['Technology', 'Công nghệ'], d: ['Exploring innovative technology projects and solutions with potential for practical application and growth.', 'Hướng tới các dự án và giải pháp công nghệ có tiềm năng ứng dụng, đổi mới và phát triển.'] },
+            { ic: 'health', img: '1758691461990-03b49d969495', t: ['Health', 'Sức khỏe'], d: ['Exploring opportunities in healthcare and wellbeing that contribute to improving quality of life.', 'Khám phá các cơ hội trong lĩnh vực chăm sóc sức khỏe, hướng tới nâng cao chất lượng cuộc sống.'] }
+        ];
+        const PAR = [
+            { ic: 'consult', img: '1454165804606-c3d57bc86b40', t: ['Business Consulting', 'Tư vấn doanh nghiệp'], d: ['Supporting businesses in developing strategies, refining business models, and identifying growth opportunities tailored to each stage of development.', 'Hỗ trợ doanh nghiệp xây dựng chiến lược, phát triển mô hình kinh doanh và xác định định hướng tăng trưởng phù hợp với từng giai đoạn.'] },
+            { ic: 'market', img: '1557804506-669a67965ba0', t: ['Marketing', 'Giải pháp Marketing'], d: ['Supporting brand development, content creation, communications, and the execution of marketing campaigns aligned with business objectives.', 'Hỗ trợ xây dựng thương hiệu, phát triển nội dung, truyền thông và triển khai các chiến dịch marketing phù hợp với mục tiêu doanh nghiệp.'] },
+            { ic: 'ops', img: '1519389950473-47ba0277781c', t: ['O System (Operation System)', 'O System — Giải pháp vận hành'], d: ['Supporting businesses in organising, executing, and managing business activities through dedicated expertise and operational resources.', 'Hỗ trợ doanh nghiệp tổ chức, triển khai và vận hành các hoạt động kinh doanh thông qua đội ngũ chuyên môn và nguồn lực phù hợp.'] }
+        ];
+        const PURPOSE = [
+            { img: '1486406146926-c627a92ad1ab', t: ['Building Wealth', 'Kiến tạo tài sản'], d: ['Building wealth through vision and strategic decisions.', 'Kiến tạo tài sản bằng tầm nhìn và những quyết định chiến lược.'] },
+            { img: '1511376979163-f804dff7ad7b', t: ['Empowering People', 'Phát triển con người'], d: ['Investing in people as the foundation of long-term growth.', 'Đầu tư vào con người là nền tảng của tăng trưởng dài hạn.'] },
+            { img: '1585813597616-63e881759e9d', t: ['Creating Lasting Value', 'Tạo giá trị bền vững'], d: ['Creating sustainable value through meaningful, long-term collaboration.', 'Tạo giá trị bền vững qua hợp tác ý nghĩa và lâu dài.'] }
+        ];
+        const PANES = [
+            { img: '1582536238797-393b867258ec', tag: ['Investment', 'Đầu tư'], h: ['Investing in Potential. Creating Long-Term Value.', 'Đầu tư vào tiềm năng. Kiến tạo giá trị dài hạn.'], d: ['Explore Leovian’s investment direction and approach to long-term value creation.', 'Khám phá định hướng đầu tư và phát triển giá trị dài hạn trong hệ sinh thái Leovian.'], items: INV, pre: 'i', sec: 'inv', cta: ['Explore Investment', 'Tìm hiểu mảng Đầu tư'] },
+            { img: '1522071820081-009f0129c71c', tag: ['Partnership', 'Hợp tác'], h: ['Connecting Expertise. Empowering Business Growth.', 'Kết nối chuyên môn. Đồng hành phát triển.'], d: ['Explore connections and collaboration within the Leovian ecosystem.', 'Khám phá hướng kết nối và hợp tác trong hệ sinh thái Leovian.'], items: PAR, pre: 'p', sec: 'par', cta: ['Explore Partnership', 'Tìm hiểu mảng Hợp tác'] }
+        ];
+        const MV = [
+            { ic: 'target', t: ['Our Mission', 'Sứ mệnh'], d: ['To develop people, assets, businesses and communities — building foundations that enable individuals and organisations to continue growing through their own capabilities.', 'Phát triển con người, tài sản, doanh nghiệp và cộng đồng — tạo nền tảng để mỗi cá nhân và tổ chức có thể tiếp tục phát triển bằng năng lực của mình.'] },
+            { ic: 'eye', t: ['Our Vision', 'Tầm nhìn'], d: ['To build an ecosystem where people and assets grow together, preserving, passing on and growing value across generations.', 'Xây dựng một hệ sinh thái nơi con người và tài sản cùng phát triển, để giá trị được gìn giữ, tiếp nối và gia tăng qua nhiều thế hệ.'] }
+        ];
+        const PRINCIPLES = [
+            { t: ['Transparency', 'Minh bạch'], d: ['Clarity in decisions and accountability in action.', 'Rõ ràng trong quyết định, trách nhiệm trong hành động.'] },
+            { t: ['Long-Term Thinking', 'Dài hạn'], d: ['A lasting commitment to sustainable value.', 'Kiên định với những giá trị bền vững.'] },
+            { t: ['Meaningful Impact', 'Thực chất'], d: ['Creating real value and positive outcomes.', 'Tạo giá trị thực và tác động tích cực.'] },
+            { t: ['Continuity', 'Tiếp nối'], d: ['Building foundations for future generations.', 'Xây dựng nền tảng cho các thế hệ sau.'] }
+        ];
+        const PROCESS = [
+            { t: ['Listen & Understand', 'Lắng nghe & Thấu hiểu'], d: ['We start by understanding your goals, your stage of growth and what you need.', 'Trao đổi để hiểu rõ mục tiêu, giai đoạn phát triển và nhu cầu của bạn.'] },
+            { t: ['Assess & Plan', 'Đánh giá & Định hướng'], d: ['We review opportunities, resources and risks to shape the right direction.', 'Phân tích cơ hội, nguồn lực và rủi ro để xác định hướng đi phù hợp.'] },
+            { t: ['Connect & Deliver', 'Kết nối & Triển khai'], d: ['We bring in the right partners, expertise and resources from across the ecosystem.', 'Kết nối đối tác, chuyên môn và nguồn lực phù hợp trong hệ sinh thái để triển khai.'] },
+            { t: ['Grow Together', 'Đồng hành dài hạn'], d: ['We stay alongside you, reviewing and refining as value grows over time.', 'Tiếp tục đồng hành, theo dõi và điều chỉnh để giá trị gia tăng theo thời gian.'] }
+        ];
+        const STARTUP = [
+            { ic: 'idea', t: ['Ideas & Discussions', 'Ý tưởng & Thảo luận'], d: ['Share ideas, exchange perspectives, and explore new business opportunities.', 'Nơi chia sẻ ý tưởng, trao đổi góc nhìn và khám phá những cơ hội kinh doanh mới.'] },
+            { ic: 'book', t: ['Knowledge & Resources', 'Kiến thức & Tài nguyên'], d: ['Discover practical insights, experiences, and resources to support your entrepreneurial journey.', 'Chia sẻ kiến thức, kinh nghiệm thực tiễn và tài liệu hữu ích cho hành trình khởi nghiệp.'] },
+            { ic: 'users', t: ['Startup Stories', 'Câu chuyện khởi nghiệp'], d: ['Explore entrepreneurial journeys, experiences, and lessons from founders and business communities.', 'Khám phá những hành trình, trải nghiệm và bài học từ cộng đồng doanh nhân và nhà sáng lập.'] }
+        ];
+        const EV = [
+            { img: '1527529482837-4698179dc6ce', t: ['Networking Evening (Demo)', 'Tối kết nối doanh nghiệp (Demo)'], d: ['Business discussions and community networking. Demonstration event only.', 'Thảo luận kinh doanh và kết nối cộng đồng. Chỉ là sự kiện minh họa.'], date: ['Date placeholder 01', 'Ngày minh họa 01'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'] },
+            { img: '1561489396-888724a1543d', t: ['Investor & Partner Forum (Demo)', 'Diễn đàn Nhà đầu tư & Đối tác (Demo)'], d: ['A forum format for partners and investors. Demonstration event only.', 'Diễn đàn dành cho đối tác và nhà đầu tư. Chỉ là sự kiện minh họa.'], date: ['Date placeholder 02', 'Ngày minh họa 02'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'] },
+            { img: '1531058020387-3be344556be6', t: ['Founders Roundtable (Demo)', 'Bàn tròn nhà sáng lập (Demo)'], d: ['An open conversation between founders. Demonstration event only.', 'Cuộc trò chuyện mở giữa các nhà sáng lập. Chỉ là sự kiện minh họa.'], date: ['Date placeholder 03', 'Ngày minh họa 03'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'] },
+            { img: '1515169067868-5387ec356754', t: ['Community Gathering (Past demo)', 'Gặp gỡ cộng đồng (Demo đã qua)'], d: ['Highlights: introductions, short talks and open networking.', 'Điểm nhấn: giới thiệu, chia sẻ ngắn và kết nối tự do.'], date: ['Past date placeholder', 'Ngày đã qua (minh họa)'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'], past: 1 },
+            { img: '1587825140708-dfaf72ae4b04', t: ['Investor Briefing (Past demo)', 'Buổi giới thiệu đầu tư (Demo đã qua)'], d: ['Highlights: a briefing format with Q&A.', 'Điểm nhấn: buổi giới thiệu có phần hỏi đáp.'], date: ['Past date placeholder', 'Ngày đã qua (minh họa)'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'], past: 1 },
+            { img: '1580894732444-8ecded7900cd', t: ['Workshop Day (Past demo)', 'Ngày workshop (Demo đã qua)'], d: ['Highlights: hands-on sessions and team discussions.', 'Điểm nhấn: thực hành và thảo luận nhóm.'], date: ['Past date placeholder', 'Ngày đã qua (minh họa)'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'], past: 1 }
+        ];
+        const TOPICS = [['Education & Careers', 'Giáo dục & Nghề nghiệp'], ['Real Estate & Assets', 'Bất động sản & Tài sản'], ['Business Advisory & Startups', 'Tư vấn doanh nghiệp & Khởi nghiệp'], ['Other', 'Khác']];
+        const TEAM_N = TEAM_IMG.length;
+        const OFFICE = {
+            addr: 'Ground Floor, 405 Collins Street<br>Melbourne VIC 3000, Australia',
+            tel: '+61 405 331 876', telHref: 'tel:+61405331876',
+            mail: 'info@leovian.com.au', web: 'www.leovian.com.au',
+            map: 'https://maps.google.com/maps?q=405%20Collins%20Street%2C%20Melbourne%20VIC%203000&z=16&output=embed',
+            mapLink: 'https://www.google.com/maps/search/?api=1&query=405%20Collins%20Street%2C%20Melbourne%20VIC%203000'
+        };
+
+        /* ---------- UI helpers ---------- */
+        const goAttr = (to, sec) => `href="#${to}" data-go="${to}"${sec ? ` data-to="${sec}"` : ''}`;
+        const btn = (label, to, cls = '', sec) => `<a class="btn ${cls}" ${goAttr(to, sec)}>${label}${ic('arrow', 'sm')}</a>`;
+        const lnk = (label, to, sec) => `<a class="link" ${goAttr(to, sec)}>${label}${ic('arrow', 'sm')}</a>`;
+        const stagger = i => `style="--i:${i}"`;
+        const pic = (id, label, cls = '', w = 1000, alt = '', extra = '') => `<div class="ph ${cls}" data-l="[${label}]"><img src="${U(id, w, extra)}" alt="${alt}" loading="lazy" decoding="async"></div>`;
+        // Full-bleed photo with an optional looping video that fades in once it plays.
+        const bg = (m, w = 1920) => `<div class="bgfx" aria-hidden="true"><img src="${U(m.img, w)}" alt="" decoding="async">${m.vid && !LITE ? `<video muted loop playsinline preload="none" data-src="${PX(m.vid)}"></video>` : ''}</div>`;
+        const head = (eyebrow, h, p) => `<div class="head rv${p ? '' : ' solo'}"><div><span class="eyebrow">${eyebrow}</span><h2>${h}</h2></div>${p ? `<p>${p}</p>` : ''}</div>`;
+        const navLabel = k => tx(NAV.find(n => n.k === k).t);
+
+        const pageHead = (title, sub, lead, cls = '') => {
+            const m = HEAD_MEDIA[page];
+            return `<section class="phd tag-top ${cls}" data-l="[${page.toUpperCase()} — HEADER ${m.vid ? 'VIDEO' : 'PHOTO'}]">${bg(m)}<div class="shade"></div>
+                <div class="wrap phd-in">
+                    <nav class="crumb" aria-label="Breadcrumb"><a ${goAttr('home')}>${t('Home', 'Trang chủ')}</a>${ic('chevr', 'xs')}<span aria-current="page">${navLabel(page)}</span></nav>
+                    <h1>${title}</h1><p class="sub">${sub}</p><p class="lead">${lead}</p>
+                </div></section>`;
+        };
+
+        const band = (eyebrow, h, p, actions) => `<section class="band tag-tr" data-l="[${page.toUpperCase()} — CTA VIDEO]">${bg(BAND_MEDIA[page])}<div class="shade"></div>
+            <div class="wrap band-in rv">${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ''}<h2>${h}</h2>${p ? `<p>${p}</p>` : ''}<div class="actions">${actions}</div></div></section>`;
+
+        const card = (x, i, pre, label) => `<article class="card rv" id="${pre}${i}" ${stagger(i)}>
+            <div class="media">${pic(x.img, label, '', 1000, tx(x.t))}</div>
+            <div class="body"><span class="num">${pad(i + 1)}</span><h3>${tx(x.t)}</h3><p>${tx(x.d)}</p></div></article>`;
+
+        const field = (label, name, type, o = {}) => `<label class="field${o.full ? ' full' : ''}"><span>${label}${o.req ? '<em> *</em>' : ` <small>(${t('optional', 'không bắt buộc')})</small>`}</span><input name="${name}" type="${type}"${o.req ? ' required' : ''}${o.ac ? ` autocomplete="${o.ac}"` : ''}></label>`;
+        const area = (label, name) => `<label class="field full"><span>${label}<em> *</em></span><textarea name="${name}" rows="5" required></textarea></label>`;
+        const form = (fields, submit) => `<form class="form"><div class="fgrid">${fields}</div>
+            <div class="form-foot"><p class="hint">${ic('info', 'xs')}${t('Prototype form: nothing is sent.', 'Biểu mẫu minh họa: không có dữ liệu nào được gửi.')}</p>
+            <button class="btn solid" type="submit">${submit}${ic('arrow', 'sm')}</button></div></form>`;
+
+        /* ---------- Pages ---------- */
+        const V = {};
+
+        V.home = () => {
+            const stats = [
+                { n: pad(PANES.length), t: ['Ecosystem pillars', 'Trụ cột hệ sinh thái'], s: PANES.map(p => tx(p.tag)).join(' · ') },
+                { n: pad(INV.length), t: ['Investment sectors', 'Lĩnh vực đầu tư'], s: INV.map(x => tx(x.t)).join(' · ') },
+                { n: pad(PAR.length), t: ['Business solutions', 'Giải pháp doanh nghiệp'], s: ['Consulting · Marketing · Operations', 'Tư vấn · Marketing · Vận hành'] }
+            ];
+            const pane = (p, k) => `<article class="pane rv" ${stagger(k)}>
+                <div class="pane-media">${pic(p.img, `HOMEPAGE — ${tx(p.tag).toUpperCase()} PHOTO`, '', 1200)}</div>
+                <div class="pane-body">
+                    <div class="pane-hd"><span class="num">${pad(k + 1)}</span><span class="pane-tag">${tx(p.tag)}</span></div>
+                    <h3>${tx(p.h)}</h3><p>${tx(p.d)}</p>
+                    <ul class="ilist">${p.items.map((x, i) => `<li><a ${goAttr('ecosystem', p.pre + i)}>${ic(x.ic)}<span>${tx(x.t)}</span>${ic('ur', 'xs')}</a></li>`).join('')}</ul>
+                    ${btn(tx(p.cta), 'ecosystem', '', p.sec)}
+                </div></article>`;
+            const teaser = (i, eyebrow, h, d, cta, to, label, img) => `<article class="card lg rv" ${stagger(i)}>
+                <div class="media">${pic(img, label, '', 1200)}</div>
+                <div class="body"><span class="eyebrow">${eyebrow}</span><h3>${h}</h3><p>${d}</p><div class="more">${lnk(cta, to)}</div></div></article>`;
+
+            return `<section class="hero tag-top" data-l="[HOMEPAGE — HERO VIDEO: MELBOURNE]">
+                <div class="bgfx" aria-hidden="true"><img src="${U(HERO.poster, 1920)}" alt="" decoding="async">${HERO.clips.map(() => '<video class="hv" muted playsinline preload="none"></video>').join('')}</div>
+                <div class="shade"></div>
+                <div class="wrap hero-in"><div class="hero-copy">
+                    <span class="eyebrow">${t('Investment · Partnership', 'Đầu tư · Hợp tác')}</span>
+                    <h1>${t('Investment & Business <br>Development Ecosystem', 'Hệ sinh thái Đầu tư & <br>Phát triển Doanh nghiệp')}</h1>
+                    <p class="sub">${t('Building Wealth. Empowering People.', 'Kiến tạo tài sản. Phát triển con người.')}</p>
+                    <p class="lead">${t('Connecting capital, businesses, assets and communities across Australia to create lasting value for generations.', 'Kết nối vốn, doanh nghiệp, tài sản và cộng đồng tại Úc, hướng tới giá trị bền vững cho nhiều thế hệ.')}</p>
+                    <div class="actions">${btn(t('Explore Leovian', 'Khám phá Leovian'), 'ecosystem', 'solid')}${lnk(t('About Us', 'Về chúng tôi'), 'about')}</div>
+                </div>
+                <div class="hero-loc" aria-live="polite">${ic('pin', 'xs')}<span id="hloc">${tx(HERO.clips[0].place)}</span><i aria-hidden="true">${HERO.clips.map((_, i) => `<b class="${i ? '' : 'on'}"></b>`).join('')}</i></div></div>
+                <div class="wrap"><div class="stats">${stats.map(s => `<div class="stat"><b>${s.n}</b><div><span>${tx(s.t)}</span><small>${Array.isArray(s.s) ? tx(s.s) : s.s}</small></div></div>`).join('')}
+                    <button class="cue" data-scroll="intro" aria-label="${t('Scroll down', 'Cuộn xuống')}"><i></i></button></div></div>
+            </section>
+
+            <section class="sec" id="intro"><div class="wrap">
+                <div class="split">
+                    <div class="rv"><span class="eyebrow">${t('About Leovian', 'Về Leovian')}</span><h2>${t('Connecting Resources. Supporting Long-Term Growth.', 'Kết nối nguồn lực. Phát triển dài hạn.')}</h2></div>
+                    <div class="rv" ${stagger(1)}>
+                        <p class="lead">${t('Leovian is building an ecosystem where investment and people development work together to support business and asset growth.', 'Leovian xây dựng một hệ sinh thái nơi đầu tư và phát triển con người cùng tạo nền tảng cho sự phát triển của doanh nghiệp và tài sản.')}</p>
+                        <blockquote class="pull">${t('“Lasting prosperity begins with people who can create, manage and grow assets.”', '“Sự thịnh vượng bền vững bắt đầu từ những con người biết tạo dựng, quản lý và phát triển tài sản.”')}</blockquote>
+                        ${lnk(t('About Us', 'Về chúng tôi'), 'about')}
+                    </div>
+                </div>
+                <div class="markets">${PLACES.map((m, i) => `<figure class="market rv" ${stagger(i)}>${pic(m.img, `HOMEPAGE — ${m.place[0].toUpperCase()} PHOTO`, '', 1400, tx(m.place))}
+                    <figcaption><span>${tx(m.place)}</span><small>${ic('pin', 'xs')}${tx(m.note)}</small></figcaption></figure>`).join('')}</div>
+            </div></section>
+
+            <section class="sec alt"><div class="wrap">
+                ${head(t('Our Purpose', 'Giá trị hướng tới'), t('Value that endures across generations.', 'Giá trị bền vững qua nhiều thế hệ.'))}
+                <div class="pillars">${PURPOSE.map((s, i) => `<article class="pillar rv tag-tr" ${stagger(i)} data-l="[HOMEPAGE — PURPOSE PHOTO 0${i + 1}]">${bg(s, 1000)}
+                    <div class="pillar-in"><span class="num big">${pad(i + 1)}</span><h3>${tx(s.t)}</h3><p>${tx(s.d)}</p></div></article>`).join('')}</div>
+            </div></section>
+
+            <section class="sec"><div class="wrap">
+                ${head(t('Our Ecosystem', 'Hệ sinh thái'), t('Two pillars. One ecosystem.', 'Hai trụ cột. Một hệ sinh thái.'), t('Leovian builds an ecosystem that connects investment opportunities with business development solutions, fostering collaboration and creating a foundation for sustainable, long-term value across Australia.', 'Leovian xây dựng hệ sinh thái kết nối hoạt động đầu tư và các giải pháp phát triển doanh nghiệp, tạo nền tảng hợp tác và hướng tới giá trị bền vững tại Úc.'))}
+                <div class="grid g2">${PANES.map(pane).join('')}</div>
+            </div></section>
+
+            <section class="sec alt"><div class="wrap">
+                ${head(t('How We Work', 'Cách chúng tôi đồng hành'), t('From the first conversation to long-term value.', 'Từ cuộc trò chuyện đầu tiên đến giá trị dài hạn.'), t('A clear, transparent process for investors, partners and businesses working with Leovian.', 'Một quy trình rõ ràng, minh bạch dành cho nhà đầu tư, đối tác và doanh nghiệp đồng hành cùng Leovian.'))}
+                <div class="grid g4">${PROCESS.map((p, i) => `<div class="principle rv" ${stagger(i)}><span class="num big">${pad(i + 1)}</span><h3>${tx(p.t)}</h3><p>${tx(p.d)}</p></div>`).join('')}</div>
+            </div></section>
+
+            <section class="sec"><div class="wrap grid g2">
+                ${teaser(0, t('News & Insights', 'Tin tức & Góc nhìn'), t('Follow the Leovian Journey.', 'Cập nhật hành trình Leovian.'), t('Projects, activities and new milestones.', 'Dự án, hoạt động và những dấu mốc mới.'), t('View News', 'Xem tin tức'), 'news', 'NEWS — ARTICLE COVER', '1444653614773-995cb1ef9efa')}
+                ${teaser(1, t('Events', 'Sự kiện'), t('Meet. Connect. Grow.', 'Gặp gỡ. Kết nối. Cùng phát triển.'), t('Explore events from Leovian and our partners.', 'Khám phá các sự kiện của Leovian và đối tác.'), t('View Events', 'Xem sự kiện'), 'events', 'EVENTS — EVENT COVER / GALLERY', '1505373877841-8d25f7d46678')}
+            </div></section>
+
+            ${band(t('Contact', 'Liên hệ'), t('Explore New Possibilities Together.', 'Cùng mở ra cơ hội mới.'), '',
+                btn(t('Connect with Leovian', 'Kết nối với Leovian'), 'contact', 'solid') + `<a class="link plain" href="${OFFICE.telHref}">${ic('phone', 'sm')}${OFFICE.tel}</a>`)}`;
+        };
+
+        V.about = () => {
+            const slide = (img, k) => `<div class="slide" role="group" aria-roledescription="slide" aria-label="${k + 1} / ${TEAM_N}">
+                ${pic(img, 'ABOUT US — TEAM MEMBER PORTRAIT', 'portrait', 720, t('Placeholder portrait', 'Ảnh chân dung minh họa'), '&h=900&crop=faces')}
+                <div><span class="eyebrow">${t('Placeholder team member', 'Thành viên minh họa')} ${pad(k + 1)}</span>
+                <blockquote data-l="[ABOUT US — TEAM MEMBER QUOTE]">${t('One personal sentence about their vision, purpose, or contribution to Leovian.', 'Một câu về tầm nhìn, mục đích hoặc đóng góp cá nhân cho Leovian.')}</blockquote>
+                <div class="who"><b>[${t('NAME', 'TÊN')} ${k + 1}]</b><span>[${t('POSITION', 'CHỨC VỤ')}]</span></div></div></div>`;
+
+            return pageHead(t('About Leovian', 'Về Leovian'), t('Building Wealth. Empowering People.', 'Kiến tạo tài sản. Phát triển con người.'), t('Leovian is an ecosystem connecting investment, businesses, technology, assets and people. With a focus on Australia, we aim to build financial and human value that can grow across generations.', 'Leovian là hệ sinh thái kết nối đầu tư, doanh nghiệp, công nghệ, tài sản và con người. Với trọng tâm tại Úc, chúng tôi hướng tới xây dựng giá trị tài chính và giá trị con người có thể phát triển qua nhiều thế hệ.'))
+
+                + `<section class="sec"><div class="wrap narrow rv"><span class="eyebrow">${t('Why Leovian Exists', 'Vì sao Leovian ra đời')}</span>
+                    <p class="statement">${t('Leovian was founded on the belief that <em>lasting prosperity begins with people</em> who can create, manage and grow assets. Investing in people’s capabilities, mindset and sense of responsibility is therefore central to our approach.', 'Leovian được thành lập từ niềm tin rằng <em>sự thịnh vượng bền vững bắt đầu từ những con người</em> biết tạo dựng, quản lý và phát triển tài sản. Vì vậy, đầu tư vào năng lực, tư duy và trách nhiệm của con người là nền tảng trong định hướng của chúng tôi.')}</p></div></section>`
+
+                + `<section class="sec alt"><div class="wrap grid g2">${MV.map((m, i) => `<article class="box rv" ${stagger(i)}><div class="icb">${ic(m.ic)}</div><h3 class="eyebrow">${tx(m.t)}</h3><p class="box-lead">${tx(m.d)}</p></article>`).join('')}</div></section>`
+
+                + `<section class="sec"><div class="wrap">${head(t('Our Principles', 'Nguyên tắc của chúng tôi'), t('The principles behind how we work.', 'Những nguyên tắc định hướng cách chúng tôi làm việc.'))}
+                    <div class="grid g4">${PRINCIPLES.map((p, i) => `<div class="principle rv" ${stagger(i)}><span class="num big">${pad(i + 1)}</span><h3>${tx(p.t)}</h3><p>${tx(p.d)}</p></div>`).join('')}</div></div></section>`
+
+                + `<section class="sec alt team"><div class="wrap">
+                    <div class="head rv"><div><span class="eyebrow">${t('Our Team', 'Đội ngũ')}</span><h2>${t('The people behind Leovian.', 'Những con người phía sau Leovian.')}</h2></div>
+                    <div class="car-ctl"><span class="car-count" id="tcount"></span><button class="rbtn" data-team="-1" aria-label="${t('Previous', 'Trước')}">${ic('chevl')}</button><button class="rbtn" data-team="1" aria-label="${t('Next', 'Tiếp')}">${ic('chevr')}</button></div></div>
+                    <div class="car rv" aria-roledescription="carousel" aria-label="${t('Team', 'Đội ngũ')}"><div class="car-track" id="track">${TEAM_IMG.map(slide).join('')}</div></div>
+                    <div class="car-bar"><i id="tbar"></i></div>
+                </div></section>`
+
+                + band(t('Our Ecosystem', 'Hệ sinh thái'), t('Connecting Resources. Expanding Opportunities.', 'Kết nối nguồn lực. Mở rộng cơ hội.'), '', btn(t('Explore Our Ecosystem', 'Khám phá hệ sinh thái'), 'ecosystem', 'solid'));
+        };
+
+        V.ecosystem = () => pageHead(t('Our Ecosystem', 'Hệ sinh thái Leovian'), t('Connecting Resources. Expanding Opportunities.', 'Kết nối nguồn lực. Mở rộng cơ hội.'), t('Leovian builds an ecosystem that connects investment opportunities with business development solutions, fostering collaboration and creating a foundation for sustainable, long-term value across Australia.', 'Leovian xây dựng hệ sinh thái kết nối hoạt động đầu tư và các giải pháp phát triển doanh nghiệp, tạo nền tảng hợp tác và hướng tới giá trị bền vững tại Úc.'))
+
+            + `<nav class="subnav" aria-label="${t('Sections', 'Các mục')}"><div class="wrap"><a ${goAttr('ecosystem', 'inv')}><span>01</span>${t('Investment', 'Đầu tư')}</a><a ${goAttr('ecosystem', 'par')}><span>02</span>${t('Partnership', 'Hợp tác & Giải pháp doanh nghiệp')}</a></div></nav>`
+
+            + `<section class="sec" id="inv"><div class="wrap">
+                ${head(`01 · ${t('Investment', 'Đầu tư')}`, t('Investing in Potential. Creating Long-Term Value.', 'Đầu tư vào tiềm năng. Kiến tạo giá trị dài hạn.'), t('Leovian explores and develops investment opportunities across key sectors, connecting resources and partners to create sustainable value.', 'Leovian khám phá và phát triển các cơ hội đầu tư trong những lĩnh vực trọng điểm, kết nối nguồn lực và đối tác nhằm tạo dựng giá trị bền vững.'))}
+                <div class="grid g2">${INV.map((x, i) => card(x, i, 'i', 'ECOSYSTEM — INVESTMENT PROJECT PHOTO')).join('')}</div>
+                <div class="sec-foot rv">${btn(t('Explore Investment Opportunities', 'Khám phá cơ hội đầu tư'), 'contact', 'solid')}</div>
+            </div></section>`
+
+            + `<section class="sec alt" id="par"><div class="wrap">
+                ${head(`02 · ${t('Partnership', 'Hợp tác & Giải pháp doanh nghiệp')}`, t('Connecting Expertise. Empowering Business Growth.', 'Kết nối chuyên môn. Đồng hành phát triển.'), t('Leovian brings together expertise, teams, and resources to support businesses in strategic planning, brand development, and operational execution.', 'Leovian kết nối đội ngũ, chuyên môn và nguồn lực để đồng hành cùng doanh nghiệp trong việc xây dựng chiến lược, phát triển thương hiệu và triển khai hoạt động kinh doanh.'))}
+                <div class="grid g3">${PAR.map((x, i) => card(x, i, 'p', 'ECOSYSTEM — PARTNERSHIP TEAM PHOTO')).join('')}</div>
+                <div class="sec-foot rv">${btn(t('Explore Partnership Solutions', 'Khám phá giải pháp hợp tác'), 'contact', 'solid')}</div>
+            </div></section>`
+
+            + band('', t('Let’s Create Value Together', 'Cùng kiến tạo giá trị'), t('Whether you are exploring investment opportunities or seeking solutions to grow your business, Leovian is here to connect, collaborate, and explore the right opportunities with you.', 'Dù bạn đang tìm kiếm cơ hội đầu tư hay giải pháp phát triển doanh nghiệp, Leovian sẵn sàng kết nối và cùng bạn khám phá những hướng đi phù hợp.'), btn(t('Connect With Leovian', 'Kết nối với Leovian'), 'contact', 'solid'));
+
+        V.news = () => pageHead(t('News & Insights', 'Tin tức & Góc nhìn'), t('Follow the Leovian Journey.', 'Cập nhật hành trình Leovian.'), t('Projects, activities and new milestones.', 'Dự án, hoạt động và những dấu mốc mới.'))
+            + `<section class="sec"><div class="wrap">
+                <div class="notice rv">${ic('info', 'sm')}<span>${t('Placeholder layout. No real articles have been written yet.', 'Bố cục minh họa. Chưa có bài viết thật.')}</span></div>
+                <div class="news">${NEWS_IMG.map((img, i) => `<article class="card rv" ${stagger(i)}>
+                    <div class="media">${pic(img, 'NEWS — ARTICLE COVER', '', i ? 900 : 1400)}</div>
+                    <div class="body"><div class="meta"><span class="chip">[${t('Category', 'Danh mục')}]</span><span>${ic('cal', 'xs')}[${t('Publish date', 'Ngày đăng')}]</span></div>
+                    <h3>[${t('Placeholder article title', 'Tiêu đề bài viết minh họa')}]</h3><p>[${t('Short summary placeholder', 'Tóm tắt minh họa')}]</p></div></article>`).join('')}</div>
+            </div></section>`;
+
+        V.startuplab = () => pageHead(t('Startup Lab', 'Không gian khởi nghiệp'), t('Where Ideas Begin. Where Potential Grows.', 'Nơi ý tưởng bắt đầu. Nơi tiềm năng phát triển.'), t('Startup Lab is a space for connecting ideas, sharing knowledge, and exploring growth opportunities within Australia’s entrepreneurial community.', 'Startup Lab là không gian kết nối ý tưởng, chia sẻ kiến thức và khám phá cơ hội phát triển dành cho cộng đồng khởi nghiệp tại Úc.'), 'has-overlap')
+            + `<div class="wrap overlap rv">${pic('1598520106830-8c45c2035460', 'STARTUP LAB — REAL TEAM BRAINSTORMING PHOTO', 'wide', 1800, t('Team mapping ideas on a glass board', 'Nhóm phác thảo ý tưởng trên bảng kính'))}</div>`
+            + `<section class="sec"><div class="wrap grid g3">${STARTUP.map((x, i) => `<article class="box rv" ${stagger(i)}><div class="icb">${ic(x.ic)}</div><h3>${tx(x.t)}</h3><p>${tx(x.d)}</p></article>`).join('')}</div></section>`
+            + `<section class="sec alt" id="idea"><div class="wrap split">
+                <div class="rv"><span class="eyebrow">${t('Connect With Us', 'Kết nối cùng Leovian')}</span><h2 class="h-md">${t('Have a business idea or looking to connect with the startup community?', 'Bạn có một ý tưởng kinh doanh hoặc mong muốn kết nối với cộng đồng khởi nghiệp?')}</h2></div>
+                <div class="panel rv" ${stagger(1)}>${form(field(t('Full Name', 'Họ và tên'), 'name', 'text', { req: 1, ac: 'name' }) + field('Email', 'email', 'email', { req: 1, ac: 'email' }) + area(t('Your idea', 'Ý tưởng của bạn'), 'idea'), t('Share Your Idea', 'Chia sẻ ý tưởng'))}</div>
+            </div></section>`;
+
+        V.events = () => {
+            const meta = e => `<div class="meta"><span>${ic('cal', 'xs')}${tx(e.date)}</span><span>${ic('pin', 'xs')}${tx(e.loc)}</span></div>`;
+            const row = (i, k) => {
+                const e = EV[i];
+                return `<article class="ev rv" ${stagger(k)}><div class="ev-media">${pic(e.img, 'EVENTS — EVENT COVER', '', 600)}</div>
+                    <div class="ev-main">${meta(e)}<h3>${tx(e.t)}</h3><p>${tx(e.d)}</p></div>
+                    <button class="btn sm" data-ev="${i}">${t('View Details', 'Xem chi tiết')}${ic('arrow', 'sm')}</button></article>`;
+            };
+            const past = (i, k) => {
+                const e = EV[i];
+                return `<article class="card rv" ${stagger(k)}><div class="media">${pic(e.img, 'EVENTS — EVENT GALLERY', '', 900)}</div>
+                    <div class="body">${meta(e)}<h3>${tx(e.t)}</h3><p>${tx(e.d)}</p>
+                    <div class="more"><button class="link" data-ev="${i}">${t('View Gallery', 'Xem thư viện')}${ic('arrow', 'sm')}</button></div></div></article>`;
+            };
+            return pageHead(t('Events', 'Sự kiện'), t('Connect. Collaborate. Grow Together.', 'Gặp gỡ. Kết nối. Cùng phát triển.'), t('Discover events, networking opportunities, and collaborative experiences with Leovian across Australia.', 'Khám phá những sự kiện, hoạt động kết nối và cơ hội hợp tác cùng Leovian tại Úc.'))
+                + `<section class="sec"><div class="wrap">${head(t('Upcoming', 'Sắp diễn ra'), t('Upcoming Events', 'Sự kiện sắp diễn ra'), t('Stay informed about upcoming events and networking opportunities.', 'Cập nhật những sự kiện và chương trình kết nối sắp tới.'))}
+                    <div class="agenda">${[0, 1, 2].map(row).join('')}</div></div></section>`
+                + `<section class="sec alt"><div class="wrap">${head(t('Archive', 'Lưu trữ'), t('Past Events', 'Sự kiện đã diễn ra'), t('Explore memorable moments, highlights, and activities from Leovian’s events and collaborations. (Demonstration data only.)', 'Nhìn lại những dấu ấn, khoảnh khắc và hoạt động nổi bật của Leovian cùng các đối tác. (Chỉ là dữ liệu minh họa.)'))}
+                    <div class="grid g3">${[3, 4, 5].map(past).join('')}</div></div></section>`;
+        };
+
+        V.contact = () => {
+            const rows = [
+                ['pin', ['Address', 'Địa chỉ'], OFFICE.addr],
+                ['phone', ['Phone', 'Điện thoại'], `<a href="${OFFICE.telHref}">${OFFICE.tel}</a>`],
+                ['mail', ['Email', 'Email'], `<a href="mailto:${OFFICE.mail}">${OFFICE.mail}</a>`],
+                ['globe', ['Website', 'Website'], `<a href="https://${OFFICE.web}" target="_blank" rel="noopener">${OFFICE.web}</a>`]
+            ];
+            const topics = `<label class="field"><span>${t('Area of interest', 'Chủ đề quan tâm')}</span><select name="topic">${TOPICS.map(o => `<option>${tx(o)}</option>`).join('')}</select></label>`;
+            return pageHead(t('Contact', 'Liên hệ'), t('Start a Conversation. Explore New Possibilities.', 'Bắt đầu kết nối. Mở ra cơ hội.'), t('Get in touch to learn about the Leovian ecosystem or discuss your needs.', 'Liên hệ với Leovian để tìm hiểu về hệ sinh thái hoặc trao đổi nhu cầu của bạn.'))
+                + `<section class="sec"><div class="wrap contact">
+                    <div class="rv"><span class="eyebrow">${t('Contact Details', 'Thông tin liên hệ')}</span><h2 class="h-md">${t('Melbourne Office', 'Văn phòng Melbourne')}</h2>
+                        <ul class="clist">${rows.map(r => `<li><span class="icb">${ic(r[0])}</span><div><small>${tx(r[1])}</small>${r[2]}</div></li>`).join('')}</ul>
+                        <div class="map"><iframe title="${t('Map: 405 Collins Street, Melbourne', 'Bản đồ: 405 Collins Street, Melbourne')}" src="${OFFICE.map}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                        <a class="link plain map-link" href="${OFFICE.mapLink}" target="_blank" rel="noopener">${ic('pin', 'sm')}${t('Open in Google Maps', 'Mở trong Google Maps')}</a></div>
+                    <div class="panel rv" ${stagger(1)}><span class="eyebrow">${t('Send Us a Message', 'Gửi lời nhắn')}</span><h2 class="h-md">${t('How can we help?', 'Chúng tôi có thể hỗ trợ gì cho bạn?')}</h2>
+                        ${form(field(t('Full name', 'Họ và tên'), 'name', 'text', { req: 1, ac: 'name' }) + field('Email', 'email', 'email', { req: 1, ac: 'email' }) + field(t('Phone number', 'Số điện thoại'), 'phone', 'tel', { ac: 'tel' }) + topics + area(t('Your message', 'Nội dung lời nhắn'), 'message'), t('Send Message', 'Gửi lời nhắn'))}</div>
+                </div></section>`;
+        };
+
+        /* ---------- Chrome: header, footer, floating ---------- */
+        function header() {
+            const cur = k => page === k ? ' aria-current="page"' : '';
+            const mega = `<div class="mega"><div class="mega-in">
+                <div class="mega-intro"><img src="${U('1602559227639-3bba8ce496df', 600)}" alt="" loading="lazy"><span class="eyebrow">${t('Our Ecosystem', 'Hệ sinh thái')}</span><p>${t('Connecting Resources. Expanding Opportunities.', 'Kết nối nguồn lực. Mở rộng cơ hội.')}</p>${lnk(t('Overview', 'Tổng quan'), 'ecosystem')}</div>
+                ${PANES.map(p => `<div class="mega-col"><b>${tx(p.tag)}</b>${p.items.map((x, i) => `<a ${goAttr('ecosystem', p.pre + i)}>${ic(x.ic)}<span>${tx(x.t)}</span></a>`).join('')}</div>`).join('')}
+            </div></div>`;
+            const links = NAV.map(n => n.k === 'ecosystem'
+                ? `<div class="dd"><a ${goAttr('ecosystem')}${cur('ecosystem')}>${tx(n.t)}${ic('chev', 'xs')}</a>${mega}</div>`
+                : `<a ${goAttr(n.k)}${cur(n.k)}${n.m ? ' class="m-only"' : ''}>${tx(n.t)}</a>`).join('');
+
+            $('#hdr').innerHTML = `<div class="util"><div class="wrap">
+                    <span>${ic('pin', 'xs')}405 Collins Street, Melbourne</span>
+                    <span class="util-r"><a href="${OFFICE.telHref}">${ic('phone', 'xs')}${OFFICE.tel}</a><a href="mailto:${OFFICE.mail}">${ic('mail', 'xs')}${OFFICE.mail}</a></span>
+                </div></div>
+                <div class="wrap bar">
+                    <a class="brand" ${goAttr('home')} aria-label="Leovian — ${t('Home', 'Trang chủ')}">${LOGO}<span>LEOVIAN</span></a>
+                    <nav class="nav" id="nav" aria-label="${t('Main', 'Điều hướng chính')}">${links}
+                        <div class="nav-foot"><a href="${OFFICE.telHref}">${ic('phone', 'sm')}${OFFICE.tel}</a><a href="mailto:${OFFICE.mail}">${ic('mail', 'sm')}${OFFICE.mail}</a></div>
+                    </nav>
+                    <div class="bar-r">
+                        <div class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="${lang === 'en'}">EN</button><i></i><button data-lang="vi" aria-pressed="${lang === 'vi'}">VI</button></div>
+                        <a class="btn sm solid" ${goAttr('contact')}>${t('Get in Touch', 'Liên hệ')}</a>
+                        <button class="burger" aria-expanded="${$('#hdr').classList.contains('open')}" aria-controls="nav" aria-label="Menu"><span></span><span></span><span></span></button>
+                    </div>
+                </div>`;
+        }
+
+        function footer() {
+            $('#ft').innerHTML = `<div class="wrap">
+                <div class="ft-top">
+                    <div class="ft-brand"><a class="brand" ${goAttr('home')}>${LOGO}<span>LEOVIAN</span></a>
+                        <p class="sub">${t('Building Wealth. Empowering People.', 'Kiến tạo tài sản. Phát triển con người.')}</p>
+                        <p>${t('An ecosystem connecting investment, businesses, technology, assets and people across Australia.', 'Hệ sinh thái kết nối đầu tư, doanh nghiệp, công nghệ, tài sản và con người tại Úc.')}</p></div>
+                    <div><h4>${t('Explore', 'Khám phá')}</h4><ul>${NAV.filter(n => n.k !== 'home').map(n => `<li><a ${goAttr(n.k)}>${tx(n.t)}</a></li>`).join('')}</ul></div>
+                    <div><h4>${t('Ecosystem', 'Hệ sinh thái')}</h4><ul>${PANES.map(p => `<li><a ${goAttr('ecosystem', p.sec)}>${tx(p.tag)}</a></li>`).join('')}${INV.map((x, i) => `<li><a ${goAttr('ecosystem', 'i' + i)}>${tx(x.t)}</a></li>`).join('')}</ul></div>
+                    <div><h4>${t('Contact', 'Liên hệ')}</h4><ul class="ft-contact">
+                        <li>${ic('pin', 'sm')}<span>${OFFICE.addr}</span></li>
+                        <li>${ic('phone', 'sm')}<a href="${OFFICE.telHref}">${OFFICE.tel}</a></li>
+                        <li>${ic('mail', 'sm')}<a href="mailto:${OFFICE.mail}">${OFFICE.mail}</a></li></ul></div>
+                </div>
+                <div class="ft-bot"><span>© ${new Date().getFullYear()} Leovian. ${t('All rights reserved.', 'All rights reserved.')}</span>
+                    <span class="ft-note">${t('Design prototype — all content, people, events and contact details are placeholders pending Leovian approval. Stock photos and video: Unsplash, Pexels.', 'Bản thiết kế mẫu — mọi nội dung, nhân sự, sự kiện và thông tin liên hệ đều là minh họa, chờ Leovian xác nhận. Ảnh và video minh họa: Unsplash, Pexels.')}</span>
+                    <button class="totop">${t('Back to top', 'Lên đầu trang')}${ic('up', 'sm')}</button></div>
+            </div>`;
+        }
+
+        function chrome() {
+            const talk = t('Talk to Our Team', 'Trò chuyện cùng đội ngũ'), notes = t('Design Notes', 'Ghi chú thiết kế');
+            $('#fab').innerHTML = `${ic('chat')}<span>${talk}</span>`;
+            $('#fab').setAttribute('aria-label', talk);
+            $('#ntg').innerHTML = `${ic('tag', 'sm')}<span>${notes}</span>`;
+            $('#ntg').setAttribute('aria-label', notes);
+            $('.skip').textContent = t('Skip to content', 'Bỏ qua đến nội dung');
+            document.title = `Leovian — ${page === 'home' ? t('Investment & Business Development Ecosystem', 'Hệ sinh thái Đầu tư & Phát triển Doanh nghiệp') : navLabel(page)}`;
+        }
+
+        /* ---------- Behaviour ---------- */
+        function reveal(instant) {
+            if (io) io.disconnect();
+            const els = $$('.rv');
+            if (RM || instant || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+            io = new IntersectionObserver(entries => entries.forEach(x => {
+                if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); }
+            }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+            els.forEach(e => io.observe(e));
+        }
+
+        // Background videos only load and play while on screen.
+        function bgVideos() {
+            if (vio) vio.disconnect();
+            const vids = $$('video[data-src]');
+            if (!vids.length || !('IntersectionObserver' in window)) return;
+            vio = new IntersectionObserver(entries => entries.forEach(x => {
+                const v = x.target;
+                if (!x.isIntersecting) { v.pause(); return; }
+                if (!v.src) v.src = v.dataset.src;
+                v.play().catch(() => { });
+            }), { rootMargin: '200px 0px' });
+            vids.forEach(v => {
+                v.addEventListener('playing', () => v.classList.add('on'), { once: true });
+                vio.observe(v);
+            });
+        }
+
+        // Hero alternates two Melbourne clips with a crossfade.
+        function heroVideo() {
+            if (hio) hio.disconnect();
+            const vids = $$('.hv');
+            if (!vids.length || LITE) return;
+            const small = innerWidth < 900;
+            let cur = 0;
+            const show = i => {
+                cur = i;
+                vids.forEach((v, k) => v.classList.toggle('on', k === i));
+                $('#hloc').textContent = tx(HERO.clips[i].place);
+                $$('.hero-loc b').forEach((b, k) => b.classList.toggle('on', k === i));
+            };
+            vids.forEach((v, i) => {
+                v.src = PX(small ? HERO.clips[i].sd : HERO.clips[i].hd);
+                v.addEventListener('ended', () => {
+                    const n = (i + 1) % vids.length;
+                    vids[n].currentTime = 0;
+                    vids[n].play().then(() => show(n)).catch(() => { });
+                });
+            });
+            vids[0].preload = 'auto';
+            vids[0].addEventListener('playing', () => { vids.slice(1).forEach(v => { v.preload = 'auto'; }); }, { once: true });
+            hio = new IntersectionObserver(([x]) => {
+                if (x.isIntersecting) vids[cur].play().then(() => show(cur)).catch(() => { });
+                else vids[cur].pause();
+            });
+            hio.observe($('.hero'));
+        }
+
+        function team(d) {
+            teamIdx = (teamIdx + d + TEAM_N) % TEAM_N;
+            $('#track').style.transform = `translateX(-${teamIdx * 100}%)`;
+            $$('.slide').forEach((s, i) => { s.inert = i !== teamIdx; s.setAttribute('aria-hidden', i !== teamIdx); });
+            $('#tcount').innerHTML = `<b>${pad(teamIdx + 1)}</b> / ${pad(TEAM_N)}`;
+            const bar = $('#tbar');
+            bar.classList.remove('run');
+            void bar.offsetWidth;
+            if (!RM) bar.classList.add('run');
+        }
+
+        function teamInit() {
+            teamIdx = 0;
+            team(0);
+            $('#tbar').addEventListener('animationend', () => team(1));
+        }
+
+        // Jumps without the CSS smooth-scroll, used for page swaps.
+        function jump(fn) {
+            const r = document.documentElement;
+            r.style.scrollBehavior = 'auto';
+            fn();
+            r.style.scrollBehavior = '';
+        }
+
+        function scrollToId(id, smooth) {
+            const el = document.getElementById(id);
+            if (!el) return false;
+            const isCard = el.classList.contains('card');
+            el.scrollIntoView({ block: isCard ? 'center' : 'start', behavior: smooth && !RM ? 'smooth' : 'auto' });
+            if (isCard) { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+            return true;
+        }
+
+        function toggleMenu(force) {
+            const h = $('#hdr'), open = force ?? !h.classList.contains('open');
+            h.classList.toggle('open', open);
+            document.body.classList.toggle('lock', open);
+            const b = $('.burger');
+            if (b) b.setAttribute('aria-expanded', open);
+        }
+
+        function onScroll() {
+            const y = scrollY;
+            $('#hdr').classList.toggle('solid', y > 24);
+            $('#fab').classList.toggle('show', y > 560 && page !== 'contact');
+        }
+
+        function render(keep = false) {
+            document.documentElement.lang = lang;
+            $('#app').innerHTML = V[page]();
+            header();
+            footer();
+            chrome();
+            reveal(keep);
+            bgVideos();
+            heroVideo();
+            if (page === 'about') teamInit();
+            if (!keep) {
+                jump(() => { if (!(target && scrollToId(target))) scrollTo(0, 0); });
+                if (booted) $('#app').focus({ preventScroll: true });
+            }
+            target = null;
+            booted = true;
+            onScroll();
+        }
+
+        function go(p, to) {
+            toggleMenu(false);
+            if ($('#dlg').open) $('#dlg').close();
+            if (p === page && to && scrollToId(to, true)) return;
+            if (p === page && !to) { scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }); return; }
+            target = to || null;
+            if ((location.hash.slice(1) || 'home') === p) render();
+            else location.hash = p;
+        }
+
+        function setLang(l) {
+            if (l === lang) return;
+            lang = l;
+            const y = scrollY;
+            render(true);
+            jump(() => scrollTo(0, y));
+        }
+
+        function openEvent(i) {
+            const e = EV[i], d = $('#dlg');
+            d.innerHTML = `<div class="dlg-in">${pic(e.img, 'EVENTS — EVENT COVER / GALLERY', 'dlg-media', 1200)}
+                <button class="dlg-x" data-close aria-label="${t('Close', 'Đóng')}">${ic('x')}</button>
+                <div class="dlg-body"><span class="eyebrow">${e.past ? t('Past event', 'Sự kiện đã diễn ra') : t('Upcoming event', 'Sự kiện sắp diễn ra')}</span>
+                    <h3 id="dlg-title">${tx(e.t)}</h3>
+                    <ul class="dlg-meta"><li>${ic('cal', 'sm')}${tx(e.date)}</li><li>${ic('pin', 'sm')}${tx(e.loc)}</li></ul>
+                    <p>${tx(e.d)}</p>
+                    <p class="hint">${ic('info', 'xs')}${t('Demonstration data — not a real Leovian event.', 'Dữ liệu minh họa — không phải sự kiện thật của Leovian.')}</p>
+                    <div class="actions">${btn(t('Contact Us', 'Liên hệ'), 'contact', 'solid')}<button class="btn" data-close>${t('Close', 'Đóng')}</button></div>
+                </div></div>`;
+            d.setAttribute('aria-labelledby', 'dlg-title');
+            d.showModal();
+        }
+
+        document.addEventListener('click', e => {
+            const el = e.target.closest('[data-go],[data-lang],[data-team],[data-ev],[data-close],[data-scroll],[data-skip],.burger,.totop,#ntg');
+            if (!el) return;
+            if (el.dataset.go) { e.preventDefault(); go(el.dataset.go, el.dataset.to); }
+            else if (el.dataset.lang) setLang(el.dataset.lang);
+            else if (el.dataset.team) team(+el.dataset.team);
+            else if (el.dataset.ev) openEvent(+el.dataset.ev);
+            else if ('close' in el.dataset) $('#dlg').close();
+            else if (el.dataset.scroll) scrollToId(el.dataset.scroll, true);
+            else if ('skip' in el.dataset) { e.preventDefault(); $('#app').focus(); }
+            else if (el.classList.contains('burger')) toggleMenu();
+            else if (el.classList.contains('totop')) scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+            else if (el.id === 'ntg') el.setAttribute('aria-pressed', document.body.classList.toggle('notes'));
+        });
+
+        document.addEventListener('submit', e => {
+            e.preventDefault();
+            e.target.insertAdjacentHTML('afterend', `<div class="ok" role="status"><span class="icb">${ic('check')}</span><div><h3>${t('Thank you.', 'Cảm ơn bạn.')}</h3><p>${t('This is a prototype confirmation; no data was sent.', 'Đây là xác nhận mô phỏng; không có dữ liệu nào được gửi.')}</p></div></div>`);
+            e.target.remove();
+        });
+
+        $('#dlg').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+        matchMedia('(min-width: 1181px)').addEventListener('change', e => { if (e.matches) toggleMenu(false); });
+        addEventListener('scroll', onScroll, { passive: true });
+        addEventListener('hashchange', () => {
+            const h = location.hash.slice(1) || 'home';
+            if (!V[h]) return;
+            page = h;
+            render();
+        });
+
+        page = V[location.hash.slice(1)] ? location.hash.slice(1) : 'home';
+        render();
+    </script>
+</body>
+
+</html>
