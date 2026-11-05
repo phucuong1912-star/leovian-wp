@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Leovian — Hệ sinh thái đầu tư & phát triển doanh nghiệp kết nối Úc và Việt Nam.">
+    <meta name="theme-color" content="#0D0D0D">
+    <title>Leovian — Investment & Business Development Ecosystem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://videos.pexels.com">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        /* ================= Tokens =================
+           Colours are unchanged from demo4. Playfair Display matches leovian.com.au;
+           Be Vietnam Pro is drawn for Vietnamese diacritics. The diamond from the logo
+           is the one recurring shape: hero window, CTA window, step markers, labels. */
+        :root {
+            --ink: #0D0D0D; --graphite: #171717; --deep: #090909;
+            --gold: #C8A66A; --champagne: #E2C58E;
+            --ivory: #F5F0E8; --t1: #DDD6CB; --t2: #BDB5AA; --t3: #8E867A;
+            --ln: #3a3226; --ln2: #26211a;
+            --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --sans: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            --wrap: 1320px; --gut: clamp(20px, 5vw, 72px); --hh: 84px;
+            --ease: cubic-bezier(.22, .68, .16, 1); --io: cubic-bezier(.76, 0, .24, 1);
+            color-scheme: dark
+        }
+
+        /* ================= Base ================= */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100% }
+        body { background: var(--ink); color: var(--ivory); font: 400 16px/1.7 var(--sans); font-variant-numeric: lining-nums; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden }
+        body.lock { overflow: hidden }
+        body.instant *, body.instant *::before { transition: none !important }
+        img, svg, video, iframe { display: block; max-width: 100% }
+        a { color: inherit; text-decoration: none }
+        button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer }
+        ul, ol { list-style: none }
+        [id] { scroll-margin-top: calc(var(--hh) + 16px) }
+        :focus-visible { outline: 2px solid var(--champagne); outline-offset: 3px }
+        #app:focus { outline: none }
+        ::selection { background: var(--gold); color: var(--ink) }
+        .skip { position: fixed; left: 12px; top: -60px; z-index: 120; background: var(--gold); color: var(--ink); padding: 12px 18px; font-size: 14px; transition: top .2s }
+        .skip:focus { top: 12px }
+        .ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none }
+        .ic.sm { width: 16px; height: 16px }
+        .ic.xs { width: 13px; height: 13px }
+        #app, #ft { transition: opacity .28s ease }
+        body.swap #app, body.swap #ft { opacity: 0 }
+
+        /* ================= Type ================= */
+        h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; letter-spacing: -.012em; color: var(--ivory); text-wrap: balance }
+        h2 { font-size: clamp(2.2rem, 4.3vw, 3.9rem); line-height: 1.07 }
+        h3 { font-size: clamp(1.35rem, 1.8vw, 1.7rem); line-height: 1.22 }
+        .h-sm { font-size: clamp(1.75rem, 2.7vw, 2.5rem) }
+        p { color: var(--t2); max-width: 62ch; text-wrap: pretty }
+        .lead { font-size: clamp(1.05rem, 1.25vw, 1.18rem); font-weight: 300; line-height: 1.68; color: var(--t1) }
+        .sub { font: italic 400 clamp(1.3rem, 1.9vw, 1.7rem)/1.3 var(--serif); color: var(--champagne); max-width: none }
+        /* Second sentence of a two-sentence heading sits on its own, quieter line. */
+        .cont { display: block; color: var(--t3) }
+        .statement { max-width: 30em; font: 400 clamp(1.45rem, 2.45vw, 2.3rem)/1.4 var(--serif); color: var(--ivory) }
+        .lbl { display: inline-flex; align-items: center; gap: 11px; font: 500 13.5px/1.4 var(--sans); letter-spacing: .01em; color: var(--champagne) }
+        .lbl::before { content: ''; width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex: none }
+        .en { display: block; margin-bottom: 6px; font: 500 12px/1.4 var(--sans); letter-spacing: .03em; color: var(--t3) }
+        .hint { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--t3) }
+        .hint .ic { color: var(--gold) }
+
+        /* ================= Layout ================= */
+        .wrap { max-width: calc(var(--wrap) + 2 * var(--gut)); margin: 0 auto; padding: 0 var(--gut) }
+        .sec { position: relative; padding: clamp(88px, 10vw, 150px) 0 }
+        .alt { background: var(--graphite) }
+        .head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px clamp(32px, 6vw, 110px); align-items: end; margin-bottom: clamp(48px, 6vw, 84px) }
+        .head.solo { grid-template-columns: 1fr }
+        .head .lbl { margin-bottom: 22px }
+        .head h2 { max-width: 15em }
+        .head > p { padding-bottom: 6px }
+        .split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 7vw, 120px); align-items: start }
+        .sec-foot { display: flex; justify-content: flex-end; margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--ln2) }
+
+        /* ================= Buttons & links ================= */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 52px; padding: 0 28px; border: 1px solid var(--gold); color: var(--champagne); font: 500 14.5px/1 var(--sans); letter-spacing: .01em; white-space: nowrap; transition: background-color .3s, color .3s, border-color .3s }
+        .btn:hover { background: rgba(200, 166, 106, .12) }
+        .btn.solid { background: var(--gold); color: var(--ink) }
+        .btn.solid:hover { background: var(--champagne); border-color: var(--champagne) }
+        .btn.sm { min-height: 42px; padding: 0 20px; font-size: 13.5px }
+        .link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font: 500 14.5px/1.3 var(--sans); color: var(--champagne); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; text-decoration-color: rgba(226, 197, 142, .38); transition: color .25s, text-decoration-color .25s }
+        .link:hover { color: var(--ivory); text-decoration-color: var(--ivory) }
+        .sqb { width: 52px; height: 52px; display: grid; place-items: center; border: 1px solid var(--ln); color: var(--champagne); transition: border-color .25s, background-color .25s, color .25s }
+        .sqb:hover { border-color: var(--gold); background: var(--gold); color: var(--ink) }
+        /* Icon inside a diamond outline, echoing the logo. */
+        .icb { position: relative; width: 56px; height: 56px; display: grid; place-items: center; flex: none; color: var(--gold) }
+        .icb::before { content: ''; position: absolute; inset: 9px; border: 1px solid var(--ln); transform: rotate(45deg) }
+        .icb .ic { position: relative; width: 22px; height: 22px }
+
+        /* ================= Floating ================= */
+        #top { position: fixed; right: clamp(16px, 2.4vw, 28px); bottom: calc(clamp(16px, 2.4vw, 28px) + env(safe-area-inset-bottom, 0px)); z-index: 45; width: 52px; height: 52px; display: grid; place-items: center; color: var(--champagne); opacity: 0; visibility: hidden; transition: opacity .35s, visibility .35s }
+        #top.show { opacity: 1; visibility: visible }
+        #top .ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg) }
+        #top .trk { fill: rgba(13, 13, 13, .8); stroke: var(--ln); stroke-width: 1.2 }
+        #top .prg { fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-dasharray: 145; stroke-dashoffset: calc(145 - 145 * var(--sp, 0)) }
+        #top .ic { position: relative }
+        /* Prototype-only toggle; sits above the back-to-top button so it never covers page content on the left. */
+        .ntg { position: fixed; right: clamp(16px, 2.4vw, 28px); bottom: calc(clamp(16px, 2.4vw, 28px) + 62px + env(safe-area-inset-bottom, 0px)); z-index: 45; display: inline-flex; flex-direction: row-reverse; align-items: center; height: 42px; padding: 0 14px; background: rgba(23, 23, 23, .92); border: 1px solid var(--ln); color: var(--t2); font-size: 12.5px; transition: border-color .25s, color .25s }
+        .ntg span { max-width: 0; overflow: hidden; white-space: nowrap; transition: max-width .4s var(--ease), margin .4s var(--ease) }
+        .ntg:hover span, .ntg:focus-visible span { max-width: 200px; margin-right: 10px }
+        .ntg[aria-pressed="true"] { border-color: var(--gold); color: var(--champagne) }
+        [data-l]::after { display: none; content: attr(data-l); position: absolute; left: 12px; bottom: 12px; z-index: 6; padding: 4px 8px; background: rgba(13, 13, 13, .9); border: 1px dashed var(--gold); font: 500 10.5px/1.3 var(--sans); color: var(--champagne); text-align: left }
+        .notes [data-l]::after { display: block }
+        .hero-stage[data-l]::after, .band[data-l]::after { left: auto; right: 12px; bottom: auto; top: calc(var(--hh) + 14px) }
+        .band[data-l]::after { top: 14px }
+
+        /* ================= Header ================= */
+        #hdr { position: fixed; inset: 0 0 auto; z-index: 60; padding-top: env(safe-area-inset-top, 0px); border-bottom: 1px solid transparent; transition: transform .6s var(--ease), background-color .4s, border-color .4s }
+        #hdr.solid { background: rgba(13, 13, 13, .84); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom-color: rgba(58, 50, 38, .55) }
+        #hdr.hide { transform: translateY(-102%) }
+        body.menu #hdr { background: transparent; border-bottom-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; transform: none }
+        .bar { height: var(--hh); display: flex; align-items: center; justify-content: space-between; gap: 28px }
+        .brand { display: inline-flex; align-items: center; gap: 13px; color: var(--champagne) }
+        .brand .mark { width: 32px; height: 32px; fill: none; stroke: currentColor; stroke-width: 1.3 }
+        .brand span { font: 500 19px/1 var(--serif); letter-spacing: .3em; margin-right: -.3em }
+        .nav { display: flex; align-items: center; gap: clamp(18px, 2.1vw, 34px) }
+        .nav > a, .dd > a { position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 12px 0; font: 400 14px/1 var(--sans); color: var(--t1); transition: color .25s }
+        .nav > a::after, .dd > a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease) }
+        .nav > a:hover, .dd > a:hover, .nav [aria-current="page"] { color: var(--ivory) }
+        .nav > a:hover::after, .dd > a:hover::after, .nav [aria-current="page"]::after { transform: scaleX(1) }
+        .dd { position: relative }
+        .dd > a .ic { transition: transform .3s }
+        .dd:hover > a .ic, .dd:focus-within > a .ic { transform: rotate(180deg) }
+        .mega { position: absolute; top: 100%; left: 50%; width: min(780px, 90vw); padding-top: 18px; opacity: 0; visibility: hidden; transform: translate(-50%, 8px); transition: opacity .3s, transform .4s var(--ease), visibility .3s }
+        .dd:hover .mega, .dd:focus-within .mega { opacity: 1; visibility: visible; transform: translate(-50%, 0) }
+        .mega-in { display: grid; grid-template-columns: 1.15fr 1fr 1fr; background: var(--graphite); border: 1px solid var(--ln); box-shadow: 0 30px 70px rgba(0, 0, 0, .55) }
+        .mega-intro { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 10px; min-height: 260px; padding: 26px }
+        .mega-intro img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover }
+        .mega-intro::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(13, 13, 13, .96) 25%, rgba(13, 13, 13, .35)) }
+        .mega-intro p { font: 400 1.3rem/1.25 var(--serif); color: var(--ivory) }
+        .mega-col { padding: 26px 24px }
+        .mega-col b { display: block; margin-bottom: 10px; font: 500 13px/1.4 var(--sans); color: var(--champagne) }
+        .mega-col a { display: flex; align-items: center; gap: 12px; padding: 9px 0; font-size: 14px; line-height: 1.35; color: var(--t2); transition: color .2s }
+        .mega-col a .ic { width: 18px; height: 18px; color: var(--gold) }
+        .mega-col a:hover { color: var(--ivory) }
+        .bar-r { display: flex; align-items: center; gap: 16px }
+        .lang { display: flex; align-items: center; font: 500 12.5px/1 var(--sans); letter-spacing: .08em }
+        .lang button { min-width: 38px; min-height: 40px; color: var(--t3); transition: color .2s }
+        .lang button:hover, .lang button[aria-pressed="true"] { color: var(--champagne) }
+        .lang i { width: 1px; height: 12px; background: var(--ln) }
+        .burger { display: none; align-items: center; gap: 12px; height: 44px; padding: 0 4px 0 12px; font: 500 13.5px/1 var(--sans); color: var(--ivory) }
+        .burger .bt-close, body.menu .burger .bt-open { display: none }
+        body.menu .burger .bt-close { display: inline }
+        .burger .bl { position: relative; width: 24px; height: 9px }
+        .burger .bl i { position: absolute; left: 0; right: 0; height: 1px; background: currentColor; transition: transform .4s var(--ease), top .4s var(--ease) }
+        .burger .bl i:first-child { top: 0 }
+        .burger .bl i:last-child { top: 8px }
+        body.menu .burger .bl i:first-child { top: 4px; transform: rotate(45deg) }
+        body.menu .burger .bl i:last-child { top: 4px; transform: rotate(-45deg) }
+        .ov { position: fixed; inset: 0; z-index: 55; background: var(--ink); opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility 0s .4s }
+        body.menu .ov { opacity: 1; visibility: visible; transition: opacity .4s var(--ease), visibility 0s }
+        .ov-in { height: 100%; display: grid; grid-template-rows: 1fr auto; padding: calc(var(--hh) + 20px) var(--gut) calc(28px + env(safe-area-inset-bottom, 0px)); overflow-y: auto }
+        .ov-nav a { display: block; padding: 11px 0; border-bottom: 1px solid var(--ln2); font: 400 clamp(1.8rem, 6.4vw, 3.1rem)/1.15 var(--serif); color: var(--ivory); opacity: 0; transform: translateY(14px); transition: opacity .45s, transform .6s var(--ease), color .2s }
+        body.menu .ov-nav a { opacity: 1; transform: none; transition-delay: calc(.06s + var(--i) * 40ms) }
+        .ov-nav a[aria-current] { color: var(--champagne) }
+        .ov-side { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px 24px; padding-top: 28px; font-size: 14px; color: var(--t2) }
+        .ov-side a { display: flex; align-items: center; gap: 10px; min-height: 40px }
+        .ov-side .ic { color: var(--gold) }
+
+        /* ================= Hero: the diamond window =================
+           The Melbourne / Ho Chi Minh City footage plays inside the logo's diamond.
+           Scrolling opens the diamond until the footage fills the screen. */
+        .hero { position: relative; background: var(--ink) }
+        .hero.pin { height: calc(100svh + 90vh) }
+        .hero-stage { position: relative; isolation: isolate; overflow: hidden; min-height: max(100svh, 600px); display: flex; flex-direction: column; justify-content: flex-end; padding-top: var(--top, 0px) }
+        .hero.pin .hero-stage { position: sticky; top: 0; height: 100svh; min-height: 0 }
+        .hero-win { position: absolute; inset: 0; z-index: -2; opacity: 0; clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%); transition: opacity 1.5s var(--ease) .5s }
+        .hero.go .hero-win { opacity: 1 }
+        .hero-media { position: absolute; inset: 0; transform: scale(calc(1.12 - var(--e, 0) * .12)) }
+        .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.04) }
+        .hero-dim { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(13, 13, 13, .94) 0%, rgba(13, 13, 13, 0) 50%), linear-gradient(90deg, rgba(13, 13, 13, .72) 0%, rgba(13, 13, 13, .3) 58%, rgba(13, 13, 13, .38) 100%) }
+        .hero-line { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; overflow: visible; pointer-events: none }
+        .hero-line polygon { fill: none; stroke: var(--gold); stroke-width: 1; stroke-dasharray: 1 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2s var(--io) .1s }
+        .hero.go .hero-line polygon { stroke-dashoffset: 0 }
+        .hero-in { position: relative; width: 100%; padding-bottom: clamp(26px, 4vh, 44px) }
+        /* Capped by width so the longest line ("Business Development", ~9.7em) never wraps mid-phrase. */
+        .hero h1 { font-size: min(clamp(2.6rem, 7.3vw, 8.25rem), calc((100vw - 2 * var(--gut)) / 9.9)); line-height: 1.02; letter-spacing: -.022em; text-wrap: initial }
+        .hero h1 em { font-style: italic; color: var(--champagne); padding: 0 .03em }
+        .ln { display: block; overflow: hidden; padding: .2em .06em .12em; margin: -.2em -.06em -.12em }
+        .ln > span { display: block; transform: translateY(115%); transition: transform 1.25s var(--ease); transition-delay: calc(.3s + var(--d) * .12s) }
+        .hero.go .ln > span { transform: none }
+        .hf { opacity: 0; transform: translateY(14px); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: calc(1.05s + var(--i, 0) * .1s) }
+        .hero.go .hf { opacity: 1; transform: none }
+        .hero-foot { display: grid; grid-template-columns: minmax(0, 5fr) auto minmax(0, 3fr); gap: 24px 56px; align-items: end; margin-top: clamp(26px, 4.5vh, 52px); padding-top: clamp(20px, 3vh, 30px); border-top: 1px solid rgba(200, 166, 106, .32) }
+        .hero-foot .sub { margin-bottom: 10px }
+        .hero-foot .lead { max-width: 50ch }
+        .hero-clip { justify-self: end; display: flex; flex-direction: column; align-items: flex-end; gap: 12px }
+        .hc-place { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; line-height: 1.2; color: var(--t1); white-space: nowrap }
+        .hc-place .ic { color: var(--gold) }
+        .hc-bars { display: flex; gap: 6px }
+        .hc-bars b { position: relative; width: 56px; height: 2px; overflow: hidden; background: rgba(245, 240, 232, .18) }
+        .hc-bars b i { position: absolute; inset: 0; background: var(--gold); transform: scaleX(var(--f, 0)); transform-origin: left; transition: transform .3s linear }
+
+        /* ================= Media ================= */
+        .mi { position: relative; overflow: hidden; background: var(--graphite) }
+        .mi img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.84) contrast(1.04); opacity: 0; transition: opacity .8s ease, transform 1.2s var(--ease) }
+        .mi img.ld { opacity: 1 }
+        .mi.portrait img { filter: grayscale(1) contrast(1.06) brightness(.95) }
+        .vfx { opacity: 0; transition: opacity 1.4s ease }
+        .vfx.on { opacity: 1 }
+        a:hover .mi img.ld, .pcard:hover .mi img.ld { transform: scale(1.03) }
+
+        /* ================= Home: intro ================= */
+        .intro { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(40px, 7vw, 120px); align-items: start }
+        .intro .lbl { margin-bottom: 22px }
+        .intro h2 { font-size: clamp(1.9rem, 3.2vw, 3rem) }
+        .intro-act { margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--ln2) }
+
+        /* ================= Home: purpose triptych, rising left to right ================= */
+        .trip { --step: clamp(70px, 9vw, 140px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.2vw, 32px); align-items: start }
+        .trip-h { height: calc(var(--step) * 2); max-width: 8em }
+        .trip-i:nth-child(2) { margin-top: var(--step) }
+        .trip-i .mi { aspect-ratio: 3/4 }
+        .trip-i h3 { margin-top: 22px; font-size: clamp(1.45rem, 2.2vw, 2.1rem) }
+
+        /* ================= Home: ecosystem index with preview ================= */
+        .eco { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 32px clamp(40px, 6vw, 100px); padding: clamp(48px, 6vw, 80px) 0; border-top: 1px solid var(--ln) }
+        .eco-side { position: sticky; top: calc(var(--hh) + 32px); align-self: start; display: flex; flex-direction: column; align-items: flex-start; gap: 14px }
+        .eco-side h3 { font-size: clamp(1.9rem, 3vw, 2.8rem) }
+        .eco-prev { position: relative; width: 100%; aspect-ratio: 4/5; margin-top: 18px; overflow: hidden; background: var(--graphite) }
+        .eco-prev img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.84); opacity: 0; transform: scale(1.04); transition: opacity .6s ease, transform 1.2s var(--ease) }
+        .eco-prev img.on { opacity: 1; transform: none }
+        .eco-row { display: grid; grid-template-columns: 40px minmax(0, 1fr) 20px; gap: 22px; align-items: start; padding: 30px 0; border-bottom: 1px solid var(--ln2) }
+        .eco-list li:first-child .eco-row { padding-top: 6px }
+        .eco-row > .ic:first-child { width: 26px; height: 26px; margin-top: 7px; color: var(--gold) }
+        .eco-t { display: block; font: 400 clamp(1.55rem, 2.5vw, 2.3rem)/1.14 var(--serif); color: var(--ivory); transition: color .3s }
+        .eco-d { display: block; margin-top: 10px; max-width: 56ch; font-size: 15px; line-height: 1.65; color: var(--t2) }
+        .eco-go { margin-top: 12px; color: var(--t3); transition: color .3s, transform .4s var(--ease) }
+        .eco-row.on .eco-t, .eco-row:hover .eco-t { color: var(--champagne) }
+        .eco-row.on .eco-go, .eco-row:hover .eco-go { color: var(--champagne); transform: translateX(4px) }
+
+        /* ================= Home: process (a real sequence, so it is numbered) ================= */
+        .steps { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 clamp(20px, 3vw, 44px) }
+        .steps::before { content: ''; position: absolute; left: 0; right: 0; top: 7px; height: 1px; background: linear-gradient(90deg, var(--gold), var(--ln) 85%) }
+        .step { position: relative }
+        .step-node { position: relative; display: block; width: 14px; height: 14px; border: 1px solid var(--gold); background: var(--graphite); transform: rotate(45deg) }
+        .step:first-child .step-node { background: var(--gold) }
+        .step-n { display: block; margin-top: 40px; font: italic 400 clamp(2.6rem, 3.6vw, 3.4rem)/1 var(--serif); color: var(--champagne) }
+        .step h3 { margin: 22px 0 12px }
+
+        /* ================= Home: teasers ================= */
+        .tz-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 4vw, 64px); align-items: end }
+        .tz { display: flex; flex-direction: column; align-items: flex-start; gap: 14px }
+        .tz .mi { width: 100%; aspect-ratio: 4/3; margin-bottom: 14px }
+        .tz.tall .mi { aspect-ratio: 4/5 }
+        .tz h3 { font-size: clamp(1.75rem, 2.9vw, 2.7rem); transition: color .3s }
+        .tz:hover h3 { color: var(--champagne) }
+
+        /* ================= CTA band: a second, static diamond window ================= */
+        .band { --d: clamp(300px, 50vw, 700px); position: relative; isolation: isolate; overflow: hidden; display: flex; align-items: center; min-height: calc(var(--d) + 220px); padding: 100px 0; text-align: center; border-top: 1px solid var(--ln2) }
+        .band-win { position: absolute; left: 50%; top: 50%; z-index: -2; width: var(--d); height: var(--d); transform: translate(-50%, -50%); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); background: var(--graphite) }
+        .band-win img, .band-win video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.8) }
+        .band-win::after { content: ''; position: absolute; inset: 0; background: rgba(13, 13, 13, .55) }
+        .band-frame { position: absolute; left: 50%; top: 50%; z-index: -1; width: calc(var(--d) + 44px); height: calc(var(--d) + 44px); transform: translate(-50%, -50%); overflow: visible; pointer-events: none }
+        .band-frame polygon { fill: none; stroke: var(--gold); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .75 }
+        .band-in { display: flex; flex-direction: column; align-items: center; gap: 24px }
+        .band h2 { max-width: 11em; font-size: clamp(2.5rem, 6vw, 5.6rem); line-height: 1.04 }
+        .band p { max-width: 52ch; color: var(--t1) }
+        .band-act { margin-top: 10px }
+
+        /* ================= Page header ================= */
+        .phd { padding-top: calc(var(--hh) + clamp(44px, 7vw, 104px)) }
+        .crumb { display: flex; align-items: center; gap: 10px; margin-bottom: clamp(26px, 4vw, 46px); font-size: 13px; line-height: 1; color: var(--t3) }
+        .crumb a:hover { color: var(--champagne) }
+        .crumb [aria-current] { color: var(--champagne) }
+        .phd h1 { max-width: 11em; font-size: clamp(2.9rem, 8.2vw, 8.25rem); line-height: 1; letter-spacing: -.024em }
+        .phd-foot { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 18px clamp(32px, 6vw, 110px); margin-top: clamp(34px, 4vw, 56px); padding-top: 28px; border-top: 1px solid var(--ln) }
+        .phd-jump { display: flex; flex-wrap: wrap; gap: 4px 32px; margin-top: 18px }
+        .phd-jump b { font-weight: 500; color: var(--t3) }
+        .phd-media { position: relative; overflow: hidden; height: clamp(280px, 42vw, 600px); margin-top: clamp(56px, 7vw, 96px); background: var(--graphite) }
+        .phd-media img, .phd-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.04) }
+
+        /* ================= Feature rows ================= */
+        .frow { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 36px clamp(40px, 7vw, 120px); align-items: center }
+        .frow + .frow { margin-top: clamp(64px, 8vw, 120px) }
+        .frow.rev .frow-media { order: 2 }
+        .frow-media { aspect-ratio: 5/6 }
+        .frow-media.land { aspect-ratio: 4/3 }
+        .frow-tx { display: flex; flex-direction: column; align-items: flex-start; gap: 18px }
+        .frow-k { display: flex; align-items: center; gap: 12px; font: 500 15px/1.3 var(--sans); color: var(--champagne) }
+        .frow-k .ic { color: var(--gold) }
+        .frow-h { display: flex; align-items: center; gap: 14px; font-size: clamp(1.9rem, 3.1vw, 2.9rem) }
+        .frow-h .ic { width: 28px; height: 28px; color: var(--gold) }
+        .box-lead { max-width: 26em; font: 400 clamp(1.4rem, 2.2vw, 2.05rem)/1.4 var(--serif); color: var(--ivory) }
+
+        /* ================= Principles & boxes ================= */
+        .pr4, .boxes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ln) }
+        .boxes { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+        .pr, .box { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 40px 28px 44px 0 }
+        .pr + .pr, .box + .box { padding-left: 28px; border-left: 1px solid var(--ln2) }
+        .pr h3 { font-size: clamp(1.55rem, 2.3vw, 2.15rem) }
+        .pr-mk { width: 9px; height: 9px; border: 1px solid var(--gold); transform: rotate(45deg); margin: 4px 0 6px 2px }
+
+        /* ================= Team ================= */
+        .car-ctl { justify-self: end; display: flex; align-items: center; gap: 10px }
+        .car-count { margin-right: 14px; font: 500 14px/1 var(--sans); color: var(--t3) }
+        .car-count b { font-weight: 500; color: var(--champagne) }
+        .slides { position: relative }
+        .slide { position: absolute; inset: 0 0 auto; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 110px); align-items: center; opacity: 0; visibility: hidden; transition: opacity .6s var(--ease), visibility .6s }
+        .slide.on { position: relative; opacity: 1; visibility: visible }
+        .slide .mi { aspect-ratio: 4/5 }
+        .slide blockquote { position: relative; margin: 22px 0 36px; font: italic 400 clamp(1.7rem, 3vw, 2.75rem)/1.3 var(--serif); color: var(--ivory) }
+        .who { display: flex; flex-direction: column; gap: 4px; max-width: 340px; padding-top: 22px; border-top: 1px solid var(--ln) }
+        .who b { font: 400 1.35rem/1.25 var(--serif); color: var(--champagne) }
+        .who span { font-size: 14px; color: var(--t3) }
+        .tthumbs { display: flex; gap: 10px; margin-top: 44px }
+        .tthumb { width: 58px; height: 72px; overflow: hidden; border: 1px solid transparent; opacity: .45; transition: opacity .3s, border-color .3s }
+        .tthumb img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) }
+        .tthumb:hover, .tthumb.on { opacity: 1 }
+        .tthumb.on { border-color: var(--gold) }
+
+        /* ================= Ecosystem page ================= */
+        .sect4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px) }
+        .scard .mi { aspect-ratio: 3/4 }
+        .scard-tx { padding-top: 22px }
+        .scard h3 { display: flex; align-items: center; gap: 12px; margin-bottom: 10px }
+        .scard h3 .ic { color: var(--gold) }
+        .scard p { font-size: 15px }
+        @keyframes flash { 0%, 100% { box-shadow: 0 0 0 0 transparent } 20%, 65% { box-shadow: 0 0 0 1px var(--gold), 0 0 50px rgba(200, 166, 106, .2) } }
+        .flash { animation: flash 2.2s ease }
+
+        /* ================= News ================= */
+        .notice { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; padding: 14px 18px; border: 1px dashed var(--ln); font-size: 14px; color: var(--t2) }
+        .notice .ic { color: var(--gold) }
+        .nf { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 90px); align-items: center; margin-bottom: clamp(64px, 8vw, 110px) }
+        .nf .mi { aspect-ratio: 16/11 }
+        .nf-tx { display: flex; flex-direction: column; align-items: flex-start; gap: 18px }
+        .ngrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px }
+        .ncard { border-top: 1px solid var(--ln) }
+        .ncard .mi { aspect-ratio: 16/10; margin-top: 28px }
+        .ncard-tx { display: flex; flex-direction: column; gap: 12px; padding-top: 24px }
+        .ncard h3 { font-size: clamp(1.5rem, 2.3vw, 2.1rem) }
+        .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; font-size: 13px; color: var(--t3) }
+        .meta span { display: inline-flex; align-items: center; gap: 8px }
+        .meta .ic { color: var(--gold) }
+        .chip { padding: 6px 10px; border: 1px solid var(--ln); font-size: 12px; line-height: 1; color: var(--champagne) }
+
+        /* ================= Startup ================= */
+        .wide { height: clamp(300px, 46vw, 620px); margin-top: clamp(64px, 8vw, 110px) }
+        .split-media { aspect-ratio: 16/11; margin-top: 40px }
+
+        /* ================= Events ================= */
+        .ev-list { border-top: 1px solid var(--ln) }
+        .ev-row { display: grid; grid-template-columns: 200px minmax(0, 1fr) 230px auto; gap: 32px; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--ln2); cursor: pointer; transition: background-color .3s }
+        .ev-row:hover { background: linear-gradient(90deg, rgba(200, 166, 106, .05), transparent 70%) }
+        .ev-date { font: italic 400 1.25rem/1.3 var(--serif); color: var(--champagne) }
+        .ev-row h3 { font-size: clamp(1.45rem, 2.3vw, 2.1rem); transition: color .3s }
+        .ev-row:hover h3 { color: var(--champagne) }
+        .ev-row p { margin-top: 6px; font-size: 15px }
+        .ev-loc { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--t2) }
+        .ev-loc .ic { color: var(--gold) }
+        .pgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 32px) }
+        .pcard { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; cursor: pointer }
+        .pcard .mi { width: 100%; aspect-ratio: 4/3; margin-bottom: 10px }
+        .pcard h3 { transition: color .3s }
+        .pcard:hover h3 { color: var(--champagne) }
+        dialog { width: min(660px, calc(100% - 32px)); max-height: calc(100svh - 48px); margin: auto; padding: 0; overflow: auto; background: var(--graphite); color: var(--ivory); border: 1px solid var(--ln) }
+        dialog[open] { animation: rise .45s var(--ease) }
+        @keyframes rise { from { opacity: 0; transform: translateY(20px) } }
+        dialog::backdrop { background: rgba(0, 0, 0, .78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px) }
+        .dlg-media { aspect-ratio: 16/8 }
+        .dlg-x { position: absolute; top: 14px; right: 14px; z-index: 6; width: 44px; height: 44px; display: grid; place-items: center; background: rgba(13, 13, 13, .85); border: 1px solid var(--ln); color: var(--champagne); transition: border-color .2s }
+        .dlg-x:hover { border-color: var(--gold) }
+        .dlg-in { position: relative }
+        .dlg-body { display: flex; flex-direction: column; gap: 16px; padding: 34px 34px 38px }
+        .dlg-body h3 { font-size: clamp(1.8rem, 3vw, 2.4rem) }
+        .dlg-meta { display: flex; flex-wrap: wrap; gap: 10px 28px; padding: 14px 0; border-top: 1px solid var(--ln2); border-bottom: 1px solid var(--ln2); font-size: 14px; color: var(--t2) }
+        .dlg-meta li { display: flex; align-items: center; gap: 10px }
+        .dlg-meta .ic { color: var(--gold) }
+        .dlg-body .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px }
+
+        /* ================= Contact & forms ================= */
+        .contact { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 110px); align-items: start }
+        .contact .h-sm { margin: 20px 0 26px }
+        .cl { display: block; margin-top: 30px; font-size: 13px; color: var(--t3) }
+        .biglink { display: block; width: fit-content; max-width: 100%; margin-top: 6px; font: 400 clamp(1.7rem, 3.3vw, 3rem)/1.18 var(--serif); color: var(--ivory); overflow-wrap: anywhere; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; text-decoration-color: transparent; transition: color .3s, text-decoration-color .3s }
+        .biglink:hover { color: var(--champagne); text-decoration-color: var(--champagne) }
+        .addr { display: flex; gap: 14px; margin: 8px 0; font-size: 15.5px; line-height: 1.6; color: var(--t1) }
+        .addr .ic { margin-top: 3px; color: var(--gold) }
+        .map { position: relative; aspect-ratio: 16/10; margin-top: 36px; overflow: hidden; background: var(--graphite); border: 1px solid var(--ln2) }
+        .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(.92) contrast(.88) brightness(.92) }
+        .panel { padding: clamp(28px, 4vw, 54px); background: var(--graphite); border: 1px solid var(--ln2) }
+        .alt .panel { background: var(--ink) }
+        .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 30px 0 }
+        .field { display: flex; flex-direction: column; gap: 6px }
+        .field.full { grid-column: 1 / -1 }
+        .field > span { font: 500 13.5px/1.4 var(--sans); color: var(--t2) }
+        .field em { font-style: normal; color: var(--gold) }
+        .field small { font-size: 12px; font-weight: 400; color: var(--t3) }
+        input, select, textarea { width: 100%; padding: 13px 0; background: transparent; border: 0; border-bottom: 1px solid var(--ln); border-radius: 0; color: var(--ivory); font: 400 16px/1.5 var(--sans); -webkit-appearance: none; appearance: none; transition: border-color .25s }
+        input:hover, select:hover, textarea:hover { border-color: #5a4c37 }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold) }
+        select { padding-right: 32px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C8A66A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 4px center / 16px }
+        option { background: var(--graphite); color: var(--ivory) }
+        textarea { min-height: 130px; resize: vertical }
+        .form-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px }
+        .ok { display: flex; align-items: flex-start; gap: 18px; margin-top: 28px; padding: 26px; border: 1px solid var(--gold); background: rgba(200, 166, 106, .06) }
+        .ok h3 { margin-bottom: 6px }
+
+        /* ================= Footer ================= */
+        .ft { background: var(--deep); border-top: 1px solid var(--ln2); font-size: 14px }
+        .ft-cta { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 48px; padding-top: clamp(72px, 9vw, 120px); padding-bottom: clamp(48px, 6vw, 72px); border-bottom: 1px solid var(--ln2) }
+        .ft-big { display: inline-block; margin-top: 18px; font: 400 clamp(2.4rem, 6vw, 5.4rem)/1.04 var(--serif); color: var(--ivory); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .16em; text-decoration-color: rgba(200, 166, 106, .45); transition: color .3s, text-decoration-color .3s }
+        .ft-big:hover { color: var(--champagne); text-decoration-color: var(--champagne) }
+        .ft-mail { display: flex; flex-direction: column; align-items: flex-end; gap: 4px }
+        .ft-mail a { font: 400 1.25rem/1.45 var(--serif); color: var(--t1); transition: color .2s }
+        .ft-mail a:hover { color: var(--champagne) }
+        .ft-top { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr)); gap: 44px; padding-top: 60px; padding-bottom: 48px }
+        .ft-brand .sub { margin: 20px 0 10px; font-size: 1.2rem }
+        .ft-brand p { max-width: 36ch; font-size: 14px }
+        .ft h4 { margin-bottom: 16px; font: 500 13.5px/1.4 var(--sans); color: var(--champagne) }
+        .ft li { margin-bottom: 10px; color: var(--t2) }
+        .ft li a { color: var(--t2); transition: color .2s }
+        .ft li a:hover { color: var(--ivory) }
+        .ft-contact li { display: flex; gap: 12px; line-height: 1.55 }
+        .ft-contact .ic { margin-top: 3px; color: var(--gold) }
+        .ft-bot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; padding-top: 22px; padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--ln2); font-size: 12.5px; color: var(--t3) }
+        .ft-note { flex: 1; min-width: 260px; max-width: 74ch }
+
+        /* ================= Responsive ================= */
+        @media (max-width: 1180px) {
+            .nav, .bar-cta { display: none }
+            .burger { display: inline-flex }
+        }
+
+        @media (max-width: 1024px) {
+            .intro, .eco, .nf, .contact, .split, .head, .frow, .phd-foot { grid-template-columns: 1fr }
+            .head { align-items: start }
+            .eco-side { position: static }
+            .eco-prev { display: none }
+            /* No preview photo here, so the "current row" highlight would mean nothing. */
+            .eco-row.on:not(:hover) .eco-t { color: var(--ivory) }
+            .eco-row.on:not(:hover) .eco-go { color: var(--t3); transform: none }
+            .frow.rev .frow-media { order: 0 }
+            .frow-media { aspect-ratio: 16/11 }
+            .sect4 { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px }
+            .pr4 { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+            .pr:nth-child(3) { padding-left: 0; border-left: 0 }
+            .pr:nth-child(n+3) { border-top: 1px solid var(--ln2) }
+            .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+            .ev-row { grid-template-columns: 150px minmax(0, 1fr) auto }
+            .ev-loc { grid-column: 2 }
+            .ev-row .ev-btn { grid-column: 3; grid-row: 1 / span 2 }
+            .ft-top { grid-template-columns: 1fr 1fr }
+            .ft-brand { grid-column: 1 / -1 }
+            .car-ctl { justify-self: start }
+        }
+
+        @media (max-width: 900px) {
+            :root { --hh: 72px }
+            .hero-foot { grid-template-columns: 1fr; gap: 20px }
+            .hero-clip { justify-self: start; align-items: flex-start }
+            .trip { grid-template-columns: 1fr }
+            .trip-i:nth-child(2) { margin-top: 0 }
+            .trip-i + .trip-i { margin-top: 44px }
+            .trip-h { height: auto; max-width: none; margin-bottom: 30px }
+            .trip-i .mi { aspect-ratio: 4/3 }
+            .steps { grid-template-columns: 1fr; gap: 44px; padding-left: 44px }
+            .steps::before { left: 7px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; background: linear-gradient(180deg, var(--gold), var(--ln) 85%) }
+            .step-node { position: absolute; left: -44px; top: 8px }
+            .step-n { margin-top: 0 }
+            .tz-grid { grid-template-columns: 1fr }
+            .tz.tall .mi { aspect-ratio: 4/3 }
+            .slide { grid-template-columns: 1fr }
+            .slide .mi { max-width: 340px }
+            .boxes { grid-template-columns: 1fr }
+            .box + .box { padding-left: 0; border-left: 0; border-top: 1px solid var(--ln2) }
+        }
+
+        @media (max-width: 640px) {
+            .sect4, .pr4, .ngrid, .pgrid, .fgrid { grid-template-columns: 1fr }
+            .pr, .pr + .pr { padding-left: 0; border-left: 0 }
+            .pr + .pr { border-top: 1px solid var(--ln2) }
+            .eco-row { grid-template-columns: 30px minmax(0, 1fr); gap: 14px }
+            .eco-go { display: none }
+            .ev-row { grid-template-columns: 1fr; gap: 10px }
+            .ev-loc, .ev-row .ev-btn { grid-column: 1; grid-row: auto; justify-self: start }
+            .ft-top { grid-template-columns: 1fr }
+            .ft-mail { align-items: flex-start }
+            .bar-r > .lang { display: none }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto }
+            *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important }
+            .ln > span, .hf { transform: none; opacity: 1 }
+            .hero-win { opacity: 1 }
+            .hero-line polygon { stroke-dashoffset: 0 }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip" href="#app" data-skip></a>
+    <header id="hdr"></header>
+    <div class="ov" id="ov" aria-hidden="true"></div>
+    <main id="app" tabindex="-1"></main>
+    <footer class="ft" id="ft"></footer>
+    <button id="top"><svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="trk" cx="26" cy="26" r="23" /><circle class="prg" cx="26" cy="26" r="23" /></svg></button>
+    <button class="ntg" id="ntg" aria-pressed="false"></button>
+    <dialog id="dlg"></dialog>
+    <script>
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+        const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Skip background video when the visitor asked for less motion or less data.
+        const LITE = RM || Boolean(navigator.connection && navigator.connection.saveData);
+        let lang = 'vi', page = 'home', target = null, teamIdx = 0, booted = false, lastY = 0, ticking = false;
+        let vio, hio;
+        const HG = { el: null };
+        const t = (en, vi) => lang === 'vi' ? vi : en;
+        const tx = a => lang === 'vi' ? a[1] : a[0];
+        const pad = n => String(n).padStart(2, '0');
+        const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+        try { history.scrollRestoration = 'manual'; } catch (e) { }
+
+        /* ---------- Stock media (Unsplash photos, Pexels videos — swap for Leovian's own) ---------- */
+        const U = (id, w = 1200, extra = '') => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=72${extra}`;
+        const PX = path => `https://videos.pexels.com/video-files/${path}.mp4`;
+        const HERO = {
+            poster: '1610183880843-52fc754207a8',
+            clips: [
+                { hd: '8949611/8949611-hd_1920_1080_25fps', sd: '8949611/8949611-sd_960_540_25fps', place: ['Melbourne, Victoria', 'Melbourne, Victoria'] },
+                { hd: '31111825/13294162_1920_1080_30fps', sd: '31111825/13294158_960_540_30fps', place: ['Ho Chi Minh City, Vietnam', 'TP. Hồ Chí Minh, Việt Nam'] },
+                { hd: '39014384/16601941_1920_1080_24fps', sd: '39014384/16601939_960_540_24fps', place: ['Flinders Street, Melbourne', 'Ga Flinders Street, Melbourne'] }
+            ]
+        };
+        const HEAD_MEDIA = {
+            about: { img: '1517048676732-d65bc937f952', vid: '7659850/7659850-hd_1280_720_25fps' },
+            ecosystem: { img: '1602559227639-3bba8ce496df', vid: '13072844/13072844-hd_1280_720_30fps' },
+            news: { img: '1504711434969-e33886168f5c' },
+            startuplab: { img: '1532622785990-d2c36a76f5a6', vid: '7693469/7693469-hd_1280_720_25fps' },
+            events: { img: '1540575467063-178a50c2df87', vid: '8716442/8716442-hd_1280_720_25fps' },
+            contact: { img: '1626585817768-86826f5a9179', vid: '30561697/13089300_1280_720_25fps' }
+        };
+        const BAND_MEDIA = {
+            home: { img: '1521791136064-7986c2920216', vid: '7692917/7692917-hd_1280_720_25fps' },
+            about: { img: '1609726105601-497455c14c97', vid: '8949613/8949613-hd_1280_720_25fps' },
+            ecosystem: { img: '1600880292203-757bb62b4baf', vid: '5311422/5311422-hd_1280_720_25fps' }
+        };
+        const TEAM_IMG = ['1543132220-4bf3de6e10ae', '1581065178047-8ee15951ede6', '1544168190-79c17527004f', '1622626426572-c268eb006092', '1640531005390-38bd92755d6a'];
+        const NEWS_IMG = ['1545044846-351ba102b6d5', '1517245386807-bb43f82c33c4', '1579532536935-619928decd08'];
+
+        /* ---------- Icons ---------- */
+        const ICON = {
+            ur: '<path d="M7 17 17 7M9 7h8v8"/>',
+            chev: '<path d="m6 9 6 6 6-6"/>',
+            chevr: '<path d="m9 6 6 6-6 6"/>',
+            chevl: '<path d="m15 6-6 6 6 6"/>',
+            up: '<path d="M12 19V5M6 11l6-6 6 6"/>',
+            x: '<path d="M6 6l12 12M18 6 6 18"/>',
+            check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+            info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.4"/>',
+            edu: '<path d="M2 9.5 12 4l10 5.5-10 5.5z"/><path d="M6 11.7V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.3M22 9.5V15"/>',
+            estate: '<path d="M3 21h18M5 21V7l7-4v18M12 9h7v12M8 9h1M8 13h1M8 17h1M15 13h1M15 17h1"/>',
+            tech: '<rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+            health: '<path d="M12 20.5s-8-4.6-8-10.6A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.9c0 6-8 10.6-8 10.6z"/><path d="M7 12.5h2.5l1.5-2.5 2 5 1.5-2.5H17"/>',
+            consult: '<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/><path d="M16 7h4v4"/>',
+            market: '<path d="M3 10.5v3a1 1 0 0 0 1 1h2.5L12 19V5L6.5 9.5H4a1 1 0 0 0-1 1z"/><path d="M15.5 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/>',
+            ops: '<path d="m12 3 9 4.5-9 4.5-9-4.5z"/><path d="m3 12 9 4.5 9-4.5M3 16.5 12 21l9-4.5"/>',
+            pin: '<path d="M12 21.5s-7-6-7-11.5a7 7 0 0 1 14 0c0 5.5-7 11.5-7 11.5z"/><circle cx="12" cy="10" r="2.5"/>',
+            phone: '<path d="M5 3.5h3.5l2 5-2.6 1.6a11 11 0 0 0 6 6l1.6-2.6 5 2v3.5a2 2 0 0 1-2 2C10.4 21 3 13.6 3 5.5a2 2 0 0 1 2-2z"/>',
+            mail: '<rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/>',
+            globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>',
+            cal: '<rect x="3.5" y="5" width="17" height="15.5" rx="1.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+            target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+            eye: '<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+            idea: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.8 10.6c.7.6 1 1.4 1 2.4h5.6c0-1 .3-1.8 1-2.4A6 6 0 0 0 12 3z"/>',
+            book: '<path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H20v-3"/>',
+            users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20c0-3-2-5.5-4.6-6.3"/>',
+            tag: '<path d="M3 3h8l10 10-8 8L3 11z"/><circle cx="7.5" cy="7.5" r="1.3"/>'
+        };
+        const ic = (n, c = '') => `<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]}</svg>`;
+        const LOGO = '<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 38 20 20 38 2 20Z"/><path d="M15.5 12v16h9.5"/></svg>';
+
+        /* ---------- Content (unchanged from demo4 / the PDF draft) ---------- */
+        const NAV = [
+            { k: 'home', t: ['Home', 'Trang chủ'] },
+            { k: 'about', t: ['About Us', 'Về chúng tôi'] },
+            { k: 'ecosystem', t: ['Our Ecosystem', 'Hệ sinh thái'] },
+            { k: 'news', t: ['News & Insights', 'Tin tức & Góc nhìn'] },
+            { k: 'startuplab', t: ['Startup Hub', 'Startup Hub'] },
+            { k: 'events', t: ['Events', 'Sự kiện'] },
+            { k: 'contact', t: ['Contact', 'Liên hệ'] }
+        ];
+        const INV = [
+            { ic: 'edu', img: '1514513452089-17f8a9771ee8', t: ['Education', 'Giáo dục'], d: ['Connecting investment and development opportunities in education, training, and human capability building.', 'Kết nối các cơ hội đầu tư và phát triển trong lĩnh vực giáo dục, đào tạo và nâng cao năng lực con người.'] },
+            { ic: 'estate', img: '1624204386084-dd8c05e32226', t: ['Real Estate', 'Bất động sản'], d: ['Exploring real estate investment and development opportunities with a focus on long-term asset value.', 'Khám phá các cơ hội đầu tư và phát triển bất động sản, hướng tới xây dựng giá trị tài sản dài hạn.'] },
+            { ic: 'tech', img: '1534665482403-a909d0d97c67', t: ['Technology', 'Công nghệ'], d: ['Exploring innovative technology projects and solutions with potential for practical application and growth.', 'Hướng tới các dự án và giải pháp công nghệ có tiềm năng ứng dụng, đổi mới và phát triển.'] },
+            { ic: 'health', img: '1758691461990-03b49d969495', t: ['Health', 'Sức khỏe'], d: ['Exploring opportunities in healthcare and wellbeing that contribute to improving quality of life.', 'Khám phá các cơ hội trong lĩnh vực chăm sóc sức khỏe, hướng tới nâng cao chất lượng cuộc sống.'] }
+        ];
+        const PAR = [
+            { ic: 'consult', img: '1454165804606-c3d57bc86b40', t: ['Business Consulting', 'Tư vấn doanh nghiệp'], d: ['Supporting businesses in developing strategies, refining business models, and identifying growth opportunities tailored to each stage of development.', 'Hỗ trợ doanh nghiệp xây dựng chiến lược, phát triển mô hình kinh doanh và xác định định hướng tăng trưởng phù hợp với từng giai đoạn.'] },
+            { ic: 'market', img: '1557804506-669a67965ba0', t: ['Marketing', 'Giải pháp Marketing'], d: ['Supporting brand development, content creation, communications, and the execution of marketing campaigns aligned with business objectives.', 'Hỗ trợ xây dựng thương hiệu, phát triển nội dung, truyền thông và triển khai các chiến dịch marketing phù hợp với mục tiêu doanh nghiệp.'] },
+            { ic: 'ops', img: '1519389950473-47ba0277781c', t: ['O System (Operation System)', 'Giải pháp vận hành'], d: ['Supporting businesses in organising, executing, and managing business activities through dedicated expertise and operational resources.', 'Hỗ trợ doanh nghiệp tổ chức, triển khai và vận hành các hoạt động kinh doanh thông qua đội ngũ chuyên môn và nguồn lực phù hợp.'] }
+        ];
+        const PURPOSE = [
+            { img: '1486406146926-c627a92ad1ab', t: ['Build Wealth', 'Kiến tạo tài sản'] },
+            { img: '1511376979163-f804dff7ad7b', t: ['Empower People', 'Phát triển con người'] },
+            { img: '1585813597616-63e881759e9d', t: ['Create Lasting Value', 'Tạo giá trị bền vững'] }
+        ];
+        const PANES = [
+            { tag: ['Investment', 'Đầu tư'], d: ['Explore Leovian’s investment direction and approach to long-term value creation.', 'Khám phá định hướng đầu tư và phát triển giá trị dài hạn trong hệ sinh thái Leovian.'], items: INV, pre: 'i', sec: 'inv', cta: ['Explore Investment', 'Tìm hiểu Investment'] },
+            { tag: ['Partnership', 'Hợp tác'], d: ['Explore connections and collaboration within the Leovian ecosystem.', 'Khám phá hướng kết nối và hợp tác trong hệ sinh thái Leovian.'], items: PAR, pre: 'p', sec: 'par', cta: ['Explore Partnership', 'Tìm hiểu Partnership'] }
+        ];
+        const MV = [
+            { ic: 'target', img: '1573164574572-cb89e39749b4', t: ['Our Mission', 'Sứ mệnh'], d: ['To develop people, assets, businesses and communities — building foundations that enable individuals and organisations to continue growing through their own capabilities.', 'Phát triển con người, tài sản, doanh nghiệp và cộng đồng — tạo nền tảng để mỗi cá nhân và tổ chức có thể tiếp tục phát triển bằng năng lực của mình.'] },
+            { ic: 'eye', img: '1594300157693-a741f98738c2', t: ['Our Vision', 'Tầm nhìn'], d: ['To build an ecosystem where people and assets grow together, preserving, passing on and growing value across generations.', 'Xây dựng một hệ sinh thái nơi con người và tài sản cùng phát triển, để giá trị được gìn giữ, tiếp nối và gia tăng qua nhiều thế hệ.'] }
+        ];
+        const PRINCIPLES = [
+            { t: ['Transparency', 'Minh bạch'], d: ['Clarity in decisions and accountability in action.', 'Rõ ràng trong quyết định, trách nhiệm trong hành động.'] },
+            { t: ['Long-Term Thinking', 'Dài hạn'], d: ['A lasting commitment to sustainable value.', 'Kiên định với những giá trị bền vững.'] },
+            { t: ['Meaningful Impact', 'Thực chất'], d: ['Creating real value and positive outcomes.', 'Tạo giá trị thực và tác động tích cực.'] },
+            { t: ['Continuity', 'Tiếp nối'], d: ['Building foundations for future generations.', 'Xây dựng nền tảng cho các thế hệ sau.'] }
+        ];
+        const PROCESS = [
+            { t: ['Listen & Understand', 'Lắng nghe & Thấu hiểu'], d: ['We start by understanding your goals, your stage of growth and what you need.', 'Trao đổi để hiểu rõ mục tiêu, giai đoạn phát triển và nhu cầu của bạn.'] },
+            { t: ['Assess & Plan', 'Đánh giá & Định hướng'], d: ['We review opportunities, resources and risks to shape the right direction.', 'Phân tích cơ hội, nguồn lực và rủi ro để xác định hướng đi phù hợp.'] },
+            { t: ['Connect & Deliver', 'Kết nối & Triển khai'], d: ['We bring in the right partners, expertise and resources from across the ecosystem.', 'Kết nối đối tác, chuyên môn và nguồn lực phù hợp trong hệ sinh thái để triển khai.'] },
+            { t: ['Grow Together', 'Đồng hành dài hạn'], d: ['We stay alongside you, reviewing and refining as value grows over time.', 'Tiếp tục đồng hành, theo dõi và điều chỉnh để giá trị gia tăng theo thời gian.'] }
+        ];
+        const STARTUP = [
+            { ic: 'idea', t: ['Ideas & Discussions', 'Ý tưởng & Thảo luận'], d: ['Share ideas, exchange perspectives, and explore new business opportunities.', 'Nơi chia sẻ ý tưởng, trao đổi góc nhìn và khám phá những cơ hội kinh doanh mới.'] },
+            { ic: 'book', t: ['Knowledge & Resources', 'Kiến thức & Tài nguyên'], d: ['Discover practical insights, experiences, and resources to support your entrepreneurial journey.', 'Chia sẻ kiến thức, kinh nghiệm thực tiễn và tài liệu hữu ích cho hành trình khởi nghiệp.'] },
+            { ic: 'users', t: ['Startup Stories', 'Câu chuyện khởi nghiệp'], d: ['Explore entrepreneurial journeys, experiences, and lessons from founders and business communities.', 'Khám phá những hành trình, trải nghiệm và bài học từ cộng đồng doanh nhân và nhà sáng lập.'] }
+        ];
+        const EV = [
+            { img: '1527529482837-4698179dc6ce', t: ['Networking Evening (Demo)', 'Tối kết nối doanh nghiệp (Demo)'], d: ['Business discussions and community networking. Demonstration event only.', 'Thảo luận kinh doanh và kết nối cộng đồng. Chỉ là sự kiện minh họa.'], date: ['Date placeholder 01', 'Ngày minh họa 01'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'] },
+            { img: '1561489396-888724a1543d', t: ['Australia–Vietnam Business Forum (Demo)', 'Diễn đàn doanh nghiệp Úc – Việt (Demo)'], d: ['A forum format for partners and investors. Demonstration event only.', 'Diễn đàn dành cho đối tác và nhà đầu tư. Chỉ là sự kiện minh họa.'], date: ['Date placeholder 02', 'Ngày minh họa 02'], loc: ['Melbourne / Ho Chi Minh City (placeholder)', 'Melbourne / TP. Hồ Chí Minh (minh họa)'] },
+            { img: '1531058020387-3be344556be6', t: ['Founders Roundtable (Demo)', 'Bàn tròn nhà sáng lập (Demo)'], d: ['An open conversation between founders. Demonstration event only.', 'Cuộc trò chuyện mở giữa các nhà sáng lập. Chỉ là sự kiện minh họa.'], date: ['Date placeholder 03', 'Ngày minh họa 03'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'] },
+            { img: '1515169067868-5387ec356754', t: ['Community Gathering (Past demo)', 'Gặp gỡ cộng đồng (Demo đã qua)'], d: ['Highlights: introductions, short talks and open networking.', 'Điểm nhấn: giới thiệu, chia sẻ ngắn và kết nối tự do.'], date: ['Past date placeholder', 'Ngày đã qua (minh họa)'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'], past: 1 },
+            { img: '1587825140708-dfaf72ae4b04', t: ['Investor Briefing (Past demo)', 'Buổi giới thiệu đầu tư (Demo đã qua)'], d: ['Highlights: a briefing format with Q&A.', 'Điểm nhấn: buổi giới thiệu có phần hỏi đáp.'], date: ['Past date placeholder', 'Ngày đã qua (minh họa)'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'], past: 1 },
+            { img: '1580894732444-8ecded7900cd', t: ['Workshop Day (Past demo)', 'Ngày workshop (Demo đã qua)'], d: ['Highlights: hands-on sessions and team discussions.', 'Điểm nhấn: thực hành và thảo luận nhóm.'], date: ['Past date placeholder', 'Ngày đã qua (minh họa)'], loc: ['Melbourne (placeholder)', 'Melbourne (minh họa)'], past: 1 }
+        ];
+        const TOPICS = [['Education & Careers', 'Giáo dục & Nghề nghiệp'], ['Real Estate & Assets', 'Bất động sản & Tài sản'], ['Business Advisory & Startups', 'Tư vấn doanh nghiệp & Khởi nghiệp'], ['Other', 'Khác']];
+        const TEAM_N = TEAM_IMG.length;
+        const OFFICE = {
+            addr: 'Ground Floor, 405 Collins Street<br>Melbourne VIC 3000, Australia',
+            tel: '+61 405 331 876', telHref: 'tel:+61405331876',
+            mail: 'info@leovian.com.au', web: 'www.leovian.com.au',
+            map: 'https://maps.google.com/maps?q=405%20Collins%20Street%2C%20Melbourne%20VIC%203000&z=16&output=embed',
+            mapLink: 'https://www.google.com/maps/search/?api=1&query=405%20Collins%20Street%2C%20Melbourne%20VIC%203000'
+        };
+
+        /* ---------- Markup helpers ---------- */
+        const goAttr = (to, sec) => `href="#${to}" data-go="${to}"${sec ? ` data-to="${sec}"` : ''}`;
+        const btn = (label, to, cls = '', sec) => `<a class="btn ${cls}" ${goAttr(to, sec)}>${label}</a>`;
+        const lnk = (label, to, sec) => `<a class="link" ${goAttr(to, sec)}>${label}</a>`;
+        // In Vietnamese the content draft labels sub-sections "ENGLISH | VIỆT", so show the English name as a small tag.
+        const enTag = a => lang === 'vi' ? `<span class="en">${a[0]}</span>` : '';
+        const lb = s => s ? `<span class="lbl">${s}</span>` : '';
+        const navLabel = k => tx(NAV.find(n => n.k === k).t);
+        const plain = s => s.replace(/\*/g, '');
+        // *text* that starts a new sentence becomes the quieter second line; inside a sentence it reads as plain text.
+        const hl = s => s.replace(/\*([^*]+)\*/g, (m, inner, off, str) => /[.?!]\s*$/.test(str.slice(0, off)) ? `<span class="cont">${inner}</span>` : inner);
+        const media = (id, label, o = {}) => `<div class="mi ${o.cls || ''}" data-l="[${label}]"><img src="${U(id, o.w || 1400, o.extra || '')}" alt="${o.alt || ''}" loading="lazy" decoding="async"></div>`;
+        // Photo with an optional looping video that fades in once it plays.
+        const bgm = (m, w = 1920) => `<img src="${U(m.img, w)}" alt="" decoding="async">${m.vid && !LITE ? `<video class="vfx" muted loop playsinline preload="none" data-src="${PX(m.vid)}"></video>` : ''}`;
+        const head = (label, h, p) => `<div class="head${p ? '' : ' solo'}"><div>${lb(label)}<h2>${hl(h)}</h2></div>${p ? `<p>${p}</p>` : ''}</div>`;
+
+        const pageHead = (title, sub, lead, extra = '') => {
+            const m = HEAD_MEDIA[page];
+            return `<section class="phd"><div class="wrap">
+                    <nav class="crumb" aria-label="Breadcrumb"><a ${goAttr('home')}>${t('Home', 'Trang chủ')}</a>${ic('chevr', 'xs')}<span aria-current="page">${navLabel(page)}</span></nav>
+                    <h1>${hl(title)}</h1>
+                    <div class="phd-foot"><p class="sub">${sub}</p><div><p class="lead">${lead}</p>${extra}</div></div></div>
+                <div class="phd-media" data-l="[${page.toUpperCase()} — HEADER ${m.vid ? 'VIDEO' : 'PHOTO'}]">${bgm(m)}</div></section>`;
+        };
+
+        const band = (label, h, p, action) => `<section class="band" data-l="[${page.toUpperCase()} — CTA VIDEO]">
+                <div class="band-win" aria-hidden="true">${bgm(BAND_MEDIA[page], 1400)}</div>
+                <svg class="band-frame" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="50,0 100,50 50,100 0,50"/></svg>
+                <div class="wrap band-in">${lb(label)}<h2>${hl(h)}</h2>${p ? `<p>${p}</p>` : ''}<div class="band-act">${action}</div></div></section>`;
+
+        const field = (label, name, type, o = {}) => `<label class="field${o.full ? ' full' : ''}"><span>${label}${o.req ? '<em> *</em>' : ` <small>(${t('optional', 'không bắt buộc')})</small>`}</span><input name="${name}" type="${type}"${o.req ? ' required' : ''}${o.ac ? ` autocomplete="${o.ac}"` : ''}></label>`;
+        const area = (label, name) => `<label class="field full"><span>${label}<em> *</em></span><textarea name="${name}" rows="4" required></textarea></label>`;
+        const form = (fields, submit) => `<form class="form"><div class="fgrid">${fields}</div>
+            <div class="form-foot"><p class="hint">${ic('info', 'xs')}${t('Prototype form: nothing is sent.', 'Biểu mẫu minh họa: không có dữ liệu nào được gửi.')}</p>
+            <button class="btn solid" type="submit">${submit}</button></div></form>`;
+
+        /* ---------- Pages ---------- */
+        const V = {};
+
+        V.home = () => {
+            const lines = lang === 'vi' ? ['Hệ sinh thái', 'Đầu tư <em>&amp;</em> Phát triển', 'Doanh nghiệp'] : ['Investment <em>&amp;</em>', 'Business Development', 'Ecosystem'];
+            const ecoGroup = p => `<div class="eco" data-eco>
+                <div class="eco-side"><h3>${tx(p.tag)}</h3><p>${tx(p.d)}</p>${lnk(tx(p.cta), 'ecosystem', p.sec)}
+                    <div class="eco-prev" data-l="[HOMEPAGE — ECOSYSTEM PHOTO]" aria-hidden="true">${p.items.map((x, i) => `<img src="${U(x.img, 900)}" alt="" loading="lazy" decoding="async"${i ? '' : ' class="on"'}>`).join('')}</div></div>
+                <ul class="eco-list">${p.items.map((x, i) => `<li><a class="eco-row${i ? '' : ' on'}" ${goAttr('ecosystem', p.pre + i)}>${ic(x.ic)}<span><span class="eco-t">${tx(x.t)}</span><span class="eco-d">${tx(x.d)}</span></span>${ic('chevr', 'sm eco-go')}</a></li>`).join('')}</ul>
+            </div>`;
+            const teaser = (label, h, d, cta, to, img, mlabel, cls = '') => `<a class="tz ${cls}" ${goAttr(to)}>${media(img, mlabel, { w: 1400 })}${lb(label)}<h3>${h}</h3><p>${d}</p><span class="link">${cta}</span></a>`;
+
+            return `<section class="hero">
+                <div class="hero-stage" data-l="[HOMEPAGE — HERO VIDEO: MELBOURNE ↔ TP.HCM]">
+                    <div class="hero-win" aria-hidden="true"><div class="hero-media"><img src="${U(HERO.poster, 1920)}" alt="" decoding="async">${HERO.clips.map(() => '<video class="hv vfx" muted playsinline preload="none"></video>').join('')}</div><span class="hero-dim"></span></div>
+                    <svg class="hero-line" preserveAspectRatio="none" aria-hidden="true"><polygon pathLength="1" points="0,0"/></svg>
+                    <div class="wrap hero-in">
+                        <h1>${lines.map((l, i) => `<span class="ln" style="--d:${i}"><span>${l}</span></span>`).join(' ')}</h1>
+                        <div class="hero-foot">
+                            <div class="hf" style="--i:0"><p class="sub">${t('Building Wealth. Empowering People.', 'Kiến tạo tài sản. Phát triển con người.')}</p>
+                                <p class="lead">${t('Connecting capital, businesses, assets and Vietnamese communities across Australia and Vietnam to create lasting value for generations.', 'Kết nối vốn, doanh nghiệp, tài sản và cộng đồng Việt tại Úc và Việt Nam, hướng tới giá trị bền vững cho nhiều thế hệ.')}</p></div>
+                            <div class="hf" style="--i:1">${btn(t('Explore Leovian', 'Khám phá Leovian'), 'ecosystem', 'solid')}</div>
+                            <div class="hero-clip hf" style="--i:2"><span class="hc-place">${ic('pin', 'xs')}<span id="hloc">${tx(HERO.clips[0].place)}</span></span>${LITE ? '' : `<span class="hc-bars" aria-hidden="true">${HERO.clips.map(() => '<b><i></i></b>').join('')}</span>`}</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sec" id="intro"><div class="wrap intro">
+                <div>${lb(t('About Leovian', 'Về Leovian'))}<h2>${hl(t('Connecting Resources. *Supporting Long-Term Growth.*', 'Kết nối nguồn lực. *Phát triển dài hạn.*'))}</h2></div>
+                <div><p class="statement">${plain(t('Leovian is building an ecosystem where *investment and people development* work together to support business and asset growth.', 'Leovian xây dựng một hệ sinh thái nơi *đầu tư và phát triển con người* cùng tạo nền tảng cho sự phát triển của doanh nghiệp và tài sản.'))}</p>
+                    <div class="intro-act">${lnk(t('About Us', 'Về chúng tôi'), 'about')}</div></div>
+            </div></section>
+
+            <section class="sec alt"><div class="wrap trip">
+                ${PURPOSE.map((s, i) => `<article class="trip-i">${i ? '' : `<h2 class="trip-h">${hl(t('Our *Purpose*', 'Giá trị *hướng tới*'))}</h2>`}${media(s.img, `HOMEPAGE — PURPOSE PHOTO 0${i + 1}`, { w: 1100 })}<h3>${tx(s.t)}</h3></article>`).join('')}
+            </div></section>
+
+            <section class="sec"><div class="wrap">
+                ${head('', t('Our *Ecosystem*', '*Hệ sinh thái*'))}
+                ${PANES.map(ecoGroup).join('')}
+            </div></section>
+
+            <section class="sec alt"><div class="wrap">
+                ${head(t('How We Work', 'Cách chúng tôi đồng hành'), t('From the first conversation to *long-term value.*', 'Từ cuộc trò chuyện đầu tiên đến *giá trị dài hạn.*'), t('A clear, transparent process for investors, partners and businesses working with Leovian.', 'Một quy trình rõ ràng, minh bạch dành cho nhà đầu tư, đối tác và doanh nghiệp đồng hành cùng Leovian.'))}
+                <ol class="steps">${PROCESS.map((p, i) => `<li class="step"><span class="step-node" aria-hidden="true"></span><span class="step-n">${i + 1}</span><h3>${tx(p.t)}</h3><p>${tx(p.d)}</p></li>`).join('')}</ol>
+            </div></section>
+
+            <section class="sec"><div class="wrap tz-grid">
+                ${teaser(t('News & Insights', 'Tin tức & Góc nhìn'), t('Follow the Leovian Journey.', 'Cập nhật hành trình Leovian.'), t('Projects, activities and new milestones.', 'Dự án, hoạt động và những dấu mốc mới.'), t('View News', 'Xem tin tức'), 'news', '1444653614773-995cb1ef9efa', 'NEWS — ARTICLE COVER')}
+                ${teaser(t('Events', 'Sự kiện'), t('Meet. Connect. Grow.', 'Gặp gỡ. Kết nối. Cùng phát triển.'), t('Explore events from Leovian and our partners.', 'Khám phá các sự kiện của Leovian và đối tác.'), t('View Events', 'Xem sự kiện'), 'events', '1505373877841-8d25f7d46678', 'EVENTS — EVENT COVER / GALLERY', 'tall')}
+            </div></section>
+
+            ${band(t('Contact', 'Liên hệ'), t('Explore New *Possibilities* Together.', 'Cùng mở ra *cơ hội* mới.'), '', btn(t('Connect with Leovian', 'Kết nối với Leovian'), 'contact', 'solid'))}`;
+        };
+
+        V.about = () => {
+            const slide = (img, k) => `<div class="slide" role="group" aria-roledescription="slide" aria-label="${k + 1} / ${TEAM_N}">
+                ${media(img, 'ABOUT US — TEAM MEMBER PORTRAIT', { w: 800, cls: 'portrait', extra: '&h=1000&crop=faces', alt: t('Placeholder portrait', 'Ảnh chân dung minh họa') })}
+                <div>${lb(`${t('Placeholder team member', 'Thành viên minh họa')} ${pad(k + 1)}`)}
+                <blockquote>${t('One personal sentence about their vision, purpose, or contribution to Leovian.', 'Một câu về tầm nhìn, mục đích hoặc đóng góp cá nhân cho Leovian.')}</blockquote>
+                <div class="who"><b>[${t('NAME', 'TÊN')} ${k + 1}]</b><span>[${t('POSITION', 'CHỨC VỤ')}]</span></div></div></div>`;
+
+            return pageHead(t('About *Leovian*', 'Về *Leovian*'), t('Building Wealth. Empowering People.', 'Kiến tạo tài sản. Phát triển con người.'), t('Leovian is an ecosystem connecting investment, businesses, technology, assets and people. With a focus on Australia and Vietnam, we aim to build financial and human value that can grow across generations.', 'Leovian là hệ sinh thái kết nối đầu tư, doanh nghiệp, công nghệ, tài sản và con người. Với trọng tâm tại Úc và Việt Nam, chúng tôi hướng tới xây dựng giá trị tài chính và giá trị con người có thể phát triển qua nhiều thế hệ.'))
+
+                + `<section class="sec"><div class="wrap intro"><div><h2 class="h-sm">${t('Why Leovian Exists', 'Vì sao Leovian ra đời')}</h2></div>
+                    <p class="statement">${plain(t('Leovian was founded on the belief that *lasting prosperity begins with people* who can create, manage and grow assets. Investing in people’s capabilities, mindset and sense of responsibility is therefore central to our approach.', 'Leovian được thành lập từ niềm tin rằng *sự thịnh vượng bền vững bắt đầu từ những con người* biết tạo dựng, quản lý và phát triển tài sản. Vì vậy, đầu tư vào năng lực, tư duy và trách nhiệm của con người là nền tảng trong định hướng của chúng tôi.'))}</p></div></section>`
+
+                + `<section class="sec alt"><div class="wrap">${MV.map((m, i) => `<div class="frow${i % 2 ? ' rev' : ''}">${media(m.img, 'ABOUT US — MISSION / VISION PHOTO', { w: 1300, cls: 'frow-media' })}
+                    <div class="frow-tx"><h3 class="frow-k">${ic(m.ic)}${tx(m.t)}</h3><p class="box-lead">${tx(m.d)}</p></div></div>`).join('')}</div></section>`
+
+                + `<section class="sec"><div class="wrap">${head('', t('Our *Principles*', 'Nguyên tắc của *chúng tôi*'))}
+                    <div class="pr4">${PRINCIPLES.map(p => `<div class="pr"><span class="pr-mk" aria-hidden="true"></span><h3>${tx(p.t)}</h3><p>${tx(p.d)}</p></div>`).join('')}</div></div></section>`
+
+                + `<section class="sec alt"><div class="wrap">
+                    <div class="head"><div><h2>${hl(t('Our *Team*', '*Đội ngũ*'))}</h2></div>
+                    <div class="car-ctl"><span class="car-count" id="tcount" aria-live="polite"></span><button class="sqb" data-team="-1" aria-label="${t('Previous', 'Trước')}">${ic('chevl')}</button><button class="sqb" data-team="1" aria-label="${t('Next', 'Tiếp')}">${ic('chevr')}</button></div></div>
+                    <div class="slides" aria-roledescription="carousel" aria-label="${t('Team', 'Đội ngũ')}">${TEAM_IMG.map(slide).join('')}</div>
+                    <div class="tthumbs">${TEAM_IMG.map((img, k) => `<button class="tthumb" data-tm="${k}" aria-label="${t('Team member', 'Thành viên')} ${k + 1}"><img src="${U(img, 160, '&h=200&crop=faces')}" alt="" loading="lazy"></button>`).join('')}</div>
+                </div></section>`
+
+                + band('', t('Our *Ecosystem*', 'Hệ sinh thái *Leovian*'), '', btn(t('Explore Our Ecosystem', 'Khám phá hệ sinh thái'), 'ecosystem', 'solid'));
+        };
+
+        V.ecosystem = () => pageHead(t('Our *Ecosystem*', 'Hệ sinh thái *Leovian*'), t('Connecting Resources. Expanding Opportunities.', 'Kết nối nguồn lực. Mở rộng cơ hội.'), t('Leovian builds an ecosystem that connects investment opportunities with business development solutions, fostering collaboration and creating a foundation for sustainable, long-term value across Australia and Vietnam.', 'Leovian xây dựng hệ sinh thái kết nối hoạt động đầu tư và các giải pháp phát triển doanh nghiệp, tạo nền tảng hợp tác và hướng tới giá trị bền vững tại Úc và Việt Nam.'),
+            `<div class="phd-jump">${lnk(`<b>01</b> ${t('Investment', 'Đầu tư')}`, 'ecosystem', 'inv')}${lnk(`<b>02</b> ${t('Partnership', 'Hợp tác')}`, 'ecosystem', 'par')}</div>`)
+
+            + `<section class="sec" id="inv"><div class="wrap">
+                ${head(t('01. Investment', '01. Investment · Đầu tư'), t('Investing in Potential. *Creating Long-Term Value.*', 'Đầu tư vào tiềm năng. *Kiến tạo giá trị dài hạn.*'), t('Leovian explores and develops investment opportunities across key sectors, connecting resources and partners to create sustainable value.', 'Leovian khám phá và phát triển các cơ hội đầu tư trong những lĩnh vực trọng điểm, kết nối nguồn lực và đối tác nhằm tạo dựng giá trị bền vững.'))}
+                <div class="sect4">${INV.map((x, i) => `<article class="scard" id="i${i}" data-flash>${media(x.img, 'ECOSYSTEM — INVESTMENT PROJECT PHOTO', { w: 900, alt: tx(x.t) })}
+                    <div class="scard-tx">${enTag(x.t)}<h3>${ic(x.ic)}${tx(x.t)}</h3><p>${tx(x.d)}</p></div></article>`).join('')}</div>
+                <div class="sec-foot">${btn(t('Explore Investment Opportunities', 'Khám phá cơ hội đầu tư'), 'contact', 'solid')}</div>
+            </div></section>`
+
+            + `<section class="sec alt" id="par"><div class="wrap">
+                ${head(t('02. Partnership', '02. Partnership · Hợp tác & Giải pháp doanh nghiệp'), t('Connecting Expertise. *Empowering Business Growth.*', 'Kết nối chuyên môn. *Đồng hành phát triển.*'), t('Leovian brings together expertise, teams, and resources to support businesses in strategic planning, brand development, and operational execution.', 'Leovian kết nối đội ngũ, chuyên môn và nguồn lực để đồng hành cùng doanh nghiệp trong việc xây dựng chiến lược, phát triển thương hiệu và triển khai hoạt động kinh doanh.'))}
+                ${PAR.map((x, i) => `<article class="frow${i % 2 ? ' rev' : ''}" id="p${i}" data-flash>${media(x.img, 'ECOSYSTEM — PARTNERSHIP TEAM PHOTO', { w: 1300, cls: 'frow-media land', alt: tx(x.t) })}
+                    <div class="frow-tx"><div>${enTag(x.t)}<h3 class="frow-h">${ic(x.ic)}${tx(x.t)}</h3></div><p>${tx(x.d)}</p></div></article>`).join('')}
+                <div class="sec-foot">${btn(t('Explore Partnership Solutions', 'Khám phá giải pháp hợp tác'), 'contact', 'solid')}</div>
+            </div></section>`
+
+            + band('', t('Let’s Create *Value* Together', 'Cùng kiến tạo *giá trị*'), t('Whether you are exploring investment opportunities or seeking solutions to grow your business, Leovian is here to connect, collaborate, and explore the right opportunities with you.', 'Dù bạn đang tìm kiếm cơ hội đầu tư hay giải pháp phát triển doanh nghiệp, Leovian sẵn sàng kết nối và cùng bạn khám phá những hướng đi phù hợp.'), btn(t('Connect With Leovian', 'Kết nối với Leovian'), 'contact', 'solid'));
+
+        V.news = () => {
+            const meta = `<div class="meta"><span class="chip">[${t('Category', 'Danh mục')}]</span><span>${ic('cal', 'xs')}[${t('Publish date', 'Ngày đăng')}]</span></div>`;
+            const title = `[${t('Placeholder article title', 'Tiêu đề bài viết minh họa')}]`, summary = `[${t('Short summary placeholder', 'Tóm tắt minh họa')}]`;
+            return pageHead(t('News &amp; *Insights*', 'Tin tức &amp; *Góc nhìn*'), t('Follow the Leovian Journey.', 'Cập nhật hành trình Leovian.'), t('Projects, activities and new milestones.', 'Dự án, hoạt động và những dấu mốc mới.'))
+                + `<section class="sec"><div class="wrap">
+                    <div class="notice">${ic('info', 'sm')}<span>${t('Placeholder layout. No real articles have been written yet.', 'Bố cục minh họa. Chưa có bài viết thật.')}</span></div>
+                    <article class="nf">${media(NEWS_IMG[0], 'NEWS — FEATURED ARTICLE COVER', { w: 1600 })}<div class="nf-tx">${meta}<h2>${title}</h2><p>${summary}</p></div></article>
+                    <div class="ngrid">${NEWS_IMG.slice(1).map(img => `<article class="ncard">${media(img, 'NEWS — ARTICLE COVER', { w: 1000 })}<div class="ncard-tx">${meta}<h3>${title}</h3><p>${summary}</p></div></article>`).join('')}</div>
+                </div></section>`;
+        };
+
+        V.startuplab = () => pageHead(t('Startup *Lab*', 'Không gian *khởi nghiệp*'), t('Where Ideas Begin. Where Potential Grows.', 'Nơi ý tưởng bắt đầu. Nơi tiềm năng phát triển.'), t('Startup Lab is a space for connecting ideas, sharing knowledge, and exploring growth opportunities within the entrepreneurial communities of Australia and Vietnam.', 'Startup Lab là không gian kết nối ý tưởng, chia sẻ kiến thức và khám phá cơ hội phát triển dành cho cộng đồng khởi nghiệp tại Úc và Việt Nam.'))
+            + `<section class="sec"><div class="wrap"><div class="boxes">${STARTUP.map(x => `<article class="box"><span class="icb">${ic(x.ic)}</span><div>${enTag(x.t)}<h3>${tx(x.t)}</h3></div><p>${tx(x.d)}</p></article>`).join('')}</div>
+                ${media('1598520106830-8c45c2035460', 'STARTUP LAB — REAL TEAM BRAINSTORMING PHOTO', { w: 2000, cls: 'wide', alt: t('Team mapping ideas on a glass board', 'Nhóm phác thảo ý tưởng trên bảng kính') })}</div></section>`
+            + `<section class="sec alt" id="idea"><div class="wrap split">
+                <div>${lb(t('Connect With Us', 'Connect With Us · Kết nối cùng Leovian'))}<h2 class="h-sm" style="margin-top:22px">${hl(t('Have a business idea or looking to connect with the *startup community?*', 'Bạn có một ý tưởng kinh doanh hoặc mong muốn kết nối với *cộng đồng khởi nghiệp?*'))}</h2>
+                    ${media('1590103514966-5e2a11c13e21', 'STARTUP LAB — COMMUNITY PHOTO', { w: 1100, cls: 'split-media' })}</div>
+                <div class="panel">${form(field(t('Full Name', 'Họ và tên'), 'name', 'text', { req: 1, ac: 'name' }) + field('Email', 'email', 'email', { req: 1, ac: 'email' }) + area(t('Your idea', 'Ý tưởng của bạn'), 'idea'), t('Share Your Idea', 'Chia sẻ ý tưởng'))}</div>
+            </div></section>`;
+
+        V.events = () => {
+            const row = i => {
+                const e = EV[i];
+                return `<article class="ev-row" data-ev="${i}">
+                    <span class="ev-date">${tx(e.date)}</span><div><h3>${tx(e.t)}</h3><p>${tx(e.d)}</p></div>
+                    <span class="ev-loc">${ic('pin', 'sm')}${tx(e.loc)}</span>
+                    <button class="btn sm ev-btn" data-ev="${i}" aria-label="${t('View Details', 'Xem chi tiết')}: ${tx(e.t)}">${t('View Details', 'Xem chi tiết')}</button></article>`;
+            };
+            const past = i => {
+                const e = EV[i];
+                return `<article class="pcard" data-ev="${i}">${media(e.img, 'EVENTS — EVENT GALLERY', { w: 900 })}
+                    <div class="meta"><span>${ic('cal', 'xs')}${tx(e.date)}</span><span>${ic('pin', 'xs')}${tx(e.loc)}</span></div><h3>${tx(e.t)}</h3><p>${tx(e.d)}</p>
+                    <button class="link" data-ev="${i}">${t('Explore Past Events', 'Khám phá sự kiện')}</button></article>`;
+            };
+            return pageHead(t('*Events*', '*Sự kiện*'), t('Connect. Collaborate. Grow Together.', 'Gặp gỡ. Kết nối. Cùng phát triển.'), t('Discover events, networking opportunities, and collaborative experiences with Leovian across Australia and Vietnam.', 'Khám phá những sự kiện, hoạt động kết nối và cơ hội hợp tác cùng Leovian tại Úc và Việt Nam.'))
+                + `<section class="sec"><div class="wrap">${head(t('', 'Upcoming Events'), t('Upcoming *Events*', 'Sự kiện *sắp diễn ra*'), t('Stay informed about upcoming events and networking opportunities.', 'Cập nhật những sự kiện và chương trình kết nối sắp tới.'))}
+                    <div class="ev-list">${[0, 1, 2].map(row).join('')}</div></div></section>`
+                + `<section class="sec alt"><div class="wrap">${head(t('', 'Past Events'), t('Past *Events*', 'Sự kiện *đã diễn ra*'), t('Explore memorable moments, highlights, and activities from Leovian’s events and collaborations.', 'Nhìn lại những dấu ấn, khoảnh khắc và hoạt động nổi bật của Leovian cùng các đối tác.'))}
+                    <div class="pgrid">${[3, 4, 5].map(past).join('')}</div></div></section>`;
+        };
+
+        V.contact = () => {
+            const topics = `<label class="field"><span>${t('Area of interest', 'Chủ đề quan tâm')}</span><select name="topic">${TOPICS.map(o => `<option>${tx(o)}</option>`).join('')}</select></label>`;
+            return pageHead(t('*Contact*', '*Liên hệ*'), t('Start a Conversation. Explore New Possibilities.', 'Bắt đầu kết nối. Mở ra cơ hội.'), t('Get in touch to learn about the Leovian ecosystem or discuss your needs.', 'Liên hệ với Leovian để tìm hiểu về hệ sinh thái hoặc trao đổi nhu cầu của bạn.'))
+                + `<section class="sec"><div class="wrap contact">
+                    <div>${lb(t('Contact Details', 'Thông tin liên hệ'))}<h2 class="h-sm">${t('Melbourne Office', 'Văn phòng Melbourne')}</h2>
+                        <div class="addr">${ic('pin')}<span>${OFFICE.addr}</span></div>
+                        <small class="cl">${t('Phone', 'Điện thoại')}</small><a class="biglink" href="${OFFICE.telHref}">${OFFICE.tel}</a>
+                        <small class="cl">Email</small><a class="biglink" href="mailto:${OFFICE.mail}">${OFFICE.mail}</a>
+                        <small class="cl">Website</small><a class="link" href="https://${OFFICE.web}" target="_blank" rel="noopener">${OFFICE.web}${ic('ur', 'sm')}</a>
+                        <div class="map"><iframe title="${t('Map: 405 Collins Street, Melbourne', 'Bản đồ: 405 Collins Street, Melbourne')}" src="${OFFICE.map}" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                        <a class="link" href="${OFFICE.mapLink}" target="_blank" rel="noopener">${ic('pin', 'sm')}${t('Open in Google Maps', 'Mở trong Google Maps')}${ic('ur', 'sm')}</a></div>
+                    <div class="panel">${lb(t('Send Us a Message', 'Gửi lời nhắn'))}
+                        ${form(field(t('Full name', 'Họ và tên'), 'name', 'text', { req: 1, ac: 'name' }) + field('Email', 'email', 'email', { req: 1, ac: 'email' }) + field(t('Phone number', 'Số điện thoại'), 'phone', 'tel', { ac: 'tel' }) + topics + area(t('Your message', 'Nội dung lời nhắn'), 'message'), t('Send Message', 'Gửi lời nhắn'))}</div>
+                </div></section>`;
+        };
+
+        /* ---------- Chrome: header, menu, footer ---------- */
+        const langSwitch = () => `<div class="lang" role="group" aria-label="Language"><button data-lang="en" aria-pressed="${lang === 'en'}">EN</button><i></i><button data-lang="vi" aria-pressed="${lang === 'vi'}">VI</button></div>`;
+
+        function header() {
+            const cur = k => page === k ? ' aria-current="page"' : '';
+            const mega = `<div class="mega"><div class="mega-in">
+                <div class="mega-intro"><img src="${U('1602559227639-3bba8ce496df', 600)}" alt="" loading="lazy">${lb(t('Our Ecosystem', 'Hệ sinh thái'))}<p>${t('Connecting Resources. Expanding Opportunities.', 'Kết nối nguồn lực. Mở rộng cơ hội.')}</p>${lnk(t('Overview', 'Tổng quan'), 'ecosystem')}</div>
+                ${PANES.map(p => `<div class="mega-col"><b>${tx(p.tag)}</b>${p.items.map((x, i) => `<a ${goAttr('ecosystem', p.pre + i)}>${ic(x.ic)}<span>${tx(x.t)}</span></a>`).join('')}</div>`).join('')}
+            </div></div>`;
+            // Menu order follows the content draft; Contact is the gold button at the end of the bar.
+            const links = NAV.filter(n => n.k !== 'contact').map(n => n.k === 'ecosystem'
+                ? `<div class="dd"><a ${goAttr('ecosystem')}${cur('ecosystem')}>${tx(n.t)}${ic('chev', 'xs')}</a>${mega}</div>`
+                : `<a ${goAttr(n.k)}${cur(n.k)}>${tx(n.t)}</a>`).join('');
+            const open = document.body.classList.contains('menu');
+            $('#hdr').innerHTML = `<div class="wrap bar">
+                <a class="brand" ${goAttr('home')} aria-label="Leovian — ${t('Home', 'Trang chủ')}">${LOGO}<span>LEOVIAN</span></a>
+                <nav class="nav" aria-label="${t('Main', 'Điều hướng chính')}">${links}</nav>
+                <div class="bar-r">${langSwitch()}<a class="btn sm solid bar-cta" ${goAttr('contact')}>${t('Contact', 'Liên hệ')}</a>
+                    <button class="burger" aria-expanded="${open}" aria-controls="ov"><span class="bt-open">Menu</span><span class="bt-close">${t('Close', 'Đóng')}</span><span class="bl"><i></i><i></i></span></button></div>
+            </div>`;
+            $('#ov').innerHTML = `<div class="ov-in">
+                <nav class="ov-nav" aria-label="${t('Main', 'Điều hướng chính')}">${NAV.map((n, i) => `<a ${goAttr(n.k)}${cur(n.k)} style="--i:${i}">${tx(n.t)}</a>`).join('')}</nav>
+                <div class="ov-side"><div><a href="mailto:${OFFICE.mail}">${ic('mail', 'sm')}${OFFICE.mail}</a><a href="${OFFICE.telHref}">${ic('phone', 'sm')}${OFFICE.tel}</a></div>${langSwitch()}</div></div>`;
+            $('#ov').inert = !open;
+        }
+
+        function footer() {
+            $('#ft').innerHTML = `<div class="wrap ft-cta"><div>${lb(t('Contact', 'Liên hệ'))}<br><a class="ft-big" ${goAttr('contact')}>${t('Start a Conversation', 'Bắt đầu kết nối')}</a></div>
+                    <div class="ft-mail"><a href="mailto:${OFFICE.mail}">${OFFICE.mail}</a><a href="${OFFICE.telHref}">${OFFICE.tel}</a></div></div>
+                <div class="wrap ft-top">
+                    <div class="ft-brand"><a class="brand" ${goAttr('home')}>${LOGO}<span>LEOVIAN</span></a>
+                        <p class="sub">${t('Building Wealth. Empowering People.', 'Kiến tạo tài sản. Phát triển con người.')}</p>
+                        <p>${t('An ecosystem connecting investment, businesses, technology, assets and people across Australia and Vietnam.', 'Hệ sinh thái kết nối đầu tư, doanh nghiệp, công nghệ, tài sản và con người tại Úc và Việt Nam.')}</p></div>
+                    <div><h4>${t('Explore', 'Khám phá')}</h4><ul>${NAV.filter(n => n.k !== 'home').map(n => `<li><a ${goAttr(n.k)}>${tx(n.t)}</a></li>`).join('')}</ul></div>
+                    <div><h4>${t('Ecosystem', 'Hệ sinh thái')}</h4><ul>${PANES.map(p => `<li><a ${goAttr('ecosystem', p.sec)}>${tx(p.tag)}</a></li>`).join('')}${INV.map((x, i) => `<li><a ${goAttr('ecosystem', 'i' + i)}>${tx(x.t)}</a></li>`).join('')}</ul></div>
+                    <div><h4>${t('Office', 'Văn phòng')}</h4><ul class="ft-contact"><li>${ic('pin', 'sm')}<span>${OFFICE.addr}</span></li><li>${ic('globe', 'sm')}<a href="https://${OFFICE.web}" target="_blank" rel="noopener">${OFFICE.web}</a></li></ul></div>
+                </div>
+                <div class="wrap ft-bot"><span>© ${new Date().getFullYear()} Leovian. ${t('All rights reserved.', 'Bảo lưu mọi quyền.')}</span>
+                    <span class="ft-note">${t('Design prototype — all content, people, events and contact details are placeholders pending Leovian approval. Stock photos and video: Unsplash, Pexels.', 'Bản thiết kế mẫu — mọi nội dung, nhân sự, sự kiện và thông tin liên hệ đều là minh họa, chờ Leovian xác nhận. Ảnh và video minh họa: Unsplash, Pexels.')}</span></div>`;
+        }
+
+        function chrome() {
+            const notes = t('Design Notes', 'Ghi chú thiết kế');
+            $('#ntg').innerHTML = `${ic('tag', 'sm')}<span>${notes}</span>`;
+            $('#ntg').setAttribute('aria-label', notes);
+            $('#top').innerHTML = $('#top').innerHTML.replace(/<svg class="ic[\s\S]*$/, '') + ic('up', 'sm');
+            $('#top').setAttribute('aria-label', t('Back to top', 'Lên đầu trang'));
+            $('.skip').textContent = t('Skip to content', 'Bỏ qua đến nội dung');
+            document.title = `Leovian — ${page === 'home' ? t('Investment & Business Development Ecosystem', 'Hệ sinh thái Đầu tư & Phát triển Doanh nghiệp') : navLabel(page)}`;
+        }
+
+        /* ---------- Effects ---------- */
+        // Photos fade in once loaded instead of popping in line by line.
+        function imgFade() {
+            $$('.mi img').forEach(img => {
+                const ok = () => img.classList.add('ld');
+                if (img.complete && img.naturalWidth) ok();
+                else { img.addEventListener('load', ok, { once: true }); img.addEventListener('error', ok, { once: true }); }
+            });
+        }
+
+        // Background videos only load and play while on screen.
+        function bgVideos() {
+            if (vio) vio.disconnect();
+            const vids = $$('video[data-src]');
+            if (!vids.length || !('IntersectionObserver' in window)) return;
+            vio = new IntersectionObserver(entries => entries.forEach(x => {
+                const v = x.target;
+                if (!x.isIntersecting) { v.pause(); return; }
+                if (!v.src) v.src = v.dataset.src;
+                v.play().catch(() => { });
+            }), { rootMargin: '200px 0px' });
+            vids.forEach(v => { v.addEventListener('playing', () => v.classList.add('on'), { once: true }); vio.observe(v); });
+        }
+
+        // Hero cycles Melbourne and Ho Chi Minh City clips with a crossfade and a progress bar per clip.
+        function heroVideo() {
+            if (hio) hio.disconnect();
+            const vids = $$('.hv');
+            if (!vids.length || LITE) return;
+            const bars = $$('.hc-bars b'), small = innerWidth < 900;
+            let cur = 0;
+            const show = i => {
+                cur = i;
+                vids.forEach((v, k) => v.classList.toggle('on', k === i));
+                const loc = $('#hloc');
+                if (loc) loc.textContent = tx(HERO.clips[i].place);
+                bars.forEach((b, k) => { if (k !== i) b.style.setProperty('--f', 0); });
+            };
+            vids.forEach((v, i) => {
+                v.src = PX(small ? HERO.clips[i].sd : HERO.clips[i].hd);
+                v.addEventListener('timeupdate', () => { if (i === cur && v.duration) bars[i].style.setProperty('--f', (v.currentTime / v.duration).toFixed(3)); });
+                v.addEventListener('ended', () => {
+                    const n = (i + 1) % vids.length;
+                    vids[n].currentTime = 0;
+                    vids[n].play().then(() => show(n)).catch(() => { });
+                });
+            });
+            vids[0].preload = 'auto';
+            // Buffer only the next clip once the current one starts, not every clip at once.
+            vids.forEach((v, i) => v.addEventListener('playing', () => { vids[(i + 1) % vids.length].preload = 'auto'; }, { once: true }));
+            hio = new IntersectionObserver(([x]) => {
+                if (x.isIntersecting) vids[cur].play().then(() => show(cur)).catch(() => { });
+                else vids[cur].pause();
+            });
+            hio.observe($('.hero'));
+        }
+
+        // Measures the diamond window. The hero pins (and the diamond opens on scroll)
+        // only when the headline block fits the screen beneath it.
+        function heroGeo() {
+            const el = $('.hero');
+            HG.el = el;
+            if (!el) return;
+            const st = $('.hero-stage', el), inn = $('.hero-in', el);
+            Object.assign(HG, { st, win: $('.hero-win', el), svg: $('.hero-line', el), poly: $('.hero-line polygon', el), p: -1 });
+            // Width test uses innerWidth so it agrees with the 900px CSS breakpoint.
+            const W = st.clientWidth, vh = innerHeight, wide = innerWidth > 900;
+            HG.vw = innerWidth; HG.vh = vh;
+            const hh = $('#hdr .bar') ? $('#hdr .bar').offsetHeight : 72;
+            const r0 = wide ? Math.min(vh * .31, W * .24) : Math.min(W * .3, vh * .18);
+            const cx = wide ? W * .62 : W * .5;
+            const cy = wide ? Math.max(vh * .44, hh + 28 + r0) : hh + 24 + r0;
+            const top = wide ? hh + 40 : Math.round(cy + r0 * .5);
+            st.style.setProperty('--top', `${top}px`);
+            HG.pin = !RM && inn.offsetHeight + top <= vh;
+            el.classList.toggle('pin', HG.pin);
+            const H = st.clientHeight;
+            Object.assign(HG, { cx, cy, r0, rMax: Math.max(cx, W - cx) + Math.max(cy, H - cy) + 4, travel: Math.max(1, el.offsetHeight - H) });
+            HG.svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+        }
+
+        function heroDraw() {
+            if (!HG.el) return;
+            const p = HG.pin ? clamp(-HG.el.getBoundingClientRect().top / HG.travel, 0, 1) : 0;
+            if (p === HG.p) return;
+            HG.p = p;
+            const e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+            const { cx, cy } = HG, r = HG.r0 + (HG.rMax - HG.r0) * e, g = r + 18;
+            HG.win.style.clipPath = `polygon(${cx}px ${cy - r}px, ${cx + r}px ${cy}px, ${cx}px ${cy + r}px, ${cx - r}px ${cy}px)`;
+            HG.poly.setAttribute('points', `${cx},${cy - g} ${cx + g},${cy} ${cx},${cy + g} ${cx - g},${cy}`);
+            HG.svg.style.opacity = Math.max(0, 1 - e * 2.4).toFixed(3);
+            HG.st.style.setProperty('--e', e.toFixed(3));
+        }
+
+        // Hovering or focusing an ecosystem row swaps the preview photo beside the list.
+        function ecoInit() {
+            $$('[data-eco]').forEach(g => {
+                const rows = $$('.eco-row', g), imgs = $$('.eco-prev img', g);
+                const act = i => {
+                    rows.forEach((r, k) => r.classList.toggle('on', k === i));
+                    imgs.forEach((m, k) => m.classList.toggle('on', k === i));
+                };
+                rows.forEach((r, i) => ['mouseenter', 'focus'].forEach(ev => r.addEventListener(ev, () => act(i))));
+            });
+        }
+
+        function frame() {
+            ticking = false;
+            const y = scrollY, vh = innerHeight, max = document.documentElement.scrollHeight - vh;
+            document.documentElement.style.setProperty('--sp', max > 0 ? (y / max).toFixed(4) : 0);
+            const hdr = $('#hdr');
+            // Over the home hero the bar stays clear until the footage has scrolled away.
+            hdr.classList.toggle('solid', y > (HG.el ? HG.el.offsetHeight - vh * .6 : 40));
+            if (Math.abs(y - lastY) > 6) {
+                const down = y > lastY && y > 420;
+                hdr.classList.toggle('hide', down && !document.body.classList.contains('menu') && !hdr.matches(':hover, :focus-within'));
+                lastY = y;
+            }
+            $('#top').classList.toggle('show', y > 600);
+            heroDraw();
+        }
+
+        function onScroll() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(frame);
+        }
+
+        function teamGo(i) {
+            teamIdx = (i + TEAM_N) % TEAM_N;
+            $$('.slide').forEach((s, k) => { s.classList.toggle('on', k === teamIdx); s.inert = k !== teamIdx; });
+            $$('.tthumb').forEach((b, k) => { b.classList.toggle('on', k === teamIdx); b.setAttribute('aria-pressed', k === teamIdx); });
+            $('#tcount').innerHTML = `<b>${pad(teamIdx + 1)}</b> / ${pad(TEAM_N)}`;
+        }
+
+        // Jumps without the CSS smooth-scroll, used for page swaps.
+        function jump(fn) {
+            const r = document.documentElement;
+            r.style.scrollBehavior = 'auto';
+            fn();
+            r.style.scrollBehavior = '';
+        }
+
+        function scrollToId(id, smooth) {
+            const el = document.getElementById(id);
+            if (!el) return false;
+            const flash = el.hasAttribute('data-flash');
+            el.scrollIntoView({ block: flash ? 'center' : 'start', behavior: smooth && !RM ? 'smooth' : 'auto' });
+            if (flash) { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+            return true;
+        }
+
+        function menu(open) {
+            const o = open ?? !document.body.classList.contains('menu');
+            document.body.classList.toggle('menu', o);
+            document.body.classList.toggle('lock', o);
+            const was = !$('#ov').inert;
+            $('#ov').setAttribute('aria-hidden', !o);
+            $('#ov').inert = !o;
+            // Keep Tab inside the open menu, then hand focus back to the toggle.
+            $('#app').inert = $('#ft').inert = o;
+            const b = $('.burger');
+            if (b) b.setAttribute('aria-expanded', o);
+            if (o && !was) { const first = $('.ov-nav a'); if (first) first.focus({ preventScroll: true }); }
+            else if (!o && was && b && $('#ov').contains(document.activeElement)) b.focus({ preventScroll: true });
+        }
+
+        function render(keep = false) {
+            document.documentElement.lang = lang;
+            $('#app').innerHTML = V[page]();
+            header();
+            footer();
+            chrome();
+            imgFade();
+            bgVideos();
+            heroVideo();
+            ecoInit();
+            if (page === 'about') teamGo(keep ? teamIdx : 0);
+            heroGeo();
+            const hero = $('.hero');
+            if (hero && (keep || RM)) {
+                // Language switch: show the hero as it was, without replaying the intro.
+                document.body.classList.add('instant');
+                hero.classList.add('go');
+                requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove('instant')));
+            } else if (hero) setTimeout(() => hero.classList.add('go'), 80);
+            if (!keep) {
+                jump(() => { if (!(target && scrollToId(target))) scrollTo(0, 0); });
+                if (booted) $('#app').focus({ preventScroll: true });
+            }
+            target = null;
+            booted = true;
+            lastY = scrollY;
+            frame();
+        }
+
+        function navigate(p, to) {
+            page = p;
+            target = to || null;
+            try { history.pushState(null, '', '#' + p); } catch (e) { location.hash = p; return; }
+            render();
+        }
+
+        // Page changes are a short fade so the destination arrives without a jump cut.
+        function go(p, to) {
+            menu(false);
+            if ($('#dlg').open) $('#dlg').close();
+            if (p === page && to && scrollToId(to, true)) return;
+            if (p === page && !to) { scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }); return; }
+            if (RM) { navigate(p, to); return; }
+            document.body.classList.add('swap');
+            setTimeout(() => {
+                navigate(p, to);
+                requestAnimationFrame(() => document.body.classList.remove('swap'));
+            }, 280);
+        }
+
+        function setLang(l) {
+            if (l === lang) return;
+            // The switch is rebuilt by render, so remember which copy had focus (header or menu).
+            const inMenu = Boolean(document.activeElement && document.activeElement.closest('#ov'));
+            lang = l;
+            const y = scrollY;
+            render(true);
+            jump(() => scrollTo(0, y));
+            const again = $(`${inMenu ? '#ov' : '#hdr'} [data-lang="${l}"]`);
+            if (again) again.focus({ preventScroll: true });
+        }
+
+        function openEvent(i) {
+            const e = EV[i], d = $('#dlg');
+            d.innerHTML = `<div class="dlg-in"><div class="mi dlg-media" data-l="[EVENTS — EVENT COVER / GALLERY]"><img class="ld" src="${U(e.img, 1200)}" alt=""></div>
+                <button class="dlg-x" data-close aria-label="${t('Close', 'Đóng')}">${ic('x')}</button>
+                <div class="dlg-body">${lb(e.past ? t('Past event', 'Sự kiện đã diễn ra') : t('Upcoming event', 'Sự kiện sắp diễn ra'))}
+                    <h3 id="dlg-title">${tx(e.t)}</h3>
+                    <ul class="dlg-meta"><li>${ic('cal', 'sm')}${tx(e.date)}</li><li>${ic('pin', 'sm')}${tx(e.loc)}</li></ul>
+                    <p>${tx(e.d)}</p>
+                    <p class="hint">${ic('info', 'xs')}${t('Demonstration data — not a real Leovian event.', 'Dữ liệu minh họa — không phải sự kiện thật của Leovian.')}</p>
+                    <div class="actions">${e.past ? '' : btn(t('Register Now', 'Đăng ký tham dự'), 'contact', 'solid')}<button class="btn" data-close>${t('Close', 'Đóng')}</button></div>
+                </div></div>`;
+            d.setAttribute('aria-labelledby', 'dlg-title');
+            d.showModal();
+        }
+
+        /* ---------- Events ---------- */
+        document.addEventListener('click', e => {
+            const el = e.target.closest('[data-go],[data-lang],[data-team],[data-tm],[data-ev],[data-close],[data-skip],.burger,#top,#ntg');
+            if (!el) return;
+            // Let Ctrl/Cmd/Shift/middle-click open a page link in a new tab as usual.
+            if (el.dataset.go && (e.metaKey || e.ctrlKey || e.shiftKey || e.button)) return;
+            if (el.dataset.go) { e.preventDefault(); go(el.dataset.go, el.dataset.to); }
+            else if (el.dataset.lang) setLang(el.dataset.lang);
+            else if (el.dataset.team) teamGo(teamIdx + +el.dataset.team);
+            else if (el.dataset.tm) teamGo(+el.dataset.tm);
+            else if (el.dataset.ev) openEvent(+el.dataset.ev);
+            else if ('close' in el.dataset) $('#dlg').close();
+            else if ('skip' in el.dataset) { e.preventDefault(); $('#app').focus(); }
+            else if (el.classList.contains('burger')) menu();
+            else if (el.id === 'top') scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+            else if (el.id === 'ntg') el.setAttribute('aria-pressed', document.body.classList.toggle('notes'));
+        });
+
+        document.addEventListener('submit', e => {
+            e.preventDefault();
+            e.target.insertAdjacentHTML('afterend', `<div class="ok" role="status" tabindex="-1"><span class="icb">${ic('check')}</span><div><h3>${t('Thank you.', 'Cảm ơn bạn.')}</h3><p>${t('This is a prototype confirmation; no data was sent.', 'Đây là xác nhận mô phỏng; không có dữ liệu nào được gửi.')}</p></div></div>`);
+            const done = e.target.nextElementSibling;
+            e.target.remove();
+            done.focus();
+        });
+
+        $('#dlg').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') menu(false); });
+        matchMedia('(min-width: 1181px)').addEventListener('change', e => { if (e.matches) menu(false); });
+        addEventListener('scroll', onScroll, { passive: true });
+        let rz;
+        // A phone's URL bar showing or hiding only nudges the height; re-measuring then would make the diamond jump mid-scroll.
+        addEventListener('resize', () => {
+            clearTimeout(rz);
+            rz = setTimeout(() => {
+                if (innerWidth !== HG.vw || Math.abs(innerHeight - HG.vh) > 160) heroGeo();
+                frame();
+            }, 160);
+        });
+        addEventListener('hashchange', () => {
+            const h = location.hash.slice(1) || 'home';
+            if (!V[h] || h === page) return;
+            page = h;
+            render();
+        });
+
+        page = V[location.hash.slice(1)] ? location.hash.slice(1) : 'home';
+        render();
+        // Webfonts change the headline height, which decides whether the hero can pin.
+        if (document.fonts) document.fonts.ready.then(() => { heroGeo(); frame(); });
+    </script>
+</body>
+
+</html>
